@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\main.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\main.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/main.cpp",
+  "output": "CMakeFiles/text-editor.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\cursor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\cursor.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/cursor.cpp",
+  "output": "CMakeFiles/text-editor.dir/src/cursor.cpp.obj"
+}
+]
