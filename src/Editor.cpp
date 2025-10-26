@@ -4,7 +4,7 @@
 
 Editor::Editor(sf::Font &font, int characterSize) : m_font{font}, m_characterSize{characterSize}, renderer{font}, lineN{0}
 {
-  std::printf("init editor()");
+  std::printf("init editor()\n");
   inputBuffer.push_back("");
   inputLineLen.push_back(0);
 }
@@ -168,13 +168,16 @@ void Editor::handleInput(sf::Event &ev)
 void Editor::render(sf::RenderWindow &win)
 {
   renderer.drawCursor(win, cursor);
+  renderer.drawSideBorder(win);
 
   if (!inputBuffer.empty())
   {
     int rowPosInc{0};
     for (int i = 0; i < inputBuffer.size(); i++)
     {
-      renderer.drawLineText(win, inputBuffer[i], rowPosInc);
+      renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
+      renderer.drawLineNumber(win, i, rowPosInc, cursor.getCursorPosLineNumber()/m_characterSize);
+      //renderer.drawLineNumber(win, i);
       rowPosInc += m_characterSize;
     }
   }

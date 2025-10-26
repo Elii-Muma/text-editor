@@ -4,7 +4,7 @@
 Cursor::Cursor(int lineNumber, int columnNumber) : 
 lineN{lineNumber}, colN{columnNumber}
 {
-
+  std::cout<<"init Cursor()\n";
 }
 
 void Cursor::moveCursorRight(int cursorColumnPosition)
@@ -25,14 +25,12 @@ void Cursor::moveCursorLeft(int cursorColumnPosition)
 
 void Cursor::moveCursorDown(int lineNumber)
 {
-  std::cout<<"moved down\n";
   this->colN = 0;
   this->lineN += lineNumber; 
 }
 
 void Cursor::moveCursorUp(int lineNumber)
 {
-  std::cout<<"moved up\n";
   this->colN = 0;
   this->lineN -= lineNumber; 
 }
