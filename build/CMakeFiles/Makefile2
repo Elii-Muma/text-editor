@@ -84,12 +84,12 @@ clean: CMakeFiles/text-editor.dir/clean
 CMakeFiles/text-editor.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3 "Built target text-editor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5 "Built target text-editor"
 .PHONY : CMakeFiles/text-editor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/text-editor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/text-editor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 0
 .PHONY : CMakeFiles/text-editor.dir/rule
@@ -101,7 +101,7 @@ text-editor: CMakeFiles/text-editor.dir/rule
 # codegen rule for target.
 CMakeFiles/text-editor.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3 "Finished codegen for target text-editor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5 "Finished codegen for target text-editor"
 .PHONY : CMakeFiles/text-editor.dir/codegen
 
 # clean rule for target.

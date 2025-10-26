@@ -1,0 +1,9 @@
+/src
+ ├── main.cpp
+ ├── Editor.cpp / Editor.h
+ ├── Renderer.cpp / Renderer.h
+ ├── Cursor.cpp / Cursor.h
+ ├── EditHistory.cpp / EditHistory.h
+ └── Utils.cpp / Utils.h
+/resources
+ └── fonts/

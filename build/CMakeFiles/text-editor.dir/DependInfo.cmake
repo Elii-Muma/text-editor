@@ -9,7 +9,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/main.cpp" "CMakeFiles/text-editor.dir/main.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/main.cpp.obj.d"
-  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/cursor.cpp" "CMakeFiles/text-editor.dir/src/cursor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/cursor.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Cursor.cpp" "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

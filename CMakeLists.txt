@@ -11,7 +11,9 @@ link_directories(${SFML_ROOT}/lib)
 
 add_executable(text-editor
                 main.cpp
-                src/cursor.cpp
+                src/Cursor.cpp
+                src/Editor.cpp
+                src/Renderer.cpp
             )
 # Add your custom include folder
 target_include_directories( text-editor PRIVATE 

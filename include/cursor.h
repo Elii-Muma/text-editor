@@ -4,9 +4,19 @@
 class Cursor
 {
 public:
-  const float CURSOR_WIDTH = 2.f;
-  const float CURSOR_HEIGHT = 30.f;
-  void getTest();
+
+  Cursor() : lineN{0}, colN{0}{};
+  Cursor(int lineNumber, int columnNumber);
+  void moveCursorUp(int lineNumber);
+  void moveCursorDown(int lineNumber);
+  void moveCursorLeft(int cursorColumnPosition);
+  void moveCursorRight(int cursorColumnPosition);
+  void setPosition(int lineN, int colN);
+
+  int getCursorPosLineNumber();
+  int getCursorPosColumnNumber();
+
+  std::pair<int, int> getPosition();
 private:
-  sf::RectangleShape cursor;
+  int lineN, colN;
 };

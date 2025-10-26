@@ -7,8 +7,20 @@
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\cursor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\cursor.cpp\"",
-  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/cursor.cpp",
-  "output": "CMakeFiles/text-editor.dir/src/cursor.cpp.obj"
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Cursor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Cursor.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Cursor.cpp",
+  "output": "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Editor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Editor.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp",
+  "output": "CMakeFiles/text-editor.dir/src/Editor.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Renderer.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Renderer.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp",
+  "output": "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"
 }
 ]

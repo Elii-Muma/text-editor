@@ -152,29 +152,77 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/cursor.obj: src/cursor.cpp.obj
-.PHONY : src/cursor.obj
+src/Cursor.obj: src/Cursor.cpp.obj
+.PHONY : src/Cursor.obj
 
 # target to build an object file
-src/cursor.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/cursor.cpp.obj
-.PHONY : src/cursor.cpp.obj
+src/Cursor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.obj
+.PHONY : src/Cursor.cpp.obj
 
-src/cursor.i: src/cursor.cpp.i
-.PHONY : src/cursor.i
+src/Cursor.i: src/Cursor.cpp.i
+.PHONY : src/Cursor.i
 
 # target to preprocess a source file
-src/cursor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/cursor.cpp.i
-.PHONY : src/cursor.cpp.i
+src/Cursor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.i
+.PHONY : src/Cursor.cpp.i
 
-src/cursor.s: src/cursor.cpp.s
-.PHONY : src/cursor.s
+src/Cursor.s: src/Cursor.cpp.s
+.PHONY : src/Cursor.s
 
 # target to generate assembly for a file
-src/cursor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/cursor.cpp.s
-.PHONY : src/cursor.cpp.s
+src/Cursor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.s
+.PHONY : src/Cursor.cpp.s
+
+src/Editor.obj: src/Editor.cpp.obj
+.PHONY : src/Editor.obj
+
+# target to build an object file
+src/Editor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Editor.cpp.obj
+.PHONY : src/Editor.cpp.obj
+
+src/Editor.i: src/Editor.cpp.i
+.PHONY : src/Editor.i
+
+# target to preprocess a source file
+src/Editor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Editor.cpp.i
+.PHONY : src/Editor.cpp.i
+
+src/Editor.s: src/Editor.cpp.s
+.PHONY : src/Editor.s
+
+# target to generate assembly for a file
+src/Editor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Editor.cpp.s
+.PHONY : src/Editor.cpp.s
+
+src/Renderer.obj: src/Renderer.cpp.obj
+.PHONY : src/Renderer.obj
+
+# target to build an object file
+src/Renderer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.obj
+.PHONY : src/Renderer.cpp.obj
+
+src/Renderer.i: src/Renderer.cpp.i
+.PHONY : src/Renderer.i
+
+# target to preprocess a source file
+src/Renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.i
+.PHONY : src/Renderer.cpp.i
+
+src/Renderer.s: src/Renderer.cpp.s
+.PHONY : src/Renderer.s
+
+# target to generate assembly for a file
+src/Renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.s
+.PHONY : src/Renderer.cpp.s
 
 # Help Target
 help:
@@ -188,9 +236,15 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... src/cursor.obj
-	@echo ... src/cursor.i
-	@echo ... src/cursor.s
+	@echo ... src/Cursor.obj
+	@echo ... src/Cursor.i
+	@echo ... src/Cursor.s
+	@echo ... src/Editor.obj
+	@echo ... src/Editor.i
+	@echo ... src/Editor.s
+	@echo ... src/Renderer.obj
+	@echo ... src/Renderer.i
+	@echo ... src/Renderer.s
 .PHONY : help
 
 

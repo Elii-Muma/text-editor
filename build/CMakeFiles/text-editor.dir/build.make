@@ -86,36 +86,70 @@ CMakeFiles/text-editor.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/text-editor.dir/main.cpp.s"
 	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\main.cpp" -o CMakeFiles\text-editor.dir\main.cpp.s
 
-CMakeFiles/text-editor.dir/src/cursor.cpp.obj: CMakeFiles/text-editor.dir/flags.make
-CMakeFiles/text-editor.dir/src/cursor.cpp.obj: CMakeFiles/text-editor.dir/includes_CXX.rsp
-CMakeFiles/text-editor.dir/src/cursor.cpp.obj: C:/Users/Surr\ Elii/Documents/CODE/ProjeksV3/text-editor/src/cursor.cpp
-CMakeFiles/text-editor.dir/src/cursor.cpp.obj: CMakeFiles/text-editor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/text-editor.dir/src/cursor.cpp.obj"
-	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/text-editor.dir/src/cursor.cpp.obj -MF CMakeFiles\text-editor.dir\src\cursor.cpp.obj.d -o CMakeFiles\text-editor.dir\src\cursor.cpp.obj -c "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\cursor.cpp"
+CMakeFiles/text-editor.dir/src/Cursor.cpp.obj: CMakeFiles/text-editor.dir/flags.make
+CMakeFiles/text-editor.dir/src/Cursor.cpp.obj: CMakeFiles/text-editor.dir/includes_CXX.rsp
+CMakeFiles/text-editor.dir/src/Cursor.cpp.obj: C:/Users/Surr\ Elii/Documents/CODE/ProjeksV3/text-editor/src/Cursor.cpp
+CMakeFiles/text-editor.dir/src/Cursor.cpp.obj: CMakeFiles/text-editor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/text-editor.dir/src/Cursor.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/text-editor.dir/src/Cursor.cpp.obj -MF CMakeFiles\text-editor.dir\src\Cursor.cpp.obj.d -o CMakeFiles\text-editor.dir\src\Cursor.cpp.obj -c "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Cursor.cpp"
 
-CMakeFiles/text-editor.dir/src/cursor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/text-editor.dir/src/cursor.cpp.i"
-	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\cursor.cpp" > CMakeFiles\text-editor.dir\src\cursor.cpp.i
+CMakeFiles/text-editor.dir/src/Cursor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/text-editor.dir/src/Cursor.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Cursor.cpp" > CMakeFiles\text-editor.dir\src\Cursor.cpp.i
 
-CMakeFiles/text-editor.dir/src/cursor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/text-editor.dir/src/cursor.cpp.s"
-	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\cursor.cpp" -o CMakeFiles\text-editor.dir\src\cursor.cpp.s
+CMakeFiles/text-editor.dir/src/Cursor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/text-editor.dir/src/Cursor.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Cursor.cpp" -o CMakeFiles\text-editor.dir\src\Cursor.cpp.s
+
+CMakeFiles/text-editor.dir/src/Editor.cpp.obj: CMakeFiles/text-editor.dir/flags.make
+CMakeFiles/text-editor.dir/src/Editor.cpp.obj: CMakeFiles/text-editor.dir/includes_CXX.rsp
+CMakeFiles/text-editor.dir/src/Editor.cpp.obj: C:/Users/Surr\ Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp
+CMakeFiles/text-editor.dir/src/Editor.cpp.obj: CMakeFiles/text-editor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/text-editor.dir/src/Editor.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/text-editor.dir/src/Editor.cpp.obj -MF CMakeFiles\text-editor.dir\src\Editor.cpp.obj.d -o CMakeFiles\text-editor.dir\src\Editor.cpp.obj -c "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Editor.cpp"
+
+CMakeFiles/text-editor.dir/src/Editor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/text-editor.dir/src/Editor.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Editor.cpp" > CMakeFiles\text-editor.dir\src\Editor.cpp.i
+
+CMakeFiles/text-editor.dir/src/Editor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/text-editor.dir/src/Editor.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Editor.cpp" -o CMakeFiles\text-editor.dir\src\Editor.cpp.s
+
+CMakeFiles/text-editor.dir/src/Renderer.cpp.obj: CMakeFiles/text-editor.dir/flags.make
+CMakeFiles/text-editor.dir/src/Renderer.cpp.obj: CMakeFiles/text-editor.dir/includes_CXX.rsp
+CMakeFiles/text-editor.dir/src/Renderer.cpp.obj: C:/Users/Surr\ Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp
+CMakeFiles/text-editor.dir/src/Renderer.cpp.obj: CMakeFiles/text-editor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/text-editor.dir/src/Renderer.cpp.obj -MF CMakeFiles\text-editor.dir\src\Renderer.cpp.obj.d -o CMakeFiles\text-editor.dir\src\Renderer.cpp.obj -c "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Renderer.cpp"
+
+CMakeFiles/text-editor.dir/src/Renderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/text-editor.dir/src/Renderer.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Renderer.cpp" > CMakeFiles\text-editor.dir\src\Renderer.cpp.i
+
+CMakeFiles/text-editor.dir/src/Renderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/text-editor.dir/src/Renderer.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\src\Renderer.cpp" -o CMakeFiles\text-editor.dir\src\Renderer.cpp.s
 
 # Object files for target text-editor
 text__editor_OBJECTS = \
 "CMakeFiles/text-editor.dir/main.cpp.obj" \
-"CMakeFiles/text-editor.dir/src/cursor.cpp.obj"
+"CMakeFiles/text-editor.dir/src/Cursor.cpp.obj" \
+"CMakeFiles/text-editor.dir/src/Editor.cpp.obj" \
+"CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"
 
 # External object files for target text-editor
 text__editor_EXTERNAL_OBJECTS =
 
 text-editor.exe: CMakeFiles/text-editor.dir/main.cpp.obj
-text-editor.exe: CMakeFiles/text-editor.dir/src/cursor.cpp.obj
+text-editor.exe: CMakeFiles/text-editor.dir/src/Cursor.cpp.obj
+text-editor.exe: CMakeFiles/text-editor.dir/src/Editor.cpp.obj
+text-editor.exe: CMakeFiles/text-editor.dir/src/Renderer.cpp.obj
 text-editor.exe: CMakeFiles/text-editor.dir/build.make
 text-editor.exe: CMakeFiles/text-editor.dir/linkLibs.rsp
 text-editor.exe: CMakeFiles/text-editor.dir/objects1.rsp
 text-editor.exe: CMakeFiles/text-editor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable text-editor.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable text-editor.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\text-editor.dir\link.txt --verbose=$(VERBOSE)
 	"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory C:/SFML/bin "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build"
 
