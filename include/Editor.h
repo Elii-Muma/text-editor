@@ -59,6 +59,6 @@ private:
 
   std::vector<std::string> inputBuffer;    // holds the line string and the length of the line
   std::vector<int> inputLineLen;           // holds the line string and the length of the line
-  std::vector<sf::Text> inputRenderBuffer; //
+  // std::vector<sf::Text> inputRenderBuffer; //
   std::vector<DelData> deleteStack;        // holds deleted chars
 };

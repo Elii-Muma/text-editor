@@ -20,6 +20,8 @@ void Editor::handleInput(sf::Event &ev)
       int charWidth = getCharGlyphSize(static_cast<char>(ev.text.unicode)).first;
 
       inputBuffer[lineN].insert(index, strChar);
+      DelData tempDelData = {strChar, index, lineN, sf::Vector2f(cursor.getCursorPosColumnNumber(), cursor.getCursorPosLineNumber()), NEW_INPUT};
+      deleteStack.push_back(tempDelData);
 
       if (inputLineLen.size() <= lineN)
         inputLineLen.resize(lineN + 1, 0);
@@ -66,7 +68,7 @@ void Editor::handleInput(sf::Event &ev)
         t.erase(0, index); // erase from beginning to cursor
         std::cout << "erased result: " << t << "\n";
 
-        DelData tempDelData = {"", index, lineN, sf::Vector2f(cursor.getCursorPosLineNumber(), colN), ENT_MOVE};
+        DelData tempDelData = {t, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), ENT_MOVE};
         deleteStack.push_back(tempDelData);
         inputBuffer[lineN].erase(index); // erase from cursor to end
         inputBuffer.insert(inputBuffer.begin() + lineN + 1, t);
@@ -74,7 +76,7 @@ void Editor::handleInput(sf::Event &ev)
       else
       {
         inputBuffer.insert(inputBuffer.begin() + lineN + 1, "");
-        DelData tempDelData = {"", index, lineN, sf::Vector2f(cursor.getCursorPosLineNumber(), colN), ENT_MOVE};
+        DelData tempDelData = {"", index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), ENT_MOVE};
         deleteStack.push_back(tempDelData);
       }
       cursor.setPosition(cursor.getCursorPosLineNumber() + 22, 0);
@@ -136,7 +138,7 @@ void Editor::handleInput(sf::Event &ev)
       }
       break;
     case sf::Keyboard::LControl:
-      isUndoPressed = true;
+      isUndoPressed = true; 
       break;
     default:
       break;
@@ -249,8 +251,10 @@ std::pair<int, int> Editor::getCharGlyphSize(char character)
   return charDimensions;
 }
 
+//function that handles the undo function
 void Editor::undoFunction()
 {
+  //must've written this on coke cos ts works perfectly
   if (!deleteStack.empty())
   {
     int cPosCol{0};
@@ -295,8 +299,6 @@ void Editor::undoFunction()
       inputBuffer[tempData.lineNumber].append(tempData.del_char);
       // delete current line
       inputBuffer.erase(inputBuffer.begin() + lineN);
-      inputRenderBuffer.erase(inputRenderBuffer.begin() + lineN);
-
       lineN = tempData.lineNumber;
       cPosCol = tempData.currCursorPos.x;
       cPosRow = tempData.currCursorPos.y;
@@ -321,7 +323,6 @@ void Editor::undoFunction()
         sf::Text tempTxt;
         tempTxt.setFont(m_font);
         tempTxt.setString(tempData.del_char);
-        inputRenderBuffer.insert(inputRenderBuffer.begin() + tempData.lineNumber, tempTxt);
       }
 
       lineN = tempData.lineNumber;
@@ -335,6 +336,6 @@ void Editor::undoFunction()
   }
   else
   {
-    std::cout << "delete stack is empty\n";
+    std::cout << "delete stack is empty!\n";
   }
 }
