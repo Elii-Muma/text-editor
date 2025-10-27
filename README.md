@@ -7,7 +7,8 @@ it has some functions like(currently)
 - backspace
 - delete
 - undo
-- visible line number(will maybe make them relative)
+- visible line number(will maybe make them relative).
+  
+and more MIGHT be added, idk.
 
-and more MIGHT be added, idk
-i might post the building process on youtube so you can also check that out
+I might post the building process on youtube, so you can also check that out.
