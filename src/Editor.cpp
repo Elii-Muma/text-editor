@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Cursor.h"
 
-Editor::Editor(sf::Font &font, int characterSize) : m_font{font}, m_characterSize{characterSize}, renderer{font}, lineN{0}
+Editor::Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_font{font}, m_characterSize{characterSize}, renderer{font, WIN_SIZE}, lineN{0}, m_WIN_SIZE{WIN_SIZE}
 {
   std::printf("init editor()\n");
   inputBuffer.push_back("");
@@ -59,6 +59,23 @@ void Editor::handleInput(sf::Event &ev)
         cursor.moveCursorDown(22);
       }
       break;
+    case sf::Keyboard::Home:
+      cursor.setPosition(lineN, 0);
+      break;
+    case sf::Keyboard::Delete:
+      index = getCharPosAt();
+      {
+        bool isBackSpace = false;
+        EraseCharacter(isBackSpace, colN, index);
+      }
+      break;
+    case sf::Keyboard::BackSpace:
+      index = getCharPosAt() - 1;
+      {
+        bool isBackSpace = true;
+        EraseCharacter(isBackSpace, colN, index);
+      }
+      break;
     case sf::Keyboard::Enter:
       if (!inputBuffer[lineN].empty())
       {
@@ -82,63 +99,8 @@ void Editor::handleInput(sf::Event &ev)
       cursor.setPosition(cursor.getCursorPosLineNumber() + 22, 0);
       lineN++;
       break;
-    case sf::Keyboard::BackSpace:
-
-      std::cout << "column number :: " << colN << "\n";
-      if (colN > 0)
-      {
-        std::cout << "delete";
-
-        // why do i use -1 here
-        // because getCharPosAt() returns the character AFTER the cursor OR
-        // the last character
-        index = getCharPosAt() - 1;
-        if (index >= 0)
-        {
-          std::cout << "in condition 1\n";
-          std::string str{inputBuffer[lineN][index]};
-
-          std::string del_char{inputBuffer[lineN][index]};
-          inputBuffer[lineN].erase(index, 1);
-
-          DelData tempDelData = {del_char, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), NORMAL_DEL};
-          deleteStack.push_back(tempDelData);
-          std::cout << "deleted: " << tempDelData.del_char << "\n";
-
-          cursorMoveLeft();
-          break;
-        }
-      }
-      else if (colN <= 0)
-      {
-        std::cout << "in condition 2\n";
-        // delete the line and append it to the line before it
-        // unless its the first line
-        std::string temp{inputBuffer[lineN]};
-        if (lineN != 0)
-        {
-          inputBuffer.erase(inputBuffer.begin() + lineN);
-          DelData tempDelData = {temp, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), NORMAL_DEL};
-
-          lineN--;
-          if (lineN < 0)
-            lineN = 0;
-          if (!temp.empty())
-          {
-            int size = inputBuffer[lineN].length();
-            cursor.setPosition(cursor.getCursorPosLineNumber() - 22, 0);
-            inputBuffer[lineN].append(temp);
-          }
-          else
-          {
-            cursor.setPosition(cursor.getCursorPosLineNumber() - 22, 0);
-          }
-          deleteStack.push_back(tempDelData);
-        }
-      }
-      break;
     case sf::Keyboard::LControl:
-      isUndoPressed = true; 
+      isUndoPressed = true;
       break;
     default:
       break;
@@ -176,9 +138,66 @@ void Editor::render(sf::RenderWindow &win)
     for (int i = 0; i < inputBuffer.size(); i++)
     {
       renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
-      renderer.drawLineNumber(win, i, rowPosInc, cursor.getCursorPosLineNumber()/m_characterSize);
-      //renderer.drawLineNumber(win, i);
+      renderer.drawLineNumber(win, i, rowPosInc, cursor.getCursorPosLineNumber() / m_characterSize);
+      // renderer.drawLineNumber(win, i);
       rowPosInc += m_characterSize;
+    }
+  }
+}
+
+void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
+{
+  std::cout << "column number :: " << colN << "\n";
+  if (colN > 0)
+  {
+    std::cout << "delete";
+
+    // why do i use -1 here
+    // because getCharPosAt() returns the character AFTER the cursor OR
+    // the last character
+    if (index >= 0)
+    {
+      std::cout << "in condition 1\n";
+      std::string str{inputBuffer[lineN][index]};
+
+      std::string del_char{inputBuffer[lineN][index]};
+      inputBuffer[lineN].erase(index, 1);
+
+      DelData tempDelData = {del_char, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), NORMAL_DEL};
+      deleteStack.push_back(tempDelData);
+      std::cout << "deleted: " << tempDelData.del_char << "\n";
+
+      if(isBackSpace){
+        cursorMoveLeft();
+      }else
+        std::cout<<"ERASE_CHARACTER::is not backspace so we dont move\n";
+    }
+  }
+  else if (colN <= 0)
+  {
+    std::cout << "in condition 2\n";
+    // delete the line and append it to the line before it
+    // unless its the first line
+    std::string temp{inputBuffer[lineN]};
+    if (lineN != 0)
+    {
+      inputBuffer.erase(inputBuffer.begin() + lineN);
+      DelData tempDelData = {temp, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), NORMAL_DEL};
+
+      lineN--;
+      if (lineN < 0)
+        lineN = 0;
+      if (!temp.empty())
+      {
+        int size = inputBuffer[lineN].length();
+        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, 0);
+        inputBuffer[lineN].append(temp);
+      }
+      else
+      {
+        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, 0);
+      }
+      deleteStack.push_back(tempDelData);
     }
   }
 }
@@ -254,10 +273,10 @@ std::pair<int, int> Editor::getCharGlyphSize(char character)
   return charDimensions;
 }
 
-//function that handles the undo function
+// function that handles the undo function
 void Editor::undoFunction()
 {
-  //must've written this on coke cos ts works perfectly
+  // must've written this on coke cos ts works perfectly
   if (!deleteStack.empty())
   {
     int cPosCol{0};

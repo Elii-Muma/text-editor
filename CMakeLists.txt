@@ -29,9 +29,9 @@ target_link_libraries(text-editor
     winmm
     gdi32
 )
-# Automatically copy SFML DLLs after build (Windows only)
 if(WIN32)
     target_link_options(${PROJECT_NAME} PRIVATE -mconsole)
+ # Automatically copy SFML DLLs after build (Windows only)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${SFML_ROOT}/bin"

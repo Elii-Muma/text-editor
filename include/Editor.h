@@ -10,17 +10,21 @@ class Editor
 {
 
 public:
-  Editor(sf::Font &font, int characterSize);
+  Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE);
   void handleInput(sf::Event &ev);
   void update();
   void render(sf::RenderWindow &window);
+  void EraseCharacter(bool isBackSpace, int colN, int index);
   int getCharPosAt();
+  void setWinSize(sf::Vector2i WIN_SIZE);
+  sf::Vector2i getWinSize();
   void cursorMoveUp();
   void cursorMoveDown();
   void cursorMoveLeft();
   std::pair<int, int> getCharGlyphSize(char character);
   void cursorMoveRight();
   void undoFunction();
+
 
 private:
   int lineN;
@@ -31,6 +35,8 @@ private:
   // to change from here to some other single place
   sf::Font m_font;
   int m_characterSize;
+
+  sf::Vector2u *m_WIN_SIZE;
 
   // ------DATA STRUCTURES------
   enum dir
@@ -48,13 +54,15 @@ private:
     NEW_INPUT,
     ENT_MOVE
   };
+
+
   struct DelData
   {
     std::string del_char;
     int index;
     int lineNumber;
     sf::Vector2f currCursorPos;
-    StackType s_type{NONE};
+    StackType s_type{StackType::NONE};
   };
 
   std::vector<std::string> inputBuffer;    // holds the line string and the length of the line

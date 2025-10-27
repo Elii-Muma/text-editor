@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include <iostream>
 
-Renderer::Renderer(sf::Font font) : m_font{font}
+Renderer::Renderer(sf::Font font, sf::Vector2u *winSize) : m_font{font}, m_WIN_SIZE(winSize)
 {
   init();
 }
@@ -22,7 +22,8 @@ void Renderer::init()
   m_lineNumberText.setCharacterSize(characterSize);
 
   m_sideBorder.setFillColor(sf::Color(130, 130, 130));
-  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
+  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_WIN_SIZE->y));
+  m_sideBorder.setPosition(0, 0);
 }
 
 void Renderer::drawCursor(sf::RenderWindow &window, Cursor &cursor)
@@ -58,5 +59,6 @@ void Renderer::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
 
 void Renderer::drawSideBorder(sf::RenderWindow &window)
 {
+  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_WIN_SIZE->y));
   window.draw(m_sideBorder);
 }
