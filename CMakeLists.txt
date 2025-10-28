@@ -14,6 +14,7 @@ add_executable(text-editor
                 src/Cursor.cpp
                 src/Editor.cpp
                 src/Renderer.cpp
+                src/Document.cpp
             )
 # Add your custom include folder
 target_include_directories( text-editor PRIVATE 

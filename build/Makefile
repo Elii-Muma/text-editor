@@ -176,6 +176,30 @@ src/Cursor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.s
 .PHONY : src/Cursor.cpp.s
 
+src/Document.obj: src/Document.cpp.obj
+.PHONY : src/Document.obj
+
+# target to build an object file
+src/Document.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Document.cpp.obj
+.PHONY : src/Document.cpp.obj
+
+src/Document.i: src/Document.cpp.i
+.PHONY : src/Document.i
+
+# target to preprocess a source file
+src/Document.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Document.cpp.i
+.PHONY : src/Document.cpp.i
+
+src/Document.s: src/Document.cpp.s
+.PHONY : src/Document.s
+
+# target to generate assembly for a file
+src/Document.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Document.cpp.s
+.PHONY : src/Document.cpp.s
+
 src/Editor.obj: src/Editor.cpp.obj
 .PHONY : src/Editor.obj
 
@@ -239,6 +263,9 @@ help:
 	@echo ... src/Cursor.obj
 	@echo ... src/Cursor.i
 	@echo ... src/Cursor.s
+	@echo ... src/Document.obj
+	@echo ... src/Document.i
+	@echo ... src/Document.s
 	@echo ... src/Editor.obj
 	@echo ... src/Editor.i
 	@echo ... src/Editor.s

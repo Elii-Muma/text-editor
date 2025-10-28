@@ -23,6 +23,7 @@ private:
 
   int m_SIDE_BORDER_WIDTH{40};
   int m_SIDE_BORDER_HEIGHT{600};
+  int Y_OFFSET{5};
   sf::Vector2u *m_WIN_SIZE;
 
   void init();

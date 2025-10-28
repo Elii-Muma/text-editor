@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/text-editor.dir/main.cpp.obj.d"
   "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj"
   "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj.d"
+  "CMakeFiles/text-editor.dir/src/Document.cpp.obj"
+  "CMakeFiles/text-editor.dir/src/Document.cpp.obj.d"
   "CMakeFiles/text-editor.dir/src/Editor.cpp.obj"
   "CMakeFiles/text-editor.dir/src/Editor.cpp.obj.d"
   "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"

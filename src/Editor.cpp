@@ -9,6 +9,24 @@ Editor::Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_fo
   inputLineLen.push_back(0);
 }
 
+void Editor::render(sf::RenderWindow &win)
+{
+  renderer.drawCursor(win, cursor);
+  renderer.drawSideBorder(win);
+
+  if (!inputBuffer.empty())
+  {
+    int rowPosInc{0};
+    for (int i = 0; i < inputBuffer.size(); i++)
+    {
+      renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
+      renderer.drawLineNumber(win, i, rowPosInc, cursor.getCursorPosLineNumber() / m_characterSize);
+      // renderer.drawLineNumber(win, i);
+      rowPosInc += m_characterSize;
+    }
+  }
+}
+
 void Editor::handleInput(sf::Event &ev)
 {
   if (ev.type == sf::Event::TextEntered)
@@ -49,14 +67,14 @@ void Editor::handleInput(sf::Event &ev)
       if (lineN - 1 >= 0)
       {
         lineN--;
-        cursor.moveCursorUp(22);
+        cursor.moveCursorUp(m_characterSize);
       }
       break;
     case sf::Keyboard::Down:
       if (lineN + 1 < inputBuffer.size())
       {
         lineN++;
-        cursor.moveCursorDown(22);
+        cursor.moveCursorDown(m_characterSize);
       }
       break;
     case sf::Keyboard::Home:
@@ -96,7 +114,8 @@ void Editor::handleInput(sf::Event &ev)
         DelData tempDelData = {"", index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), ENT_MOVE};
         deleteStack.push_back(tempDelData);
       }
-      cursor.setPosition(cursor.getCursorPosLineNumber() + 22, 0);
+      // cursor.setPosition(cursor.getCursorPosLineNumber() + 22, 0);
+      cursor.moveCursorDown(m_characterSize);
       lineN++;
       break;
     case sf::Keyboard::LControl:
@@ -120,28 +139,17 @@ void Editor::handleInput(sf::Event &ev)
       // characterSize++;
       isUndoPressed = false;
     }
+
+    if (ev.key.code == sf::Keyboard::S)
+    {
+      std::cout << "savefile pressed\n";
+      saveFile();
+      isUndoPressed = false;
+    }
   }
   else
   {
     isUndoPressed = false;
-  }
-}
-
-void Editor::render(sf::RenderWindow &win)
-{
-  renderer.drawCursor(win, cursor);
-  renderer.drawSideBorder(win);
-
-  if (!inputBuffer.empty())
-  {
-    int rowPosInc{0};
-    for (int i = 0; i < inputBuffer.size(); i++)
-    {
-      renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
-      renderer.drawLineNumber(win, i, rowPosInc, cursor.getCursorPosLineNumber() / m_characterSize);
-      // renderer.drawLineNumber(win, i);
-      rowPosInc += m_characterSize;
-    }
   }
 }
 
@@ -200,6 +208,14 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
       deleteStack.push_back(tempDelData);
     }
   }
+}
+
+void Editor::saveFile()
+{
+  //this is temporarily here, ill find a way to make the path better
+  std::string filename = m_filePaths.txt_filepath + "save_file.txt";
+  std::cout << "filename => " << filename << "\n";
+  document.saveDocument(filename, inputBuffer);
 }
 
 // returns character right after cursor or last character if cursor is at the end

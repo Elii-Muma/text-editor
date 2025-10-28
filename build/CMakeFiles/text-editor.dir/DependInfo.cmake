@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/main.cpp" "CMakeFiles/text-editor.dir/main.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/main.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Cursor.cpp" "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Document.cpp" "CMakeFiles/text-editor.dir/src/Document.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Document.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj.d"
   )

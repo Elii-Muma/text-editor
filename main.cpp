@@ -19,7 +19,7 @@
 
 int main()
 {
-  sf::Vector2u *winSize = new sf::Vector2u(600, 800);
+  sf::Vector2u *winSize = new sf::Vector2u(600, 900);
   sf::RenderWindow win(sf::VideoMode({winSize->y, winSize->x}), "Text Editor");
   sf::Event ev;
   sf::View view = win.getDefaultView();
@@ -30,6 +30,8 @@ int main()
   if (!font.loadFromFile("../resources/fonts/FiraCode-Regular.ttf"))
   {
     std::cout << "failed to load font!\n";
+
+    system("pause");
     return -1;
   }
 

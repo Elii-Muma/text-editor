@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Renderer.h"
 #include "Cursor.h"
+#include "Document.h"
 
 // HANDLES DS AND WHAT NOT
 class Editor
@@ -11,15 +12,12 @@ class Editor
 
 public:
   Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE);
-  void handleInput(sf::Event &ev);
-  void update();
   void render(sf::RenderWindow &window);
+  void update();
+  void handleInput(sf::Event &ev);
   void EraseCharacter(bool isBackSpace, int colN, int index);
+  void saveFile();
   int getCharPosAt();
-  void setWinSize(sf::Vector2i WIN_SIZE);
-  sf::Vector2i getWinSize();
-  void cursorMoveUp();
-  void cursorMoveDown();
   void cursorMoveLeft();
   std::pair<int, int> getCharGlyphSize(char character);
   void cursorMoveRight();
@@ -27,9 +25,11 @@ public:
 
 
 private:
-  int lineN;
   Cursor cursor;
   Renderer renderer;
+  Document document;
+
+  int lineN;
   std::string string_buffer;
   bool isUndoPressed;
   // to change from here to some other single place
@@ -44,6 +44,12 @@ private:
     LEFT,
     RIGHT
   };
+
+  //holds the filepaths, ill eventually move this to a different location
+  //maybe make it a global file or something
+  const struct FilePaths{
+    std::string txt_filepath{"../resources/txt/"};
+  } m_filePaths;
 
   // will hold the deleted chracters
   enum StackType
@@ -65,8 +71,7 @@ private:
     StackType s_type{StackType::NONE};
   };
 
-  std::vector<std::string> inputBuffer;    // holds the line string and the length of the line
-  std::vector<int> inputLineLen;           // holds the line string and the length of the line
-  // std::vector<sf::Text> inputRenderBuffer; //
-  std::vector<DelData> deleteStack;        // holds deleted chars
+  std::vector<std::string> inputBuffer;    // holds the line string 
+  std::vector<int> inputLineLen;           // holds the length of the line
+  std::vector<DelData> deleteStack;        // input/action stack
 };

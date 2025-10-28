@@ -22,5 +22,11 @@
   "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Renderer.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Renderer.cpp\"",
   "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp",
   "output": "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Document.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Document.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Document.cpp",
+  "output": "CMakeFiles/text-editor.dir/src/Document.cpp.obj"
 }
 ]
