@@ -8,9 +8,10 @@ Renderer::Renderer(sf::Font font, sf::Vector2u *winSize) : m_font{font}, m_WIN_S
 
 void Renderer::init()
 {
+  int CURSOR_YOFFSET = 3;
   int CURSOR_WIDTH = 2;
-  int CURSOR_HEIGHT = 22;
-  m_cursor.setFillColor(sf::Color::Yellow);
+  int CURSOR_HEIGHT = characterSize + CURSOR_YOFFSET;
+  m_cursor.setFillColor(sf::Color(0, 255, 0));
   m_cursor.setSize(sf::Vector2f(CURSOR_WIDTH, CURSOR_HEIGHT));
 
   m_lineText.setFont(m_font);
