@@ -18,7 +18,9 @@ public:
   void EraseCharacter(bool isBackSpace, int colN, int index);
   void saveFile();
   int getCharPosAt();
+  int getLineLength(int lineNumber);
   void cursorMoveLeft();
+  void cursorMoveToEnd();
   std::pair<int, int> getCharGlyphSize(char character);
   void cursorMoveRight();
   void undoFunction();
@@ -72,6 +74,5 @@ private:
   };
 
   std::vector<std::string> inputBuffer;    // holds the line string 
-  std::vector<int> inputLineLen;           // holds the length of the line
   std::vector<DelData> deleteStack;        // input/action stack
 };

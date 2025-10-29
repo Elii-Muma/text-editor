@@ -22,9 +22,19 @@ void Renderer::init()
   m_lineNumberText.setFillColor(sf::Color::White);
   m_lineNumberText.setCharacterSize(characterSize);
 
-  m_sideBorder.setFillColor(sf::Color(130, 130, 130));
-  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_WIN_SIZE->y));
+  m_SIDE_BORDER_HEIGHT = m_WIN_SIZE->y - m_BOTTOM_BORDER_HEIGHT;
+  std::cout<<"side border height:: " << m_SIDE_BORDER_HEIGHT << "\n";
+  m_sideBorder.setFillColor(sf::Color(0, 0, 0));
+  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
   m_sideBorder.setPosition(0, 0);
+
+  m_BOTTOM_BORDER_WIDTH = m_WIN_SIZE->x;
+  std::cout<<"bottom border width:: " << m_BOTTOM_BORDER_WIDTH << "\n";
+  m_bottomBorder.setFillColor(sf::Color(0, 0, 0));
+  m_bottomBorder.setSize(sf::Vector2f(m_BOTTOM_BORDER_WIDTH, m_BOTTOM_BORDER_HEIGHT));
+  int yPos = m_WIN_SIZE->y - m_BOTTOM_BORDER_HEIGHT;
+  std::cout<<"y pos:: " << yPos << "\n";
+  m_bottomBorder.setPosition(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT);
 }
 
 void Renderer::drawCursor(sf::RenderWindow &window, Cursor &cursor)
@@ -48,7 +58,8 @@ void Renderer::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
     m_lineNumberText.setFillColor(sf::Color(0, 255, 0));
     m_lineNumberText.setPosition(10, numPos);
   }
-  else{
+  else
+  {
     m_lineNumberText.setFillColor(sf::Color::White);
     m_lineNumberText.setPosition(5, numPos);
   }
@@ -60,6 +71,16 @@ void Renderer::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
 
 void Renderer::drawSideBorder(sf::RenderWindow &window)
 {
-  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_WIN_SIZE->y));
+  m_SIDE_BORDER_HEIGHT = m_WIN_SIZE->y - m_BOTTOM_BORDER_HEIGHT;
+  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
   window.draw(m_sideBorder);
+}
+
+void Renderer::drawBottomBorder(sf::RenderWindow &window)
+{
+  m_BOTTOM_BORDER_WIDTH = m_WIN_SIZE->x;
+
+  m_bottomBorder.setSize(sf::Vector2f(m_BOTTOM_BORDER_WIDTH, m_BOTTOM_BORDER_HEIGHT));
+  m_bottomBorder.setPosition(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT);
+  window.draw(m_bottomBorder);
 }

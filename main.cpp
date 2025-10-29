@@ -19,8 +19,8 @@
 
 int main()
 {
-  sf::Vector2u *winSize = new sf::Vector2u(600, 900);
-  sf::RenderWindow win(sf::VideoMode({winSize->y, winSize->x}), "Text Editor");
+  sf::Vector2u *winSize = new sf::Vector2u(900, 600);
+  sf::RenderWindow win(sf::VideoMode({winSize->x, winSize->y}), "Text Editor");
   win.setVerticalSyncEnabled(true);
   sf::Event ev;
   sf::View view = win.getDefaultView();

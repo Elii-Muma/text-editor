@@ -6,13 +6,13 @@ Editor::Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_fo
 {
   std::printf("init editor()\n");
   inputBuffer.push_back("");
-  inputLineLen.push_back(0);
 }
 
 void Editor::render(sf::RenderWindow &win)
 {
   renderer.drawCursor(win, cursor);
   renderer.drawSideBorder(win);
+  renderer.drawBottomBorder(win);
 
   if (!inputBuffer.empty())
   {
@@ -35,18 +35,11 @@ void Editor::handleInput(sf::Event &ev)
     {
       sf::String strChar(static_cast<char>(ev.text.unicode));
       int index = getCharPosAt();
-      int charWidth = getCharGlyphSize(static_cast<char>(ev.text.unicode)).first;
 
       inputBuffer[lineN].insert(index, strChar);
       DelData tempDelData = {strChar, index, lineN, sf::Vector2f(cursor.getCursorPosColumnNumber(), cursor.getCursorPosLineNumber()), NEW_INPUT};
       deleteStack.push_back(tempDelData);
 
-      if (inputLineLen.size() <= lineN)
-        inputLineLen.resize(lineN + 1, 0);
-
-      int lineWidth = inputLineLen.at(lineN);
-      inputLineLen[lineN] = lineWidth + charWidth;
-      std::cout << "at line:: " << lineN << " line length :: " << lineWidth + charWidth << "\n";
       cursorMoveRight();
     }
   }
@@ -78,7 +71,10 @@ void Editor::handleInput(sf::Event &ev)
       }
       break;
     case sf::Keyboard::Home:
-      cursor.setPosition(lineN, 0);
+      cursor.setPosition(cursor.getCursorPosLineNumber(), 0);
+      break;
+    case sf::Keyboard::End:
+      cursorMoveToEnd();
       break;
     case sf::Keyboard::Delete:
       index = getCharPosAt();
@@ -103,12 +99,14 @@ void Editor::handleInput(sf::Event &ev)
         t.erase(0, index); // erase from beginning to cursor
         std::cout << "erased result: " << t << "\n";
 
+        inputBuffer[lineN].erase(index); // erase from cursor to end
+        // insert to the the line we're currently on + 1 meaning the bottom line
+        inputBuffer.insert(inputBuffer.begin() + lineN + 1, t);
+
         DelData tempDelData = {t, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), ENT_MOVE};
         deleteStack.push_back(tempDelData);
-        inputBuffer[lineN].erase(index); // erase from cursor to end
-        inputBuffer.insert(inputBuffer.begin() + lineN + 1, t);
       }
-      else
+      else if (inputBuffer[lineN].empty())
       {
         inputBuffer.insert(inputBuffer.begin() + lineN + 1, "");
         DelData tempDelData = {"", index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), ENT_MOVE};
@@ -156,7 +154,7 @@ void Editor::handleInput(sf::Event &ev)
 void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
 {
   std::cout << "column number :: " << colN << "\n";
-  if (colN > 0)
+  if (colN > 0 || !isBackSpace)
   {
     std::cout << "delete";
 
@@ -175,10 +173,12 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
       deleteStack.push_back(tempDelData);
       std::cout << "deleted: " << tempDelData.del_char << "\n";
 
-      if(isBackSpace){
+      if (isBackSpace)
+      {
         cursorMoveLeft();
-      }else
-        std::cout<<"ERASE_CHARACTER::is not backspace so we dont move\n";
+      }
+      else
+        std::cout << "ERASE_CHARACTER::is not backspace so we dont move\n";
     }
   }
   else if (colN <= 0)
@@ -187,10 +187,13 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
     // delete the line and append it to the line before it
     // unless its the first line
     std::string temp{inputBuffer[lineN]};
-    if (lineN != 0)
+    if (lineN != 0 && isBackSpace)
     {
+      if (index < 0)
+        index = 0;
       inputBuffer.erase(inputBuffer.begin() + lineN);
-      DelData tempDelData = {temp, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), NORMAL_DEL};
+      std::cout << "deleted index:: " << index << "\n";
+      DelData tempDelData = {temp, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), LINE_DEL};
 
       lineN--;
       if (lineN < 0)
@@ -198,13 +201,16 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
       if (!temp.empty())
       {
         int size = inputBuffer[lineN].length();
-        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, 0);
+        int newLineColPos = getLineLength(lineN);
+        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, newLineColPos);
         inputBuffer[lineN].append(temp);
       }
       else
       {
-        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, 0);
+        int newLineColPos = getLineLength(lineN);
+        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, newLineColPos);
       }
+
       deleteStack.push_back(tempDelData);
     }
   }
@@ -212,7 +218,7 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
 
 void Editor::saveFile()
 {
-  //this is temporarily here, ill find a way to make the path better
+  // this is temporarily here, ill find a way to make the path better
   std::string filename = m_filePaths.txt_filepath + "save_file.txt";
   std::cout << "filename => " << filename << "\n";
   document.saveDocument(filename, inputBuffer);
@@ -252,6 +258,7 @@ void Editor::cursorMoveRight()
   int colN = cursor.getCursorPosColumnNumber();
 
   int index = getCharPosAt();
+  // if the cursor is at the end of the line
   if (index >= inputBuffer[lineN].size())
     return;
   std::string cur_char{inputBuffer[lineN][index]};
@@ -277,6 +284,44 @@ void Editor::cursorMoveLeft()
   cursor.moveCursorLeft(charWidth);
 }
 
+// move the cursor to the end of the line
+void Editor::cursorMoveToEnd()
+// i wanted to have a seperate data structure to hold the sum of character wifths
+// of each line but for my small application i think this for loop implementation should be fine
+// its basically a move to right but we keep summing until we reach the end
+{
+
+  int colN = cursor.getCursorPosColumnNumber();
+
+  int index = getCharPosAt();
+
+  // if the cursor is at the end of the line
+  if (index >= inputBuffer[lineN].size())
+    return;
+
+  int sumOfCharWidth{0};
+  for (int i = index; i < (int)inputBuffer[lineN].length(); i++)
+  {
+    std::string cur_char{inputBuffer[lineN][i]};
+    sumOfCharWidth += getCharGlyphSize(*cur_char.c_str()).first;
+  }
+  std::cout << "sum of widths :: " << sumOfCharWidth << "\n";
+  cursor.setPosition(cursor.getCursorPosLineNumber(), sumOfCharWidth);
+}
+
+int Editor::getLineLength(int lineNumber)
+{
+
+  int sumOfCharWidth{0};
+  for (int i = 0; i < (int)inputBuffer[lineNumber].length(); i++)
+  {
+    std::string cur_char{inputBuffer[lineNumber][i]};
+    sumOfCharWidth += getCharGlyphSize(*cur_char.c_str()).first;
+  }
+  std::cout << "sum of widths :: " << sumOfCharWidth << "\n";
+  return sumOfCharWidth;
+}
+
 std::pair<int, int> Editor::getCharGlyphSize(char character)
 {
   sf::Glyph glyph = m_font.getGlyph(character, m_characterSize, false);
@@ -299,78 +344,101 @@ void Editor::undoFunction()
     int cPosRow{0};
     // get the data at the end(being the top)
     DelData tempData = deleteStack.back();
-    // remove it
+    
+    // ######################
+    //      DEBUG PRINT
+    // ######################
+    // int ind = 0;
+    // int len = (int)deleteStack.size();
+    // std::cout << "########## ITEMS IN DELETE STACK ##########\n";
+    // for (int i = len - 1; i >= 0; i--)
+    // {
+    //   if (i == (len - 1))
+    //     std::cout << "to del->item[" << ind << "] :: " << deleteStack[i].del_char << "\n";
+    //   else
+    //     std::cout << "item[" << ind << "] :: " << deleteStack[i].del_char << "\n";
+    //   ind++;
+    // }
+    // std::cout << "########## DONE ##########\n ";
+
+    try
+    {
+      switch (tempData.s_type)
+      {
+      case NORMAL_DEL:
+        std::cout << "NORMAL_DEL_UNDO::undoing character\n\t"
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
+        // insert the deleted character at its prev pos
+        inputBuffer[tempData.lineNumber].insert(tempData.index, tempData.del_char);
+
+        lineN = tempData.lineNumber;
+        cPosCol = tempData.currCursorPos.x;
+        cPosRow = tempData.currCursorPos.y;
+        cursor.setPosition(cPosRow, cPosCol);
+        break;
+      case NEW_INPUT:
+        inputBuffer[tempData.lineNumber].erase(tempData.index, 1);
+        lineN = tempData.lineNumber;
+        cPosCol = tempData.currCursorPos.x;
+        cPosRow = tempData.currCursorPos.y;
+        cursor.setPosition(cPosRow, cPosCol);
+        break;
+      case ENT_MOVE:
+        std::cout << "ENT_MOVE_UNDO::undoing enter\n\t"
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
+
+        // append the string that was split and moved to the new line with top line that was split
+        inputBuffer[tempData.lineNumber].append(tempData.del_char);
+        // after appending, delete/erase the new line string that was created
+        inputBuffer.erase(inputBuffer.begin() + tempData.lineNumber + 1);
+
+        // update the cursor data with what it was previously
+        lineN = tempData.lineNumber;
+        cPosCol = tempData.currCursorPos.x;
+        cPosRow = tempData.currCursorPos.y;
+        cursor.setPosition(cPosRow, cPosCol);
+
+        break;
+      case LINE_DEL:
+        std::cout << "LINE_DEL_UNDO::undoing line\n\t"
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
+        // get the text the previous line was at before it got appended
+        if (!tempData.del_char.empty())
+        {
+          {
+            std::string appendedLine{inputBuffer[tempData.lineNumber - 1]};
+            size_t pos = appendedLine.find(tempData.del_char);
+
+            if (tempData.lineNumber - 1 < 0)
+              inputBuffer[0].erase(pos);
+            else
+              inputBuffer[tempData.lineNumber - 1].erase(pos);
+          }
+        }
+
+        inputBuffer.insert(inputBuffer.begin() + (tempData.lineNumber), tempData.del_char);
+        {
+          sf::Text tempTxt;
+          tempTxt.setFont(m_font);
+          tempTxt.setString(tempData.del_char);
+        }
+
+        lineN = tempData.lineNumber;
+        cPosCol = tempData.currCursorPos.x;
+        cPosRow = tempData.currCursorPos.y;
+        cursor.setPosition(cPosRow, cPosCol);
+        break;
+      default:
+        break;
+      }
+    }
+    catch (const std::exception &e)
+    {
+      std::cerr << e.what() << '\n';
+    }
+
+    // remove it on success
     deleteStack.pop_back();
-
-    std::cout << "about to undo\n";
-    // check if that line still exists
-    std::cout << "line number: " << tempData.lineNumber
-              << "buffer size" << inputBuffer.size() << "\n";
-
-    for (auto c : deleteStack)
-    {
-      std::cout << "chars in stack: " << c.del_char << "\n";
-    }
-
-    switch (tempData.s_type)
-    {
-    case NORMAL_DEL:
-      std::cout << "undoing character\n";
-      // insert the deleted character at its prev pos
-      inputBuffer[tempData.lineNumber].insert(tempData.index, tempData.del_char);
-      lineN = tempData.lineNumber;
-      cPosCol = tempData.currCursorPos.x;
-      cPosRow = tempData.currCursorPos.y;
-      cursor.setPosition(cPosRow, cPosCol);
-      break;
-    case NEW_INPUT:
-      inputBuffer[tempData.lineNumber].erase(tempData.index, 1);
-      lineN = tempData.lineNumber;
-      cPosCol = tempData.currCursorPos.x;
-      cPosRow = tempData.currCursorPos.y;
-      cursor.setPosition(cPosRow, cPosCol);
-      break;
-    case ENT_MOVE:
-      std::cout << "you want to undo enter\n"
-                << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
-
-      inputBuffer[tempData.lineNumber].append(tempData.del_char);
-      // delete current line
-      inputBuffer.erase(inputBuffer.begin() + lineN);
-      lineN = tempData.lineNumber;
-      cPosCol = tempData.currCursorPos.x;
-      cPosRow = tempData.currCursorPos.y;
-      cursor.setPosition(cPosRow, cPosCol);
-
-      break;
-    case LINE_DEL:
-      std::cout << "undoing line\n";
-      // get the text the previous line was at before it got appended
-      {
-        std::string appendedLine{inputBuffer[tempData.lineNumber - 1]};
-        size_t pos = appendedLine.find(tempData.del_char);
-
-        if (tempData.lineNumber - 1 < 0)
-          inputBuffer[0].erase(pos);
-        else
-          inputBuffer[tempData.lineNumber - 1].erase(pos);
-      }
-
-      inputBuffer.insert(inputBuffer.begin() + (tempData.lineNumber), tempData.del_char);
-      {
-        sf::Text tempTxt;
-        tempTxt.setFont(m_font);
-        tempTxt.setString(tempData.del_char);
-      }
-
-      lineN = tempData.lineNumber;
-      cPosCol = tempData.currCursorPos.x;
-      cPosRow = tempData.currCursorPos.y;
-      cursor.setPosition(cPosRow, cPosCol);
-      break;
-    default:
-      break;
-    }
   }
   else
   {
