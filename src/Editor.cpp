@@ -224,7 +224,7 @@ void Editor::saveFile()
   document.saveDocument(filename, inputBuffer);
 }
 
-// returns character right after cursor or last character if cursor is at the end
+// returns pos of character right after cursor or last character if cursor is at the end
 int Editor::getCharPosAt()
 {
   int colN = cursor.getCursorPosColumnNumber();
@@ -240,7 +240,8 @@ int Editor::getCharPosAt()
   {
     std::string cur_char{inputBuffer[lineN][i]};
     float charWidth = getCharGlyphSize(*cur_char.c_str()).first;
-    // if cursorXPos
+    // if total(the sum of charwidths) is less that the cursors column pos.
+    // we return the index of that char (the one after the cursor)
     if (colN <= total)
     {
       return i;
@@ -248,6 +249,7 @@ int Editor::getCharPosAt()
     total += charWidth;
   }
 
+  // else if there was no character after the cursor return the last characters index
   return inputBuffer[lineN].size();
 }
 
@@ -268,7 +270,6 @@ void Editor::cursorMoveRight()
 }
 
 /// @brief move the cursor to the left
-// you want to move back the size o
 void Editor::cursorMoveLeft()
 {
   int colN = cursor.getCursorPosColumnNumber();
@@ -367,7 +368,7 @@ void Editor::undoFunction()
       {
       case NORMAL_DEL:
         std::cout << "NORMAL_DEL_UNDO::undoing character\n\t"
-                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
         // insert the deleted character at its prev pos
         inputBuffer[tempData.lineNumber].insert(tempData.index, tempData.del_char);
 
@@ -377,6 +378,8 @@ void Editor::undoFunction()
         cursor.setPosition(cPosRow, cPosCol);
         break;
       case NEW_INPUT:
+        std::cout << "NEW_INPUT_UNDO::undoing input\n\t"
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
         inputBuffer[tempData.lineNumber].erase(tempData.index, 1);
         lineN = tempData.lineNumber;
         cPosCol = tempData.currCursorPos.x;
@@ -385,7 +388,7 @@ void Editor::undoFunction()
         break;
       case ENT_MOVE:
         std::cout << "ENT_MOVE_UNDO::undoing enter\n\t"
-                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
 
         // append the string that was split and moved to the new line with top line that was split
         inputBuffer[tempData.lineNumber].append(tempData.del_char);
@@ -401,7 +404,7 @@ void Editor::undoFunction()
         break;
       case LINE_DEL:
         std::cout << "LINE_DEL_UNDO::undoing line\n\t"
-                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber;
+                  << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
         // get the text the previous line was at before it got appended
         if (!tempData.del_char.empty())
         {
