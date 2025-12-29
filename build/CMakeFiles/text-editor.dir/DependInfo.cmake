@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Document.cpp" "CMakeFiles/text-editor.dir/src/Document.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Document.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/camera.cpp" "CMakeFiles/text-editor.dir/src/camera.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/camera.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

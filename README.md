@@ -1,14 +1,36 @@
-# Text Editor Made With SFML
+# Me Text Editor (C++ / SFML)
 
-i built this text editor using sfml and c++.
-it has some functions like(currently)
-- basic cursor movement(left, right, up, down)
-- line break(when you press enter)
-- backspace
-- delete
-- undo
-- visible line number(will maybe make them relative).
-  
-and more MIGHT be added, idk.
+keyboard-only text editor built from scratch using C++ and SFML. 
 
-I might post the building process on youtube, so you can also check that out.
+## Current Features
+- Cursor movement
+  - Up
+  - Down
+  - Left
+  - Right
+  ![Alt text](resources/screenshots/c_movement.gif?raw=true "Cursor Movement Demo")
+  - Home
+  - End
+  ![Alt text](resources/screenshots/h_and_e.gif?raw=true "Home And End Demo")
+- Text editing
+  - Backspace
+  - Delete
+  ![Alt text](resources/screenshots/f_and_b.gif?raw=true "Backspace and Delete Demo")
+  - Undo
+  ![Alt text](resources/screenshots/undo_.gif?raw=true "Undo Demo")
+
+- Vertically scrollable text view  
+  (horizontal scrolling not yet implemented)
+  ![Alt text](resources/screenshots/scroll_.gif?raw=true "Undo Demo")
+- Fully keyboard-based interaction
+
+## Built With
+- C++
+- SFML (sf::RenderWindow, views, and input handling)
+
+## Features to be Added
+- Editor states
+- Games / interactive modes inside the editor
+- compiler? hehe idk
+
+I might post the building process on youtube, so you can also check that out maybe.(i lost the footage)

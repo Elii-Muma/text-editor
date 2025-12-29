@@ -15,7 +15,9 @@
 #include <sstream>
 #include <vector>
 #include <math.h>
+#include <thread>
 #include "Editor.h"
+#include "camera.h"
 
 int main()
 {
@@ -23,7 +25,10 @@ int main()
   sf::RenderWindow win(sf::VideoMode({winSize->x, winSize->y}), "Text Editor");
   win.setVerticalSyncEnabled(true);
   sf::Event ev;
-  sf::View view = win.getDefaultView();
+
+
+  sf::RectangleShape testBox({100.f, 100.f});
+  testBox.setPosition(300, 300);
 
   sf::Font font;
   int characterSize{22};
@@ -36,7 +41,11 @@ int main()
     return -1;
   }
 
-  Editor editor{font, characterSize, winSize};
+  Camera camera{characterSize, winSize};
+  sf::View &view = camera.getMainView();
+  view = win.getDefaultView();
+  sf::View uiView = win.getDefaultView();
+  Editor editor{camera, font, characterSize, winSize};
 
   while (win.isOpen())
   {
@@ -51,6 +60,10 @@ int main()
                       static_cast<float>(ev.size.height)});
         view.setCenter(static_cast<float>(ev.size.width) / 2.f,
                        static_cast<float>(ev.size.height) / 2.f);
+        uiView.setSize({static_cast<float>(ev.size.width),
+                      static_cast<float>(ev.size.height)});
+        uiView.setCenter(static_cast<float>(ev.size.width) / 2.f,
+                       static_cast<float>(ev.size.height) / 2.f);
         win.setView(view);
         winSize->x = view.getSize().x;
         winSize->y = view.getSize().y;
@@ -62,8 +75,16 @@ int main()
     // Update
     win.clear(sf::Color(0, 0, 255));
 
-    // Render
+    // Render AND SET VIEW
+    win.setView(uiView);
+    editor.renderSideBorder_UI(win);
+
+    win.setView(camera.getMainView());
     editor.render(win);
+
+    win.setView(uiView);
+    editor.renderBottomBorder_UI(win);
+
     win.display();
   }
 

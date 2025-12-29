@@ -10,6 +10,7 @@ lineN{lineNumber}, colN{columnNumber}
 void Cursor::moveCursorRight(int cursorColumnPosition)
 {
   this->colN += cursorColumnPosition; 
+  std::cout << "new cursor pos: " << colN << "\n";
 }
 
 void Cursor::setPosition(int lineN, int colN)

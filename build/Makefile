@@ -248,6 +248,30 @@ src/Renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.s
 .PHONY : src/Renderer.cpp.s
 
+src/camera.obj: src/camera.cpp.obj
+.PHONY : src/camera.obj
+
+# target to build an object file
+src/camera.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/camera.cpp.obj
+.PHONY : src/camera.cpp.obj
+
+src/camera.i: src/camera.cpp.i
+.PHONY : src/camera.i
+
+# target to preprocess a source file
+src/camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/camera.cpp.i
+.PHONY : src/camera.cpp.i
+
+src/camera.s: src/camera.cpp.s
+.PHONY : src/camera.s
+
+# target to generate assembly for a file
+src/camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/camera.cpp.s
+.PHONY : src/camera.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -272,6 +296,9 @@ help:
 	@echo ... src/Renderer.obj
 	@echo ... src/Renderer.i
 	@echo ... src/Renderer.s
+	@echo ... src/camera.obj
+	@echo ... src/camera.i
+	@echo ... src/camera.s
 .PHONY : help
 
 
