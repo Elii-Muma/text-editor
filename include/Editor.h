@@ -5,21 +5,25 @@
 #include "Renderer.h"
 #include "Cursor.h"
 #include "Document.h"
+#include "camera.h"
 
 // HANDLES DS AND WHAT NOT
 class Editor
 {
 
 public:
-  Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE);
-  void render(sf::RenderWindow &window);
-  void update();
+  Editor(Camera &camera, sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE);
+  void renderSideBorder_UI(sf::RenderWindow &win);
+  void renderBottomBorder_UI(sf::RenderWindow &win);
+  void renderUI(sf::RenderWindow &win);
+  void render(sf::RenderWindow &win);
   void handleInput(sf::Event &ev);
   void EraseCharacter(bool isBackSpace, int colN, int index);
   void saveFile();
   int getCharPosAt();
   int getLineLength(int lineNumber);
   void cursorMoveLeft();
+  int cursorMoveColTo();
   void cursorMoveToEnd();
   std::pair<int, int> getCharGlyphSize(char character);
   void cursorMoveRight();
@@ -27,6 +31,7 @@ public:
 
 
 private:
+  Camera& camera;
   Cursor cursor;
   Renderer renderer;
   Document document;

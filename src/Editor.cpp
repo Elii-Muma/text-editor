@@ -2,17 +2,26 @@
 #include <iostream>
 #include "Cursor.h"
 
-Editor::Editor(sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_font{font}, m_characterSize{characterSize}, renderer{font, WIN_SIZE}, lineN{0}, m_WIN_SIZE{WIN_SIZE}
+Editor::Editor(Camera &camera, sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_font{font},
+                                                                                            m_characterSize{characterSize}, renderer{font, WIN_SIZE}, lineN{0}, m_WIN_SIZE{WIN_SIZE}, camera{camera}
 {
   std::printf("init editor()\n");
   inputBuffer.push_back("");
 }
 
+void Editor::renderSideBorder_UI(sf::RenderWindow &win)
+{
+  renderer.drawSideBorder(win);
+}
+
+void Editor::renderBottomBorder_UI(sf::RenderWindow &win)
+{
+  renderer.drawBottomBorder(win);
+}
+
 void Editor::render(sf::RenderWindow &win)
 {
   renderer.drawCursor(win, cursor);
-  renderer.drawSideBorder(win);
-  renderer.drawBottomBorder(win);
 
   if (!inputBuffer.empty())
   {
@@ -20,7 +29,7 @@ void Editor::render(sf::RenderWindow &win)
     for (int i = 0; i < inputBuffer.size(); i++)
     {
       renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
-      renderer.drawLineNumber(win, i, rowPosInc, cursor.getCursorPosLineNumber() / m_characterSize);
+      renderer.drawLineNumber(win, i, rowPosInc, lineN);
       // renderer.drawLineNumber(win, i);
       rowPosInc += m_characterSize;
     }
@@ -57,17 +66,39 @@ void Editor::handleInput(sf::Event &ev)
       cursorMoveRight();
       break;
     case sf::Keyboard::Up:
+      // move camera up logic here
       if (lineN - 1 >= 0)
       {
+        {
+          int position = (cursor.getCursorPosLineNumber() - (m_characterSize));
+          std::cout << "cursor to be at: " << position << "\n";
+          if (position < camera.viewTop())
+          {
+            camera.cameraScrollUp();
+          }
+        }
         lineN--;
-        cursor.moveCursorUp(m_characterSize);
+        cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, cursorMoveColTo());
+        // cursor.moveCursorUp(m_characterSize);
       }
+      std::cout << "move up line ting: " << lineN << "\n";
       break;
     case sf::Keyboard::Down:
+
       if (lineN + 1 < inputBuffer.size())
       {
+        {
+          int position = (cursor.getCursorPosLineNumber() + (m_characterSize * 2));
+          std::cout << "cursor to be at: " << position << "\n";
+          std::cout << "camera bottom: " << camera.viewBottom() - 20 << "\n";
+          if (position > camera.viewBottom() - 35)
+          {
+            camera.cameraScrollDown();
+          }
+        }
         lineN++;
-        cursor.moveCursorDown(m_characterSize);
+        cursor.setPosition(cursor.getCursorPosLineNumber() + m_characterSize, cursorMoveColTo());
+        // cursor.moveCursorDown(m_characterSize);
       }
       break;
     case sf::Keyboard::Home:
@@ -91,6 +122,20 @@ void Editor::handleInput(sf::Event &ev)
       }
       break;
     case sf::Keyboard::Enter:
+    {
+      int position = (cursor.getCursorPosLineNumber() + (m_characterSize * 2));
+      std::cout << "cursor to be at: " << position << "\n";
+      std::cout << "camera bottom: " << camera.viewBottom() << "\n";
+      std::cout << "potential pos: " << (m_characterSize * lineN) + m_characterSize << "\n";
+
+      if (position >= camera.viewBottom() - 30)
+      {
+        std::cout << "move camera down now\n";
+        camera.cameraScrollDown();
+        // position = m_WIN_SIZE->y - 30;
+        // position = 0;
+      }
+    }
       if (!inputBuffer[lineN].empty())
       {
         int index = getCharPosAt();
@@ -178,7 +223,7 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
         cursorMoveLeft();
       }
       else
-        std::cout << "ERASE_CHARACTER::is not backspace so we dont move\n";
+        std::cout << "ERASE_CHARACTER::but i dont know where to move :|\n";
     }
   }
   else if (colN <= 0)
@@ -258,6 +303,7 @@ void Editor::cursorMoveRight()
 {
 
   int colN = cursor.getCursorPosColumnNumber();
+  std::cout << "column number: " << colN << "\n";
 
   int index = getCharPosAt();
   // if the cursor is at the end of the line
@@ -285,6 +331,22 @@ void Editor::cursorMoveLeft()
   cursor.moveCursorLeft(charWidth);
 }
 
+// returns column position
+int Editor::cursorMoveColTo()
+{
+  int index = getCharPosAt();
+  std::cout << "index of column in next line: " << index << "\n";
+
+  int sumOfCharWidth{0};
+  for (int i = 0; i < index; i++)
+  {
+    std::string cur_char{inputBuffer[lineN][i]};
+    sumOfCharWidth += getCharGlyphSize(*cur_char.c_str()).first;
+  }
+  std::cout << "sum of widths :: " << sumOfCharWidth << "\n";
+  return sumOfCharWidth;
+}
+
 // move the cursor to the end of the line
 void Editor::cursorMoveToEnd()
 // i wanted to have a seperate data structure to hold the sum of character wifths
@@ -301,7 +363,7 @@ void Editor::cursorMoveToEnd()
     return;
 
   int sumOfCharWidth{0};
-  for (int i = index; i < (int)inputBuffer[lineN].length(); i++)
+  for (int i = 0; i < (int)inputBuffer[lineN].length(); i++)
   {
     std::string cur_char{inputBuffer[lineN][i]};
     sumOfCharWidth += getCharGlyphSize(*cur_char.c_str()).first;
@@ -345,7 +407,7 @@ void Editor::undoFunction()
     int cPosRow{0};
     // get the data at the end(being the top)
     DelData tempData = deleteStack.back();
-    
+
     // ######################
     //      DEBUG PRINT
     // ######################
@@ -375,7 +437,7 @@ void Editor::undoFunction()
         lineN = tempData.lineNumber;
         cPosCol = tempData.currCursorPos.x;
         cPosRow = tempData.currCursorPos.y;
-        cursor.setPosition(cPosRow, cPosCol);
+
         break;
       case NEW_INPUT:
         std::cout << "NEW_INPUT_UNDO::undoing input\n\t"
@@ -384,7 +446,6 @@ void Editor::undoFunction()
         lineN = tempData.lineNumber;
         cPosCol = tempData.currCursorPos.x;
         cPosRow = tempData.currCursorPos.y;
-        cursor.setPosition(cPosRow, cPosCol);
         break;
       case ENT_MOVE:
         std::cout << "ENT_MOVE_UNDO::undoing enter\n\t"
@@ -399,7 +460,6 @@ void Editor::undoFunction()
         lineN = tempData.lineNumber;
         cPosCol = tempData.currCursorPos.x;
         cPosRow = tempData.currCursorPos.y;
-        cursor.setPosition(cPosRow, cPosCol);
 
         break;
       case LINE_DEL:
@@ -429,7 +489,6 @@ void Editor::undoFunction()
         lineN = tempData.lineNumber;
         cPosCol = tempData.currCursorPos.x;
         cPosRow = tempData.currCursorPos.y;
-        cursor.setPosition(cPosRow, cPosCol);
         break;
       default:
         break;
@@ -440,6 +499,12 @@ void Editor::undoFunction()
       std::cerr << e.what() << '\n';
     }
 
+    if (cPosRow > camera.viewBottom())
+      camera.cameraJumpDown();
+    else if (cPosRow < camera.viewTop())
+      camera.cameraScrollUp();
+
+    cursor.setPosition(cPosRow, cPosCol);
     // remove it on success
     deleteStack.pop_back();
   }

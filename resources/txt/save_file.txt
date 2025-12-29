@@ -1,1 +1,34 @@
+u guess for now there is no problemo, we can keep it like this
+
+
+eventually, for performance...id have to reduce the undo stack size
+to a smaller size. 
+
+what if i wanted to add wrapping??
+that would mean i want a single line to occupy...basically more than
+one line, or to be displayed on more than one line
+
+ill have to write documentation on how everything works so that i can 
+just go back to it and read when i want to check out how it works
+
+but so far i think my editor looks really cool.
+
+what if i want to enable relative line numbers?? wouldnt that be cool
+
+ill even make it have a compiler
+
+some games, like for typing speed...it'll be so cool
+
+wait whot?
+
+i know right!?!
+
+but first i think i have to finish implementing the cursor actions
+and now ill add side scrolling...like now, shouldnt be too hard
+
+when moving left, log the column of the cursor. then when you move down
+check if the line is longer than the cursor column thing, if is, put
+the cursor at the logged column index
+if its shorter than the logged column index then put the cursor at 
+the end of the line
 

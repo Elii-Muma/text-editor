@@ -11,6 +11,7 @@ link_directories(${SFML_ROOT}/lib)
 
 add_executable(text-editor
                 main.cpp
+                src/camera.cpp
                 src/Cursor.cpp
                 src/Editor.cpp
                 src/Renderer.cpp

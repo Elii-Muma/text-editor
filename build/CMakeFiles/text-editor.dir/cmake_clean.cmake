@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/text-editor.dir/src/Editor.cpp.obj.d"
   "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"
   "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj.d"
+  "CMakeFiles/text-editor.dir/src/camera.cpp.obj"
+  "CMakeFiles/text-editor.dir/src/camera.cpp.obj.d"
   "libtext-editor.dll.a"
   "text-editor.exe"
   "text-editor.exe.manifest"

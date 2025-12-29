@@ -1,0 +1,14 @@
+WHEN MOVING:
+the position of the borders always needs to be at the bottom or otherwise maybe put on a different upper layer or something. will always need to be at the bottom
+-> so we've created two views, one for the fixed UI the other for the scrollable UI
+-> ill need to make the abstraction better -- improve the architecture --
+-> layers are[bottom to top] :: main window(blue part) -> side border -> bottom border
+
+CAMERA:
+-> ill turn this "view" into a camera that can be controlled by the editor module
+-> since it looks like the "editor" is becoming the main "controller"(i might need to make this change) 
+-> so the camera will be what? views i can control(move_view_up, move_view_down, move_view_left, move_view_right)
+
+problem:
+-> the cursor position is always increasing...should it??
+-> we draw the line number and the text at a certain position yes? or is it relative to its line number?

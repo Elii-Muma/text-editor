@@ -7,3 +7,8 @@
  └── Utils.cpp / Utils.h
 /resources
  └── fonts/
+ └── txt/
+
+- add all cursor movement things
+- add states
+- add games
