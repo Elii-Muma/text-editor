@@ -8,15 +8,20 @@ keyboard-only text editor built from scratch using C++ and SFML.
   - Down
   - Left
   - Right
+  ![Alt text](resources/screenshots/c_movement.gif?raw=true "Cursor Movement Demo")
   - Home
   - End
+  ![Alt text](resources/screenshots/h_and_e.gif?raw=true "Home And End Demo")
 - Text editing
-  - Undo
   - Backspace
   - Delete
+  ![Alt text](resources/screenshots/f_and_b.gif?raw=true "Backspace and Delete Demo")
+  - Undo
+  ![Alt text](resources/screenshots/undo_.gif?raw=true "Undo Demo")
 
 - Vertically scrollable text view  
   (horizontal scrolling not yet implemented)
+  ![Alt text](resources/screenshots/scroll_.gif?raw=true "Undo Demo")
 - Fully keyboard-based interaction
 
 ## Built With
