@@ -23,7 +23,7 @@ private:
   sf::Text m_lineNumberText;
   int characterSize{22};
 
-  int m_SIDE_BORDER_WIDTH{40};
+  int m_SIDE_BORDER_WIDTH{60};
   int m_SIDE_BORDER_HEIGHT;
   int m_BOTTOM_BORDER_WIDTH;
   int m_BOTTOM_BORDER_HEIGHT{30};

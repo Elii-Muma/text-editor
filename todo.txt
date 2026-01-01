@@ -1,3 +1,4 @@
+ARCHITECTURE
 /src
  ├── main.cpp
  ├── Editor.cpp / Editor.h
@@ -9,6 +10,6 @@
  └── fonts/
  └── txt/
 
-- add all cursor movement things
-- add states
-- add games
+[-] add all cursor movement things
+[x] add states
+[x] add games
