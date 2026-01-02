@@ -66,39 +66,20 @@ void Editor::handleInput(sf::Event &ev)
       cursorMoveRight();
       break;
     case sf::Keyboard::Up:
-      // move camera up logic here
       if (lineN - 1 >= 0)
       {
-        {
-          int position = (cursor.getCursorPosLineNumber() - (m_characterSize));
-          std::cout << "cursor to be at: " << position << "\n";
-          if (position < camera.viewTop())
-          {
-            camera.cameraScrollUp();
-          }
-        }
+        moveCameraUp();
         lineN--;
         cursor.setPosition(cursor.getCursorPosLineNumber() - m_characterSize, cursorMoveColTo());
-        // cursor.moveCursorUp(m_characterSize);
       }
-      std::cout << "move up line ting: " << lineN << "\n";
       break;
     case sf::Keyboard::Down:
 
       if (lineN + 1 < inputBuffer.size())
       {
-        {
-          int position = (cursor.getCursorPosLineNumber() + (m_characterSize * 2));
-          std::cout << "cursor to be at: " << position << "\n";
-          std::cout << "camera bottom: " << camera.viewBottom() - 20 << "\n";
-          if (position > camera.viewBottom() - 35)
-          {
-            camera.cameraScrollDown();
-          }
-        }
+        moveCameraDown();
         lineN++;
         cursor.setPosition(cursor.getCursorPosLineNumber() + m_characterSize, cursorMoveColTo());
-        // cursor.moveCursorDown(m_characterSize);
       }
       break;
     case sf::Keyboard::Home:
@@ -122,20 +103,7 @@ void Editor::handleInput(sf::Event &ev)
       }
       break;
     case sf::Keyboard::Enter:
-    {
-      int position = (cursor.getCursorPosLineNumber() + (m_characterSize * 2));
-      std::cout << "cursor to be at: " << position << "\n";
-      std::cout << "camera bottom: " << camera.viewBottom() << "\n";
-      std::cout << "potential pos: " << (m_characterSize * lineN) + m_characterSize << "\n";
-
-      if (position >= camera.viewBottom() - 30)
-      {
-        std::cout << "move camera down now\n";
-        camera.cameraScrollDown();
-        // position = m_WIN_SIZE->y - 30;
-        // position = 0;
-      }
-    }
+      moveCameraDown();
       if (!inputBuffer[lineN].empty())
       {
         int index = getCharPosAt();
@@ -240,6 +208,7 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
       std::cout << "deleted index:: " << index << "\n";
       DelData tempDelData = {temp, index, lineN, sf::Vector2f(colN, cursor.getCursorPosLineNumber()), LINE_DEL};
 
+      moveCameraUp();
       lineN--;
       if (lineN < 0)
         lineN = 0;
@@ -267,6 +236,26 @@ void Editor::saveFile()
   std::string filename = m_filePaths.txt_filepath + "save_file.txt";
   std::cout << "filename => " << filename << "\n";
   document.saveDocument(filename, inputBuffer);
+}
+
+void Editor::moveCameraUp()
+{
+  int position = (cursor.getCursorPosLineNumber() - (m_characterSize));
+  std::cout << "cursor to be at: " << position << "\n";
+  if (position < camera.viewTop())
+  {
+    camera.cameraScrollUp();
+  }
+}
+
+void Editor::moveCameraDown()
+{
+  int position = (cursor.getCursorPosLineNumber() + (m_characterSize*2));
+  std::cout << "cursor to be at: " << position << "\n";
+  if (position > camera.viewBottom() - m_BOTTOM_BORDER_HEIGHT)
+  {
+    camera.cameraScrollDown();
+  }
 }
 
 // returns pos of character right after cursor or last character if cursor is at the end

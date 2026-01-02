@@ -12,3 +12,18 @@ CAMERA:
 problem:
 -> the cursor position is always increasing...should it??
 -> we draw the line number and the text at a certain position yes? or is it relative to its line number?
+-> i did zome math to move the camera and zhit
+
+okay now i think i need to rethink the architecture of the system:
+-> right now the editor handles EVERYTHING
+-> but i need something to handle: writing onto a "board", and the "text" will have its own settings...
+->okay so we need the "board" and the "text". text comes in as input, and then based on the board selected, the text will be written there...
+->e.g we have the bottome board and the center/main panel...the cursor is what we can use for focus. 
+--> the text on the main panel/board/...whatever always renders, the text on the bottom panel only renders when in focus
+--> in editor: handlInput() is what handles all user input an what each character pressed does...
+--> i think they have different types of cursors...each cursor can have "is" focused
+--> the current "editor" is just a module that handles the text: where to place it, how to place it, what to do with -- basically just a giant textHandler, and then i could have the "Editor" be a board where text can be placed...
+
+--> contentHandler(will have text handling and cursor movement and stuff), Views(Editor View, BottomBorderView), Controller(like the Game Class)
+
+

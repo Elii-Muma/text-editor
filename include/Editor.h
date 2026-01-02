@@ -20,6 +20,8 @@ public:
   void handleInput(sf::Event &ev);
   void EraseCharacter(bool isBackSpace, int colN, int index);
   void saveFile();
+  void moveCameraUp();
+  void moveCameraDown();
   int getCharPosAt();
   int getLineLength(int lineNumber);
   void cursorMoveLeft();
@@ -42,6 +44,7 @@ private:
   // to change from here to some other single place
   sf::Font m_font;
   int m_characterSize;
+  int m_BOTTOM_BORDER_HEIGHT{30};
 
   sf::Vector2u *m_WIN_SIZE;
 
