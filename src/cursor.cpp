@@ -46,5 +46,12 @@ int Cursor::getCursorPosColumnNumber()
   return colN;
 }
 
+int Cursor::getLineNumber(int charSize){
+  if(lineN < 0)
+    return 0;
+  return lineN/charSize;
+
+}
+
 
 

@@ -1,47 +1,58 @@
-#include "Editor.h"
+#include "Controller.h"
 #include <iostream>
 #include "Cursor.h"
 
-Editor::Editor(Camera &camera, sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_font{font},
-                                                                                            m_characterSize{characterSize}, renderer{font, WIN_SIZE}, lineN{0}, m_WIN_SIZE{WIN_SIZE}, camera{camera}
+Controller::Controller(Camera &camera, sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE) : m_font{font},
+                                                                                            m_characterSize{characterSize}, renderer{font, WIN_SIZE}, lineN{0}, m_WIN_SIZE{WIN_SIZE}, camera{camera}, view{camera, font}
 {
-  std::printf("init editor()\n");
+  std::printf("init ctrl()\n");
   inputBuffer.push_back("");
+
 }
 
-void Editor::renderSideBorder_UI(sf::RenderWindow &win)
+void Controller::renderSideBorder_UI(sf::RenderWindow &win)
 {
-  renderer.drawSideBorder(win);
+  // renderer.drawSideBorder(win);
 }
 
-void Editor::renderBottomBorder_UI(sf::RenderWindow &win)
+void Controller::renderBottomBorder_UI(sf::RenderWindow &win)
 {
-  renderer.drawBottomBorder(win);
+  // renderer.drawBottomBorder(win);
 }
 
-void Editor::render(sf::RenderWindow &win)
+void Controller::render(sf::RenderWindow &win)
 {
-  renderer.drawCursor(win, cursor);
+  view.render(win);
+  // renderer.drawCursor(win, cursor);
 
-  if (!inputBuffer.empty())
-  {
-    int rowPosInc{0};
-    for (int i = 0; i < inputBuffer.size(); i++)
-    {
-      renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
-      renderer.drawLineNumber(win, i, rowPosInc, lineN);
-      // renderer.drawLineNumber(win, i);
-      rowPosInc += m_characterSize;
-    }
-  }
+  // if (!inputBuffer.empty())
+  // {
+  //   int rowPosInc{0};
+  //   for (int i = 0; i < inputBuffer.size(); i++)
+  //   {
+  //     renderer.drawLineText(win, inputBuffer[i], i, rowPosInc);
+  //     renderer.drawLineNumber(win, i, rowPosInc, lineN);
+  //     // renderer.drawLineNumber(win, i);
+  //     rowPosInc += m_characterSize;
+  //   }
+  // }
 }
 
-void Editor::handleInput(sf::Event &ev)
+// insert new charcater into buffer
+// void addCharacter(std::string input){
+//   int index = getCharPosAt();
+//   inputBuffer[lineN].insert(index, input);
+//   DelData tempDelData = {input, index, lineN, sf::Vector2f(cursor.getCursorPosColumnNumber(), cursor.getCursorPosLineNumber()), NEW_INPUT};
+//   deleteStack.push_back(tempDelData);
+// }
+
+void Controller::handleInput(sf::Event &ev)
 {
   if (ev.type == sf::Event::TextEntered)
   {
     if (!(ev.text.unicode < 32 || ev.text.unicode > 126))
     {
+      // this could be a method called add character
       sf::String strChar(static_cast<char>(ev.text.unicode));
       int index = getCharPosAt();
 
@@ -49,6 +60,7 @@ void Editor::handleInput(sf::Event &ev)
       DelData tempDelData = {strChar, index, lineN, sf::Vector2f(cursor.getCursorPosColumnNumber(), cursor.getCursorPosLineNumber()), NEW_INPUT};
       deleteStack.push_back(tempDelData);
 
+      view.getBuffer().addCharacterToBuffer(strChar, index, lineN);
       cursorMoveRight();
     }
   }
@@ -61,6 +73,24 @@ void Editor::handleInput(sf::Event &ev)
     {
     case sf::Keyboard::Left:
       cursorMoveLeft();
+      break;
+    case sf::Keyboard::Tab:
+    {
+
+      sf::String strChar("----|");
+      int index = getCharPosAt();
+
+      inputBuffer[lineN].insert(index, strChar);
+      DelData tempDelData = {strChar, index, lineN, sf::Vector2f(cursor.getCursorPosColumnNumber(), cursor.getCursorPosLineNumber()), NEW_INPUT};
+      deleteStack.push_back(tempDelData);
+
+      //change this to maybe move to the right by the new entry size, cos look at this shit
+      cursorMoveRight();
+      cursorMoveRight();
+      cursorMoveRight();
+      cursorMoveRight();
+      cursorMoveRight();
+    }
       break;
     case sf::Keyboard::Right:
       cursorMoveRight();
@@ -164,7 +194,8 @@ void Editor::handleInput(sf::Event &ev)
   }
 }
 
-void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
+// WHAT DOES THIS METHOD DEPEND ON
+void Controller::EraseCharacter(bool isBackSpace, int colN, int index)
 {
   std::cout << "column number :: " << colN << "\n";
   if (colN > 0 || !isBackSpace)
@@ -230,7 +261,7 @@ void Editor::EraseCharacter(bool isBackSpace, int colN, int index)
   }
 }
 
-void Editor::saveFile()
+void Controller::saveFile()
 {
   // this is temporarily here, ill find a way to make the path better
   std::string filename = m_filePaths.txt_filepath + "save_file.txt";
@@ -238,7 +269,7 @@ void Editor::saveFile()
   document.saveDocument(filename, inputBuffer);
 }
 
-void Editor::moveCameraUp()
+void Controller::moveCameraUp()
 {
   int position = (cursor.getCursorPosLineNumber() - (m_characterSize));
   std::cout << "cursor to be at: " << position << "\n";
@@ -248,7 +279,9 @@ void Editor::moveCameraUp()
   }
 }
 
-void Editor::moveCameraDown()
+//depends on: cursor position, charaactersize, view_border dimension, camera for the view
+//what it does, it moves the views camera
+void Controller::moveCameraDown()
 {
   int position = (cursor.getCursorPosLineNumber() + (m_characterSize*2));
   std::cout << "cursor to be at: " << position << "\n";
@@ -258,8 +291,9 @@ void Editor::moveCameraDown()
   }
 }
 
-// returns pos of character right after cursor or last character if cursor is at the end
-int Editor::getCharPosAt()
+// returns index of character right after cursor or last character if cursor is at the end
+// depends on: views cursor, the inputBuffer, the current line number, 
+int Controller::getCharPosAt()
 {
   int colN = cursor.getCursorPosColumnNumber();
 
@@ -288,9 +322,8 @@ int Editor::getCharPosAt()
 }
 
 /// @brief move the cursor to the right
-void Editor::cursorMoveRight()
+void Controller::cursorMoveRight()
 {
-
   int colN = cursor.getCursorPosColumnNumber();
   std::cout << "column number: " << colN << "\n";
 
@@ -305,7 +338,7 @@ void Editor::cursorMoveRight()
 }
 
 /// @brief move the cursor to the left
-void Editor::cursorMoveLeft()
+void Controller::cursorMoveLeft()
 {
   int colN = cursor.getCursorPosColumnNumber();
 
@@ -321,7 +354,7 @@ void Editor::cursorMoveLeft()
 }
 
 // returns column position
-int Editor::cursorMoveColTo()
+int Controller::cursorMoveColTo()
 {
   int index = getCharPosAt();
   std::cout << "index of column in next line: " << index << "\n";
@@ -337,12 +370,11 @@ int Editor::cursorMoveColTo()
 }
 
 // move the cursor to the end of the line
-void Editor::cursorMoveToEnd()
+void Controller::cursorMoveToEnd()
 // i wanted to have a seperate data structure to hold the sum of character wifths
 // of each line but for my small application i think this for loop implementation should be fine
 // its basically a move to right but we keep summing until we reach the end
 {
-
   int colN = cursor.getCursorPosColumnNumber();
 
   int index = getCharPosAt();
@@ -361,9 +393,9 @@ void Editor::cursorMoveToEnd()
   cursor.setPosition(cursor.getCursorPosLineNumber(), sumOfCharWidth);
 }
 
-int Editor::getLineLength(int lineNumber)
+// mostly used by eraseCharacter which could be a buffer method
+int Controller::getLineLength(int lineNumber)
 {
-
   int sumOfCharWidth{0};
   for (int i = 0; i < (int)inputBuffer[lineNumber].length(); i++)
   {
@@ -374,7 +406,7 @@ int Editor::getLineLength(int lineNumber)
   return sumOfCharWidth;
 }
 
-std::pair<int, int> Editor::getCharGlyphSize(char character)
+std::pair<int, int> Controller::getCharGlyphSize(char character)
 {
   sf::Glyph glyph = m_font.getGlyph(character, m_characterSize, false);
   // float charWidth = glyph.advance;  //this one includes spacing to next thingy
@@ -387,7 +419,7 @@ std::pair<int, int> Editor::getCharGlyphSize(char character)
 }
 
 // function that handles the undo function
-void Editor::undoFunction()
+void Controller::undoFunction()
 {
   // must've written this on coke cos ts works perfectly
   if (!deleteStack.empty())

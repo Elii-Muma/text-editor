@@ -5,8 +5,8 @@ the position of the borders always needs to be at the bottom or otherwise maybe 
 -> layers are[bottom to top] :: main window(blue part) -> side border -> bottom border
 
 CAMERA:
--> ill turn this "view" into a camera that can be controlled by the editor module
--> since it looks like the "editor" is becoming the main "controller"(i might need to make this change) 
+-> ill turn this "view" into a camera that can be controlled by the ctrl module
+-> since it looks like the "ctrl" is becoming the main "controller"(i might need to make this change) 
 -> so the camera will be what? views i can control(move_view_up, move_view_down, move_view_left, move_view_right)
 
 problem:
@@ -15,15 +15,89 @@ problem:
 -> i did zome math to move the camera and zhit
 
 okay now i think i need to rethink the architecture of the system:
--> right now the editor handles EVERYTHING
+-> right now the ctrl handles EVERYTHING
 -> but i need something to handle: writing onto a "board", and the "text" will have its own settings...
 ->okay so we need the "board" and the "text". text comes in as input, and then based on the board selected, the text will be written there...
 ->e.g we have the bottome board and the center/main panel...the cursor is what we can use for focus. 
 --> the text on the main panel/board/...whatever always renders, the text on the bottom panel only renders when in focus
---> in editor: handlInput() is what handles all user input an what each character pressed does...
+--> in ctrl: handlInput() is what handles all user input an what each character pressed does...
 --> i think they have different types of cursors...each cursor can have "is" focused
---> the current "editor" is just a module that handles the text: where to place it, how to place it, what to do with -- basically just a giant textHandler, and then i could have the "Editor" be a board where text can be placed...
+--> the current "ctrl" is just a module that handles the text: where to place it, how to place it, what to do with -- basically just a giant textHandler, and then i could have the "Controller" be a board where text can be placed...
 
---> contentHandler(will have text handling and cursor movement and stuff), Views(Editor View, BottomBorderView), Controller(like the Game Class)
+--> contentHandler(will have text handling and cursor movement and stuff), Views(Controller View, BottomBorderView), Controller(like the Game Class)
 
+what is the Controller.cpp doing?
+-> rendering borders
+-> deciding what gets rendered
+-> handling input:
+--> interprets the input
+--> stores it in a buffer
+--> manipulates cursor movements and 
+--> manipulates text based on action done
+--> handles undo buffer
+--> contains utils that the cursor needs...or the ones necessary to manipulate text properly
 
+what does it NEED to be or what was intended by "ctrl"?
+-> a window, where text appears...basically
+-> and thats what it needs to be
+-> it just renders the text, the position of the text is what it could control
+
+then where does everything else go?
+- rendering borders
+-> a border can be an entity...like the ctrl we intend to create
+-> it simply just renders text...and a main controller can render IT
+
+- deciding what gets rendered
+-> this is in the case of buffers, because they essentially store what gets rendered
+-> like the input buffer...can the "borders" have their own input buffers?
+- who "decides"? i think the current "ctrl" can store the text? since it only displays the text, itll need what to display...or render. but adding to it can be handled by other things because thats not its purpose..
+-> so it just reads the buffer, and displays what is there
+
+**random idea** bottom border can grow
+
+- handling input:
+-> what Is the input handling?
+when a user presses a key, we determine what key that is...
+depending on what key it is, we either store the key in the buffer or do some manipulation
+okay so when you: press_key -> check_key -> call_appropriate_method
+i think most of the methods could be in like utils.cpp...yk? hmmm idk, we'll circle back
+how can that be logically seperated?
+-> where will the input handling logic lie? maybe it could be in the main "Controller class?" thats where states will also be handled...
+what do you mean by states? example we're on the main_panel_state, when you input something, the controller has to store that input or manipulate certain text or cursor...but that will be different for different states? huh...
+e.g. i press "enter" on the main ctrl it will mean "go to line below" but on bottom border itll mean "run"
+where do i handle this "meaning"...in their border classes? no, that only handles rendering...not logic
+"controller" seems more fitting because it "controls"...
+so will it be "handleInput()" and then you
+-> who will be responsible for handling the input?
+
+- another big question, will i still need the renderer?
+
+- yet another one: is the buffer an entity?
+
+- omg, should i create a state interface?? with the states having inputHandlers and stuff??
+
+okay so, so far:
+[new]
+-> views enitites(ctrl, bottom bar->terminal, games select etc etc)
+-> state interface
+-> buffer entity[i could later implement the "command" thing but for now...ill keep my undoing algorithm, the buffer class could have an input buffer and an undo buffer. the controller can initialize these maybe(if i make the controller class), and then the views can get references of these, read and display]
+-> controller, sort of like the pupper master
+-> cursor
+-> view camera
+
+[new]
+-> views enitites(ctrl, bottom bar->terminal, games select etc etc)
+-> state interface: im kind of confused on HOW ill implement it...so ill do then simple FsM enum version first and then advance it to an interface
+-> buffer + undo entity/class 
+-> controller
+-> cursor
+-> view camera
+
+the issue i have with the buffer being seperate from the views is that...ill now need a way to handle all these other buffers
+the buffer class could still be a thing...i guess its just a matter of deciding where I'll store it...will it passed into the views or will it be accessed FROM the views
+but i think ill have the view store the buffer object itself
+
+if you DESTROY a view, it's buffer also gets destroyed...
+if i have 1 view and then i split it...if i use my method which is -- each view will hold an object of buffer -- when you split the window, the new window created is its own identical thing BUT, it holds a reference to the buffer that belonged to the window it was split from..idk that makes sense to me
+
+you'll have to properly define what each and every single thing means... like, lineN -- what is it? what does it represent? where does it belong?

@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Elijah Muma
- * @brief a simple text editor
+ * @brief a simple text ctrl
  * @version 0.1
  * @date 2025-10-24
  *
@@ -16,16 +16,15 @@
 #include <vector>
 #include <math.h>
 #include <thread>
-#include "Editor.h"
+#include "Controller.h"
 #include "camera.h"
 
 int main()
 {
   sf::Vector2u *winSize = new sf::Vector2u(900, 600);
-  sf::RenderWindow win(sf::VideoMode({winSize->x, winSize->y}), "Text Editor");
+  sf::RenderWindow win(sf::VideoMode({winSize->x, winSize->y}), "Text Controller");
   win.setVerticalSyncEnabled(true);
   sf::Event ev;
-
 
   sf::RectangleShape testBox({100.f, 100.f});
   testBox.setPosition(300, 300);
@@ -45,7 +44,7 @@ int main()
   sf::View &view = camera.getMainView();
   view = win.getDefaultView();
   sf::View uiView = win.getDefaultView();
-  Editor editor{camera, font, characterSize, winSize};
+  Controller ctrl{camera, font, characterSize, winSize};
 
   while (win.isOpen())
   {
@@ -61,15 +60,15 @@ int main()
         view.setCenter(static_cast<float>(ev.size.width) / 2.f,
                        static_cast<float>(ev.size.height) / 2.f);
         uiView.setSize({static_cast<float>(ev.size.width),
-                      static_cast<float>(ev.size.height)});
+                        static_cast<float>(ev.size.height)});
         uiView.setCenter(static_cast<float>(ev.size.width) / 2.f,
-                       static_cast<float>(ev.size.height) / 2.f);
+                         static_cast<float>(ev.size.height) / 2.f);
         win.setView(view);
         winSize->x = view.getSize().x;
         winSize->y = view.getSize().y;
       }
       // Handle Input
-      editor.handleInput(ev);
+      ctrl.handleInput(ev);
     }
 
     // Update
@@ -77,13 +76,13 @@ int main()
 
     // Render AND SET VIEW
     win.setView(uiView);
-    editor.renderSideBorder_UI(win);
+    ctrl.renderSideBorder_UI(win);
 
     win.setView(camera.getMainView());
-    editor.render(win);
+    ctrl.render(win);
 
     win.setView(uiView);
-    editor.renderBottomBorder_UI(win);
+    ctrl.renderBottomBorder_UI(win);
 
     win.display();
   }

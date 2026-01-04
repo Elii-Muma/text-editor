@@ -1,38 +1,56 @@
 [
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\main.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\main.cpp\"",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\main.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\main.cpp\"",
   "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/main.cpp",
-  "output": "CMakeFiles/text-editor.dir/main.cpp.obj"
+  "output": "CMakeFiles/text-ctrl.dir/main.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\camera.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\camera.cpp\"",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\camera.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\camera.cpp\"",
   "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/camera.cpp",
-  "output": "CMakeFiles/text-editor.dir/src/camera.cpp.obj"
+  "output": "CMakeFiles/text-ctrl.dir/src/camera.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Cursor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Cursor.cpp\"",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\Cursor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Cursor.cpp\"",
   "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Cursor.cpp",
-  "output": "CMakeFiles/text-editor.dir/src/Cursor.cpp.obj"
+  "output": "CMakeFiles/text-ctrl.dir/src/Cursor.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Editor.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Editor.cpp\"",
-  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp",
-  "output": "CMakeFiles/text-editor.dir/src/Editor.cpp.obj"
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\controller.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\controller.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/controller.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/controller.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Renderer.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Renderer.cpp\"",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\view.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\view.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/view.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/view.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\view_controller.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\view_controller.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/view_controller.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/view_controller.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\text_buffer.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\text_buffer.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/text_buffer.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\Renderer.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Renderer.cpp\"",
   "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp",
-  "output": "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj"
+  "output": "CMakeFiles/text-ctrl.dir/src/Renderer.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-editor.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-editor.dir\\src\\Document.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\Document.cpp\"",
-  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Document.cpp",
-  "output": "CMakeFiles/text-editor.dir/src/Document.cpp.obj"
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\document.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\document.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/document.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/document.cpp.obj"
 }
 ]

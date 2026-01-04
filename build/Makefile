@@ -116,24 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named text-editor
+# Target rules for targets named text-ctrl
 
 # Build rule for target.
-text-editor: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 text-editor
-.PHONY : text-editor
+text-ctrl: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 text-ctrl
+.PHONY : text-ctrl
 
 # fast build rule for target.
-text-editor/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/build
-.PHONY : text-editor/fast
+text-ctrl/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/build
+.PHONY : text-ctrl/fast
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -141,7 +141,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -149,7 +149,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/Cursor.obj: src/Cursor.cpp.obj
@@ -157,7 +157,7 @@ src/Cursor.obj: src/Cursor.cpp.obj
 
 # target to build an object file
 src/Cursor.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Cursor.cpp.obj
 .PHONY : src/Cursor.cpp.obj
 
 src/Cursor.i: src/Cursor.cpp.i
@@ -165,7 +165,7 @@ src/Cursor.i: src/Cursor.cpp.i
 
 # target to preprocess a source file
 src/Cursor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Cursor.cpp.i
 .PHONY : src/Cursor.cpp.i
 
 src/Cursor.s: src/Cursor.cpp.s
@@ -173,63 +173,15 @@ src/Cursor.s: src/Cursor.cpp.s
 
 # target to generate assembly for a file
 src/Cursor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Cursor.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Cursor.cpp.s
 .PHONY : src/Cursor.cpp.s
-
-src/Document.obj: src/Document.cpp.obj
-.PHONY : src/Document.obj
-
-# target to build an object file
-src/Document.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Document.cpp.obj
-.PHONY : src/Document.cpp.obj
-
-src/Document.i: src/Document.cpp.i
-.PHONY : src/Document.i
-
-# target to preprocess a source file
-src/Document.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Document.cpp.i
-.PHONY : src/Document.cpp.i
-
-src/Document.s: src/Document.cpp.s
-.PHONY : src/Document.s
-
-# target to generate assembly for a file
-src/Document.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Document.cpp.s
-.PHONY : src/Document.cpp.s
-
-src/Editor.obj: src/Editor.cpp.obj
-.PHONY : src/Editor.obj
-
-# target to build an object file
-src/Editor.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Editor.cpp.obj
-.PHONY : src/Editor.cpp.obj
-
-src/Editor.i: src/Editor.cpp.i
-.PHONY : src/Editor.i
-
-# target to preprocess a source file
-src/Editor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Editor.cpp.i
-.PHONY : src/Editor.cpp.i
-
-src/Editor.s: src/Editor.cpp.s
-.PHONY : src/Editor.s
-
-# target to generate assembly for a file
-src/Editor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Editor.cpp.s
-.PHONY : src/Editor.cpp.s
 
 src/Renderer.obj: src/Renderer.cpp.obj
 .PHONY : src/Renderer.obj
 
 # target to build an object file
 src/Renderer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.obj
 .PHONY : src/Renderer.cpp.obj
 
 src/Renderer.i: src/Renderer.cpp.i
@@ -237,7 +189,7 @@ src/Renderer.i: src/Renderer.cpp.i
 
 # target to preprocess a source file
 src/Renderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.i
 .PHONY : src/Renderer.cpp.i
 
 src/Renderer.s: src/Renderer.cpp.s
@@ -245,7 +197,7 @@ src/Renderer.s: src/Renderer.cpp.s
 
 # target to generate assembly for a file
 src/Renderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/Renderer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.s
 .PHONY : src/Renderer.cpp.s
 
 src/camera.obj: src/camera.cpp.obj
@@ -253,7 +205,7 @@ src/camera.obj: src/camera.cpp.obj
 
 # target to build an object file
 src/camera.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/camera.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/camera.cpp.obj
 .PHONY : src/camera.cpp.obj
 
 src/camera.i: src/camera.cpp.i
@@ -261,7 +213,7 @@ src/camera.i: src/camera.cpp.i
 
 # target to preprocess a source file
 src/camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/camera.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/camera.cpp.i
 .PHONY : src/camera.cpp.i
 
 src/camera.s: src/camera.cpp.s
@@ -269,8 +221,128 @@ src/camera.s: src/camera.cpp.s
 
 # target to generate assembly for a file
 src/camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-editor.dir\build.make CMakeFiles/text-editor.dir/src/camera.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/camera.cpp.s
 .PHONY : src/camera.cpp.s
+
+src/controller.obj: src/controller.cpp.obj
+.PHONY : src/controller.obj
+
+# target to build an object file
+src/controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/controller.cpp.obj
+.PHONY : src/controller.cpp.obj
+
+src/controller.i: src/controller.cpp.i
+.PHONY : src/controller.i
+
+# target to preprocess a source file
+src/controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/controller.cpp.i
+.PHONY : src/controller.cpp.i
+
+src/controller.s: src/controller.cpp.s
+.PHONY : src/controller.s
+
+# target to generate assembly for a file
+src/controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/controller.cpp.s
+.PHONY : src/controller.cpp.s
+
+src/document.obj: src/document.cpp.obj
+.PHONY : src/document.obj
+
+# target to build an object file
+src/document.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.obj
+.PHONY : src/document.cpp.obj
+
+src/document.i: src/document.cpp.i
+.PHONY : src/document.i
+
+# target to preprocess a source file
+src/document.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.i
+.PHONY : src/document.cpp.i
+
+src/document.s: src/document.cpp.s
+.PHONY : src/document.s
+
+# target to generate assembly for a file
+src/document.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.s
+.PHONY : src/document.cpp.s
+
+src/text_buffer.obj: src/text_buffer.cpp.obj
+.PHONY : src/text_buffer.obj
+
+# target to build an object file
+src/text_buffer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.obj
+.PHONY : src/text_buffer.cpp.obj
+
+src/text_buffer.i: src/text_buffer.cpp.i
+.PHONY : src/text_buffer.i
+
+# target to preprocess a source file
+src/text_buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.i
+.PHONY : src/text_buffer.cpp.i
+
+src/text_buffer.s: src/text_buffer.cpp.s
+.PHONY : src/text_buffer.s
+
+# target to generate assembly for a file
+src/text_buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.s
+.PHONY : src/text_buffer.cpp.s
+
+src/view.obj: src/view.cpp.obj
+.PHONY : src/view.obj
+
+# target to build an object file
+src/view.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view.cpp.obj
+.PHONY : src/view.cpp.obj
+
+src/view.i: src/view.cpp.i
+.PHONY : src/view.i
+
+# target to preprocess a source file
+src/view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view.cpp.i
+.PHONY : src/view.cpp.i
+
+src/view.s: src/view.cpp.s
+.PHONY : src/view.s
+
+# target to generate assembly for a file
+src/view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view.cpp.s
+.PHONY : src/view.cpp.s
+
+src/view_controller.obj: src/view_controller.cpp.obj
+.PHONY : src/view_controller.obj
+
+# target to build an object file
+src/view_controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view_controller.cpp.obj
+.PHONY : src/view_controller.cpp.obj
+
+src/view_controller.i: src/view_controller.cpp.i
+.PHONY : src/view_controller.i
+
+# target to preprocess a source file
+src/view_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view_controller.cpp.i
+.PHONY : src/view_controller.cpp.i
+
+src/view_controller.s: src/view_controller.cpp.s
+.PHONY : src/view_controller.s
+
+# target to generate assembly for a file
+src/view_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view_controller.cpp.s
+.PHONY : src/view_controller.cpp.s
 
 # Help Target
 help:
@@ -280,25 +352,34 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... text-editor
+	@echo ... text-ctrl
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
 	@echo ... src/Cursor.obj
 	@echo ... src/Cursor.i
 	@echo ... src/Cursor.s
-	@echo ... src/Document.obj
-	@echo ... src/Document.i
-	@echo ... src/Document.s
-	@echo ... src/Editor.obj
-	@echo ... src/Editor.i
-	@echo ... src/Editor.s
 	@echo ... src/Renderer.obj
 	@echo ... src/Renderer.i
 	@echo ... src/Renderer.s
 	@echo ... src/camera.obj
 	@echo ... src/camera.i
 	@echo ... src/camera.s
+	@echo ... src/controller.obj
+	@echo ... src/controller.i
+	@echo ... src/controller.s
+	@echo ... src/document.obj
+	@echo ... src/document.i
+	@echo ... src/document.s
+	@echo ... src/text_buffer.obj
+	@echo ... src/text_buffer.i
+	@echo ... src/text_buffer.s
+	@echo ... src/view.obj
+	@echo ... src/view.i
+	@echo ... src/view.s
+	@echo ... src/view_controller.obj
+	@echo ... src/view_controller.i
+	@echo ... src/view_controller.s
 .PHONY : help
 
 

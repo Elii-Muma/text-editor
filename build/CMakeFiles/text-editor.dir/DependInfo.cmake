@@ -14,6 +14,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Editor.cpp" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Editor.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/Renderer.cpp" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/Renderer.cpp.obj.d"
   "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/camera.cpp" "CMakeFiles/text-editor.dir/src/camera.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/camera.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/text_buffer.cpp" "CMakeFiles/text-editor.dir/src/text_buffer.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/text_buffer.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/view.cpp" "CMakeFiles/text-editor.dir/src/view.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/view.cpp.obj.d"
+  "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/view_controller.cpp" "CMakeFiles/text-editor.dir/src/view_controller.cpp.obj" "gcc" "CMakeFiles/text-editor.dir/src/view_controller.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

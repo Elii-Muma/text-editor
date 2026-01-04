@@ -1,45 +1,34 @@
-#pragma once
-#include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "Renderer.h"
 #include "Cursor.h"
 #include "Document.h"
 #include "camera.h"
+#include "view.h"
+#include "view_controller.h"
+#include "utils.h"
 
 // HANDLES DS AND WHAT NOT
-class Editor
+class Controller
 {
 
 public:
-  Editor(Camera &camera, sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE);
+  Controller(Camera &camera, sf::Font &font, int characterSize, sf::Vector2u *WIN_SIZE);
   void renderSideBorder_UI(sf::RenderWindow &win);
   void renderBottomBorder_UI(sf::RenderWindow &win);
-  void renderUI(sf::RenderWindow &win);
   void render(sf::RenderWindow &win);
   void handleInput(sf::Event &ev);
-  void EraseCharacter(bool isBackSpace, int colN, int index);
+  void enterFunction();
+  // void EraseCharacter(bool isBackSpace, int colN, int index);
   void saveFile();
-  void moveCameraUp();
-  void moveCameraDown();
-  int getCharPosAt();
-  int getLineLength(int lineNumber);
-  void cursorMoveLeft();
-  int cursorMoveColTo();
-  void cursorMoveToEnd();
-  std::pair<int, int> getCharGlyphSize(char character);
-  void cursorMoveRight();
-  void undoFunction();
-
 
 private:
-  Camera& camera;
-  Cursor cursor;
+  Camera &camera;
   Renderer renderer;
   Document document;
+  View view;
+  ViewController mainViewCtrl;
 
-  int lineN;
-  std::string string_buffer;
   bool isUndoPressed;
   // to change from here to some other single place
   sf::Font m_font;
@@ -55,9 +44,10 @@ private:
     RIGHT
   };
 
-  //holds the filepaths, ill eventually move this to a different location
-  //maybe make it a global file or something
-  const struct FilePaths{
+  // holds the filepaths, ill eventually move this to a different location
+  // maybe make it a global file or something
+  const struct FilePaths
+  {
     std::string txt_filepath{"../resources/txt/"};
   } m_filePaths;
 
@@ -71,7 +61,6 @@ private:
     ENT_MOVE
   };
 
-
   struct DelData
   {
     std::string del_char;
@@ -81,6 +70,6 @@ private:
     StackType s_type{StackType::NONE};
   };
 
-  std::vector<std::string> inputBuffer;    // holds the line string 
-  std::vector<DelData> deleteStack;        // input/action stack
+  std::vector<std::string> inputBuffer; // holds the line string
+  std::vector<DelData> deleteStack;     // input/action stack
 };

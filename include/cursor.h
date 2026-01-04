@@ -15,8 +15,8 @@ public:
 
   int getCursorPosLineNumber();
   int getCursorPosColumnNumber();
-
-  std::pair<int, int> getPosition();
+  int getLineNumber(int charSize); // returns the actual lineNumber(not in screen coordinates)
+  std::pair<int, int> getPosition(); // returns lineNumber and colNumber in screen coordinates
 private:
   int lineN, colN;
 };
