@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include <iostream>
 
-Renderer::Renderer(sf::Font font, sf::Vector2u *winSize) : m_font{font}, m_WIN_SIZE(winSize)
+Renderer::Renderer(sf::Font font, sf::Vector2u &winSize) : m_font{font}, m_WIN_SIZE(winSize)
 {
   init();
 }
@@ -22,17 +22,17 @@ void Renderer::init()
   m_lineNumberText.setFillColor(sf::Color::White);
   m_lineNumberText.setCharacterSize(characterSize);
 
-  m_SIDE_BORDER_HEIGHT = m_WIN_SIZE->y;
+  m_SIDE_BORDER_HEIGHT = m_WIN_SIZE.y;
   std::cout<<"side border height:: " << m_SIDE_BORDER_HEIGHT << "\n";
   m_sideBorder.setFillColor(sf::Color(0, 0, 0));
   m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
   m_sideBorder.setPosition(0, 0);
 
-  m_BOTTOM_BORDER_WIDTH = m_WIN_SIZE->x;
+  m_BOTTOM_BORDER_WIDTH = m_WIN_SIZE.x;
   std::cout<<"bottom border width:: " << m_BOTTOM_BORDER_WIDTH << "\n";
   m_bottomBorder.setFillColor(sf::Color(0, 0, 0));
   m_bottomBorder.setSize(sf::Vector2f(m_BOTTOM_BORDER_WIDTH, m_BOTTOM_BORDER_HEIGHT));
-  int yPos = m_WIN_SIZE->y - m_BOTTOM_BORDER_HEIGHT;
+  int yPos = m_WIN_SIZE.y - m_BOTTOM_BORDER_HEIGHT;
   std::cout<<"y pos:: " << yPos << "\n";
   m_bottomBorder.setPosition(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT);
 }
@@ -71,14 +71,14 @@ void Renderer::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
 
 void Renderer::drawSideBorder(sf::RenderWindow &window)
 {
-  m_SIDE_BORDER_HEIGHT = m_WIN_SIZE->y ;
+  m_SIDE_BORDER_HEIGHT = m_WIN_SIZE.y ;
   m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
   window.draw(m_sideBorder);
 }
 
 void Renderer::drawBottomBorder(sf::RenderWindow &window)
 {
-  m_BOTTOM_BORDER_WIDTH = m_WIN_SIZE->x;
+  m_BOTTOM_BORDER_WIDTH = m_WIN_SIZE.x;
 
   m_bottomBorder.setSize(sf::Vector2f(m_BOTTOM_BORDER_WIDTH, m_BOTTOM_BORDER_HEIGHT));
   m_bottomBorder.setPosition(0, m_SIDE_BORDER_HEIGHT-m_BOTTOM_BORDER_HEIGHT);

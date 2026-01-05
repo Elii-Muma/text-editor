@@ -68,7 +68,7 @@ int Buffer::getCharPosAt(int cursorColumnPos, int lineNumber, sf::Font &font, in
 
 // function that handles the undo function
 // returns the new cursor position
-sf::Vector2i Buffer::undo(int lineN, sf::Font &font)
+sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
 {
   // must've written this on coke cos ts works perfectly
   if (!deleteStack.empty())
@@ -172,20 +172,20 @@ sf::Vector2i Buffer::undo(int lineN, sf::Font &font)
     cPosRow = tempData.currCursorPos.y;
 
     deleteStack.pop_back();
-    return sf::Vector2i(cPosCol, cPosRow);
+    return sf::Vector2u(cPosCol, cPosRow);
   }
   else
   {
     std::cout << "delete stack is empty!\n";
-    return sf::Vector2i(0, 0);
+    return sf::Vector2u(0, 0);
   }
 }
 
 // idk if this belongs here but it seems right
-// int index, 
-// int lineN: normalized line number??, 
+// int index,
+// int lineN: normalized line number??,
 // int cursorLineN: the coordinate version
-//int colN, int m_characterSize
+// int colN, int m_characterSize
 void Buffer::enterFunction(int index, int lineN, int cursorLineN, int colN, int m_characterSize)
 {
   if (!inputBuffer[lineN].empty())

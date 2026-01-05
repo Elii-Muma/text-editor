@@ -101,3 +101,16 @@ if you DESTROY a view, it's buffer also gets destroyed...
 if i have 1 view and then i split it...if i use my method which is -- each view will hold an object of buffer -- when you split the window, the new window created is its own identical thing BUT, it holds a reference to the buffer that belonged to the window it was split from..idk that makes sense to me
 
 you'll have to properly define what each and every single thing means... like, lineN -- what is it? what does it represent? where does it belong?
+
+View->ViewController->controller
+ViewController controls a View, the controller displays the different Views
+the controller has the ability to switch between different views
+
+You can have multiple mainscreens/views and then a pointer can be used to switch between them
+a certain view on the screen can currently be in focus...
+there are certain combos of views allowed
+
+main screen + bottom
+terminal screen alone
+game selection screen alone
+stats??

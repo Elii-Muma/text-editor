@@ -21,25 +21,24 @@
 
 int main()
 {
-  sf::Vector2u *winSize = new sf::Vector2u(900, 600);
-  sf::RenderWindow win(sf::VideoMode({winSize->x, winSize->y}), "Text Controller");
+  sf::Vector2u winSize{900, 600};
+  sf::RenderWindow win(sf::VideoMode({winSize.x, winSize.y}), "Text Controller");
   win.setVerticalSyncEnabled(true);
   sf::Event ev;
 
   sf::RectangleShape testBox({100.f, 100.f});
   testBox.setPosition(300, 300);
 
-  sf::Font font;
-  int characterSize{22};
 
+  sf::Font font;
   if (!font.loadFromFile("../resources/fonts/FiraCode-Regular.ttf"))
   {
     std::cout << "failed to load font!\n";
-
     system("pause");
     return -1;
   }
 
+  int characterSize{22};
   Camera camera{characterSize, winSize};
   sf::View &view = camera.getMainView();
   view = win.getDefaultView();
@@ -64,8 +63,8 @@ int main()
         uiView.setCenter(static_cast<float>(ev.size.width) / 2.f,
                          static_cast<float>(ev.size.height) / 2.f);
         win.setView(view);
-        winSize->x = view.getSize().x;
-        winSize->y = view.getSize().y;
+        winSize.x = view.getSize().x;
+        winSize.y = view.getSize().y;
       }
       // Handle Input
       ctrl.handleInput(ev);
@@ -76,13 +75,13 @@ int main()
 
     // Render AND SET VIEW
     win.setView(uiView);
-    ctrl.renderSideBorder_UI(win);
+    ctrl.renderFixedUI(win);
 
     win.setView(camera.getMainView());
-    ctrl.render(win);
+    ctrl.renderMoveableUI(win);
 
-    win.setView(uiView);
-    ctrl.renderBottomBorder_UI(win);
+    // win.setView(uiView);
+    // ctrl.renderBottomBorder_UI(win);
 
     win.display();
   }

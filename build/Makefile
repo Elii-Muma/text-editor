@@ -272,6 +272,54 @@ src/document.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.s
 .PHONY : src/document.cpp.s
 
+src/main_view.obj: src/main_view.cpp.obj
+.PHONY : src/main_view.obj
+
+# target to build an object file
+src/main_view.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view.cpp.obj
+.PHONY : src/main_view.cpp.obj
+
+src/main_view.i: src/main_view.cpp.i
+.PHONY : src/main_view.i
+
+# target to preprocess a source file
+src/main_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view.cpp.i
+.PHONY : src/main_view.cpp.i
+
+src/main_view.s: src/main_view.cpp.s
+.PHONY : src/main_view.s
+
+# target to generate assembly for a file
+src/main_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view.cpp.s
+.PHONY : src/main_view.cpp.s
+
+src/main_view_controller.obj: src/main_view_controller.cpp.obj
+.PHONY : src/main_view_controller.obj
+
+# target to build an object file
+src/main_view_controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.obj
+.PHONY : src/main_view_controller.cpp.obj
+
+src/main_view_controller.i: src/main_view_controller.cpp.i
+.PHONY : src/main_view_controller.i
+
+# target to preprocess a source file
+src/main_view_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.i
+.PHONY : src/main_view_controller.cpp.i
+
+src/main_view_controller.s: src/main_view_controller.cpp.s
+.PHONY : src/main_view_controller.s
+
+# target to generate assembly for a file
+src/main_view_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.s
+.PHONY : src/main_view_controller.cpp.s
+
 src/text_buffer.obj: src/text_buffer.cpp.obj
 .PHONY : src/text_buffer.obj
 
@@ -371,6 +419,12 @@ help:
 	@echo ... src/document.obj
 	@echo ... src/document.i
 	@echo ... src/document.s
+	@echo ... src/main_view.obj
+	@echo ... src/main_view.i
+	@echo ... src/main_view.s
+	@echo ... src/main_view_controller.obj
+	@echo ... src/main_view_controller.i
+	@echo ... src/main_view_controller.s
 	@echo ... src/text_buffer.obj
 	@echo ... src/text_buffer.i
 	@echo ... src/text_buffer.s

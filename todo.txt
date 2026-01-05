@@ -1,15 +1,37 @@
 ARCHITECTURE
 /src
  ├── main.cpp
- ├── Controller.cpp / Controller.h
+ ├── Editor.cpp / Editor.h
  ├── Renderer.cpp / Renderer.h
  ├── Cursor.cpp / Cursor.h
- ├── EditHistory.cpp / EditHistory.h
- └── Utils.cpp / Utils.h
+ ├── Camera.cpp / Camera.h
+ └──
+/resources
+ └── fonts/
+ └── txt/
+
+ REFACTORED ARCHITECTURE
+/src
+ ├── main.cpp
+ ├── Controller.cpp / Controller.h
+ ├── Cursor.cpp / Cursor.h
+ ├── Camera.cpp / Camera.h
+ ├── Renderer.cpp / Renderer.h
+ ├── text_buffer.cpp / text_buffer.h
+ ├── View.cpp / View.h
+ ├── ViewController.cpp / ViewController.h
+ └── Utils.h
 /resources
  └── fonts/
  └── txt/
 
 [-] add all cursor movement things
-[x] add states
-[x] add games
+[x] Refactor architecture
+[x] each view should have its own camera too(including own buffer and cursor)
+[x] figure out how to turn view and control view into parent classes
+[x] add multiple views 
+[x] add switching between views || [x] add states
+[x] add modes for typing
+[x] add stats (typing speed etc etc)
+[x] add games (like typing games, nothing crazy)
+

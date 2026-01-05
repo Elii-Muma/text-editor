@@ -15,7 +15,9 @@ add_executable(text-ctrl
                 src/Cursor.cpp
                 src/controller.cpp
                 src/view.cpp
+                src/main_view.cpp
                 src/view_controller.cpp
+                src/main_view_controller.cpp
                 src/text_buffer.cpp
                 src/Renderer.cpp
                 src/document.cpp

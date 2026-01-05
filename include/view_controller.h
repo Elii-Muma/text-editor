@@ -15,7 +15,8 @@
 class ViewController{
 
   public:
-    ViewController(View& view, sf::Font& font, int characterSize);
+    ViewController(View& view, sf::Font& font, int& characterSize);
+    virtual void handleInput(sf::Event &ev){std::cout << "handleInput() not overridden\n";}
     void moveCameraUp();
     void moveCameraDown(int bottomOffset);
     void cursorMoveRight();
@@ -27,13 +28,15 @@ class ViewController{
     void cursorMoveToEnd();
     void RemoveCharacter(int dir);
     void EraseCharacter(bool isBackSpace, int colN, int index);
+    virtual View& getView();
 
-  private:
+  protected:
     Buffer& m_buffer;
-    View&   m_view;
     Cursor& m_cursor;
     Camera& m_camera;
+    bool isUndoPressed{false};
     int m_characterSize;
     sf::Font m_font;
+    View&   m_view;
 
 };

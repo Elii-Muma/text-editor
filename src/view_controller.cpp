@@ -1,11 +1,10 @@
 #include "view_controller.h"
 #include "utils.h"
+#include "main_view_controller.h"
 
-ViewController::ViewController(View &view, sf::Font &font, int characterSize) : 
-m_view{view}, m_camera{view.getCamera()}, m_buffer{view.getBuffer()}, m_cursor{view.getCursor()}, 
-m_characterSize{characterSize}, m_font{font}
+ViewController::ViewController(View &view, sf::Font &font, int &characterSize) : m_view{view}, m_camera{view.getCamera()}, m_buffer{view.getBuffer()}, m_cursor{view.getCursor()},
+                                                                                 m_characterSize{characterSize}, m_font{font}
 {
-  std::cout << "init vc()\n";
 }
 
 void ViewController::moveCameraUp()
@@ -41,7 +40,7 @@ void ViewController::cursorMoveRight()
   if (index >= m_buffer.getInputBuffer()[lineN].size())
     return;
 
-  std::cout<<"index:: " << index << "\n";
+  std::cout << "index:: " << index << "\n";
   std::string cur_char{m_buffer.getInputBuffer()[lineN][index]};
   int charWidth = TextUtils::getCharGlyphSize(*cur_char.c_str(), m_font, m_characterSize).first;
   m_cursor.moveCursorRight(charWidth);
@@ -63,7 +62,7 @@ void ViewController::cursorMoveLeft()
 
   m_cursor.moveCursorLeft(charWidth);
 }
-//cursorMoveDown()
+// cursorMoveDown()
 void ViewController::cursorMoveDown()
 {
   int lineN = m_cursor.getLineNumber(m_characterSize);
@@ -101,14 +100,17 @@ int ViewController::cursorMoveToCol(int dir)
   int index = m_buffer.getCharPosAt(colN, lineNumber, m_font, m_characterSize);
   std::cout << "column index in curr line: " << index << "\n";
 
-  if(dir == 0){
-    if(lineNumber - 1 >= 0)
+  if (dir == 0)
+  {
+    if (lineNumber - 1 >= 0)
       lineNumber--;
-  }else{
+  }
+  else
+  {
     lineNumber++;
   }
   int size = m_buffer.getInputBuffer()[lineNumber].size();
-  if(index > size)
+  if (index > size)
     index = size;
   int sumOfCharWidth{0};
   for (int i = 0; i < index; i++)
@@ -120,7 +122,8 @@ int ViewController::cursorMoveToCol(int dir)
   return sumOfCharWidth;
 }
 
-void ViewController::cursorMoveToHome(){
+void ViewController::cursorMoveToHome()
+{
   m_cursor.setPosition(m_cursor.getCursorPosLineNumber(), 0);
 }
 
@@ -148,14 +151,15 @@ void ViewController::cursorMoveToEnd()
   m_cursor.setPosition(m_cursor.getCursorPosLineNumber(), sumOfCharWidth);
 }
 
-// -- i dont know where to put the functions below so ill just keep them here -- 
+// -- i dont know where to put the functions below so ill just keep them here --
 // THEY SEEM LIKE TEXT FUNCTIONS, SO MAYBE ILL THROW THEM IN THE UTILS? BUT HERE THEY DONT NEED ARGS
 
 // dir = 0: is not  backspace, dir = 1, is backspace
-void ViewController::RemoveCharacter(int dir){
+void ViewController::RemoveCharacter(int dir)
+{
   int colN = m_cursor.getCursorPosColumnNumber();
   int lineN = m_cursor.getLineNumber(m_characterSize);
-  int offset = dir; //offset is 1 if its backspace...
+  int offset = dir; // offset is 1 if its backspace...
   int index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize) - offset;
 
   bool isBackSpace = dir;
@@ -207,7 +211,7 @@ void ViewController::EraseCharacter(bool isBackSpace, int colN, int index)
       if (index < 0)
         index = 0;
 
-      //erase/delete the line(since its youre at the start of it)
+      // erase/delete the line(since its youre at the start of it)
       inputBuffer.erase(inputBuffer.begin() + lineN);
       std::cout << "deleted index:: " << index << "\n";
       m_stdl::DelData tempDelData = {temp, index, lineN, sf::Vector2f(colN, m_cursor.getCursorPosLineNumber()), m_stdl::LINE_DEL};
@@ -219,12 +223,13 @@ void ViewController::EraseCharacter(bool isBackSpace, int colN, int index)
 
       int newLineColPos = m_buffer.getLineLength(lineN, m_font, m_characterSize);
       int size = inputBuffer[lineN].length();
-      // get the lenght of the line at the top with reference to character widths, 
+      // get the lenght of the line at the top with reference to character widths,
       // idk what coordinate system that can be called
-      //move the cursor to that position(end of the top line)
+      // move the cursor to that position(end of the top line)
       m_cursor.setPosition(m_cursor.getCursorPosLineNumber() - m_characterSize, newLineColPos);
 
-      if (!temp.empty()){
+      if (!temp.empty())
+      {
         // append the string we got from the cut out line to the end of it
         inputBuffer[lineN].append(temp);
       }
@@ -232,4 +237,10 @@ void ViewController::EraseCharacter(bool isBackSpace, int colN, int index)
       deleteStack.push_back(tempDelData);
     }
   }
+}
+
+View &ViewController::getView()
+{
+  // TODO: insert return statement here
+  return m_view;
 }

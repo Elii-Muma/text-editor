@@ -20,6 +20,16 @@ namespace TextUtils
   }
 }
 
+namespace themes{
+  struct deep_blue_theme{
+    sf::Color BLUE    {0x14213DFF};
+    sf::Color YELLOW  {0xFCA311FF};
+    sf::Color BLACK   {0x000000FF};
+    sf::Color WHITE   {0xFFFFFFFF};
+    sf::Color GREY    {0xE5E5E5FF};
+  }inline deepBlue; 
+}
+
 // my std library
 namespace m_stdl
 {
@@ -41,5 +51,11 @@ namespace m_stdl
     int lineNumber;                    // current line number
     sf::Vector2f currCursorPos;        // the cursors position coordinates
     StackType s_type{StackType::NONE}; //"delete type" idk why i called it stacktType
+  };
+
+  enum states{
+    MAIN_SCREEN_STATE,
+    TERMINAL_SCREEN_STATE,
+    BOTTOM_SCREEN_STATE,
   };
 }
