@@ -1,11 +1,11 @@
-#include "main_view_controller.h"
+#include "bottom_view_controller.h"
 
-MainViewController::MainViewController(MainView &view, sf::Font &font, int &characterSize)
+BottomViewController::BottomViewController(BottomView &view, sf::Font &font, int &characterSize)
     : ViewController{view, font, characterSize}, view{view}
 {
 }
 
-void MainViewController::handleInput(sf::Event &ev)
+void BottomViewController::handleInput(sf::Event &ev)
 {
   if (ev.type == sf::Event::TextEntered)
   {
@@ -21,7 +21,7 @@ void MainViewController::handleInput(sf::Event &ev)
       std::cout << "[colN: " << colN << " || "
                 << "lineN: " << lineN << " || "
                 << "index: " << index << " || "
-                << "added Character: " << std::string(strChar) << " || ";
+                << "added Character: " << std::string(strChar) << "\n";
       cursorMoveRight();
     }
   }
@@ -35,22 +35,6 @@ void MainViewController::handleInput(sf::Event &ev)
       cursorMoveLeft();
       break;
     case sf::Keyboard::Tab:
-    {
-
-      sf::String strChar("----|");
-      int colN = m_cursor.getCursorPosColumnNumber();
-      int lineN = m_cursor.getLineNumber(m_characterSize);
-      int index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize);
-
-      m_buffer.addCharacterToBuffer(m_cursor, strChar, index, lineN);
-      cursorMoveRight();
-      cursorMoveRight();
-      cursorMoveRight();
-      cursorMoveRight();
-      cursorMoveRight();
-
-      // change this to maybe move to the right by the new entry size, cos look at this shit
-    }
     break;
     case sf::Keyboard::Right:
       cursorMoveRight();
@@ -80,18 +64,13 @@ void MainViewController::handleInput(sf::Event &ev)
     }
     break;
     case sf::Keyboard::Enter:
-      moveCameraDown(30);
       {
-        int lineN = m_cursor.getLineNumber(m_characterSize);
-        int colN = m_cursor.getCursorPosColumnNumber();
-        index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize);
-        m_buffer.enterFunction(index, lineN, m_cursor.getCursorPosLineNumber(), colN, m_characterSize);
+        int lineN = m_cursor.getCursorPosLineNumber();
+        std::cout<< "run: " << m_buffer.getInputBuffer()[lineN] << "\n";
       }
-      // cursorMoveDown();
-      m_cursor.moveCursorDown(m_characterSize);
       break;
     case sf::Keyboard::LControl:
-      isUndoPressed = true;
+      // isUndoPressed = true;
       break;
     default:
       break;
@@ -127,8 +106,7 @@ void MainViewController::handleInput(sf::Event &ev)
   }
 }
 
-MainView &MainViewController::getView()
+BottomView &BottomViewController::getView()
 {
-  // TODO: insert return statement here
   return view;
 }

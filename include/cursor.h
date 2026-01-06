@@ -11,12 +11,14 @@ public:
   void moveCursorDown(int lineNumber);
   void moveCursorLeft(int cursorColumnPosition);
   void moveCursorRight(int cursorColumnPosition);
-  void setPosition(int lineN, int colN);
+  void setPosition(int y, int x);
+  void setScreenPosition(int x, int y);
 
   int getCursorPosLineNumber();
   int getCursorPosColumnNumber();
   int getLineNumber(int charSize); // returns the actual lineNumber(not in screen coordinates)
-  std::pair<int, int> getPosition(); // returns lineNumber and colNumber in screen coordinates
+  sf::Vector2i getScreenPosition(); // returns yPos and xPosin screen coordinates
 private:
   int lineN, colN;
+  int xPos, yPos;
 };

@@ -8,6 +8,8 @@
 #include "main_view.h"
 #include "view_controller.h"
 #include "main_view_controller.h"
+#include "bottom_view.h"
+#include "bottom_view_controller.h"
 #include "utils.h"
 
 // HANDLES DS AND WHAT NOT
@@ -32,9 +34,14 @@ private:
   MainView other_mv;
   MainViewController other_mv_ctrl;
 
+  BottomView bv;
+  BottomViewController bv_ctrl;
+
   ViewController *currViewCtrl;
+  ViewController *inputHandlerCtrl;
 
   bool isUndoPressed;
+  int m_height{100};
   m_stdl::states currState{m_stdl::MAIN_SCREEN_STATE};
   int m_BOTTOM_BORDER_HEIGHT{30};
 

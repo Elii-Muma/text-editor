@@ -20,7 +20,7 @@ void MainView::init()
   // -------------INIT SIDE BORDER----------------
 
   m_SIDE_BORDER_HEIGHT = m_winSize.y;
-  int m_SIDE_BORDER_WIDTH = 60;
+  m_SIDE_BORDER_WIDTH = 60;
 
   m_sideBorder.setFillColor(themes::deepBlue.YELLOW);
   m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
@@ -43,6 +43,7 @@ void MainView::init()
   m_lineNumberText.setFont(m_font);
   m_lineNumberText.setFillColor(themes::deepBlue.GREY);
   m_lineNumberText.setCharacterSize(m_characterSize);
+  m_cursor.setScreenPosition(0, 0);
 }
 
 void MainView::setBGColor(sf::Color color)
@@ -55,20 +56,26 @@ void MainView::setBGColor(sf::Color color)
 
 void MainView::drawSideBorder(sf::RenderWindow &window)
 {
+  m_SIDE_BORDER_HEIGHT = m_winSize.y;
+
+  m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
   window.draw(m_sideBorder);
 }
 
 void MainView::drawMainScreen(sf::RenderWindow &window)
 {
+  m_MAIN_BORDER_WIDTH = m_winSize.x - m_SIDE_BORDER_WIDTH;
+  m_MAIN_BORDER_HEIGHT = m_winSize.y;
+
+  m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
   window.draw(m_mainScreen);
 }
 
 void MainView::drawCursor(sf::RenderWindow &window)
 {
-  int colN = m_cursor.getCursorPosColumnNumber() + 60;
-  int lineN = m_cursor.getCursorPosLineNumber();
+  sf::Vector2i pos = m_cursor.getScreenPosition();
 
-  m_cursorItem.setPosition(colN, lineN);
+  m_cursorItem.setPosition(pos.x + 60, pos.y);
   window.draw(m_cursorItem);
 }
 

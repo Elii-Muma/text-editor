@@ -4,21 +4,25 @@
 
 Controller::Controller(Camera &camera, sf::Font &font, int& characterSize, sf::Vector2u& WIN_SIZE) : 
 renderer{font, WIN_SIZE}, mv{camera, font, characterSize, WIN_SIZE}, mv_ctrl{mv, font, characterSize}, 
-other_mv{camera, font, characterSize, WIN_SIZE}, other_mv_ctrl{other_mv, font, characterSize}
+other_mv{camera, font, characterSize, WIN_SIZE}, other_mv_ctrl{other_mv, font, characterSize},
+bv{camera, font, characterSize, WIN_SIZE, m_height}, bv_ctrl{bv, font, characterSize}
 {
   std::printf("init ctrl()\n");
   currViewCtrl = &mv_ctrl;
+  inputHandlerCtrl = &mv_ctrl;
 }
 
 void Controller::renderFixedUI(sf::RenderWindow &win)
 {
   // renderer.drawSideBorder(win);
   currViewCtrl->getView().renderFixedUI(win);
+  bv_ctrl.getView().renderFixedUI(win);
 }
 
 void Controller::renderMoveableUI(sf::RenderWindow &win)
 {
   currViewCtrl->getView().renderMoveableUI(win);
+  bv_ctrl.getView().renderMoveableUI(win);
 }
 
 void Controller::handleInput(sf::Event &ev)
@@ -46,15 +50,24 @@ void Controller::handleInput(sf::Event &ev)
       {
       case m_stdl::MAIN_SCREEN_STATE:
         currViewCtrl = &mv_ctrl;
+        inputHandlerCtrl = &mv_ctrl;
         break;
       case m_stdl::TERMINAL_SCREEN_STATE:
-        other_mv_ctrl.getView().setBGColor(sf::Color(0xFF00FFFF));
+        other_mv_ctrl.getView().setBGColor(sf::Color(0xEF233CFF));
         currViewCtrl = &other_mv_ctrl;
+        inputHandlerCtrl = &other_mv_ctrl;
         break;
       default:
         break;
       }
       // characterSize++;
+      isUndoPressed = false;
+    }
+
+    if (ev.key.code == sf::Keyboard::O)
+    {
+      std::cout << "CHANGED FOCUS\n";
+      inputHandlerCtrl = (inputHandlerCtrl == &bv_ctrl) ? currViewCtrl : &bv_ctrl;
       isUndoPressed = false;
     }
 
@@ -69,7 +82,7 @@ void Controller::handleInput(sf::Event &ev)
   {
     isUndoPressed = false;
   }
-  currViewCtrl->handleInput(ev);
+  inputHandlerCtrl->handleInput(ev);
 }
 
 void Controller::saveFile()

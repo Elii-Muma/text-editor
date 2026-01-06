@@ -25,4 +25,5 @@ class View{
     sf::Vector2u& m_winSize;
     sf::Font& m_font;
     int& m_characterSize;
+    int c_posY;
 };

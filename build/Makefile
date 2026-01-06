@@ -200,6 +200,54 @@ src/Renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.s
 .PHONY : src/Renderer.cpp.s
 
+src/bottom_view.obj: src/bottom_view.cpp.obj
+.PHONY : src/bottom_view.obj
+
+# target to build an object file
+src/bottom_view.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.obj
+.PHONY : src/bottom_view.cpp.obj
+
+src/bottom_view.i: src/bottom_view.cpp.i
+.PHONY : src/bottom_view.i
+
+# target to preprocess a source file
+src/bottom_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.i
+.PHONY : src/bottom_view.cpp.i
+
+src/bottom_view.s: src/bottom_view.cpp.s
+.PHONY : src/bottom_view.s
+
+# target to generate assembly for a file
+src/bottom_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.s
+.PHONY : src/bottom_view.cpp.s
+
+src/bottom_view_controller.obj: src/bottom_view_controller.cpp.obj
+.PHONY : src/bottom_view_controller.obj
+
+# target to build an object file
+src/bottom_view_controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.obj
+.PHONY : src/bottom_view_controller.cpp.obj
+
+src/bottom_view_controller.i: src/bottom_view_controller.cpp.i
+.PHONY : src/bottom_view_controller.i
+
+# target to preprocess a source file
+src/bottom_view_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.i
+.PHONY : src/bottom_view_controller.cpp.i
+
+src/bottom_view_controller.s: src/bottom_view_controller.cpp.s
+.PHONY : src/bottom_view_controller.s
+
+# target to generate assembly for a file
+src/bottom_view_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.s
+.PHONY : src/bottom_view_controller.cpp.s
+
 src/camera.obj: src/camera.cpp.obj
 .PHONY : src/camera.obj
 
@@ -410,6 +458,12 @@ help:
 	@echo ... src/Renderer.obj
 	@echo ... src/Renderer.i
 	@echo ... src/Renderer.s
+	@echo ... src/bottom_view.obj
+	@echo ... src/bottom_view.i
+	@echo ... src/bottom_view.s
+	@echo ... src/bottom_view_controller.obj
+	@echo ... src/bottom_view_controller.i
+	@echo ... src/bottom_view_controller.s
 	@echo ... src/camera.obj
 	@echo ... src/camera.i
 	@echo ... src/camera.s

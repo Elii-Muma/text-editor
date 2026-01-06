@@ -114,3 +114,18 @@ main screen + bottom
 terminal screen alone
 game selection screen alone
 stats??
+
+-->so its looking like i'll have to rethink what lineN represents
+ill have to change the relationship between the cursors lineN and 
+the one we use to store and access text in the buffer using lineN as the index
+-->right now lineN first comes from the cursor. lineN is the lineNumber the cursor is at
+this lineNumber is what helps draw the cursor...already im thinking for drawing i should use yPos and xPos 
+and then lineN and colN for computation
+
+okay fixed: 
+Cursor.h
+lineN & colN: used for buffer/logic calculations(buffer positions)
+lineN: index of inner-vector/line-string 
+colN: non normalized(to the buffer size) character position with reference to the cursor[idk if that makes sense]
+xPos, yPos: used for rendering.(screen coordinates)
+when adding any offsets to the cursors rendering, add them to the xPos and yPos...NOT the lineN nd colN. i dont think these need to be touched (to read or write) by the view or renderer
