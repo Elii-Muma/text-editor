@@ -1,7 +1,7 @@
 #include "main_view.h"
 #include "utils.h"
 
-MainView::MainView(Camera &camera, sf::Font &font, int &charSize, sf::Vector2u &windowSize) : View{camera, font, charSize, windowSize}
+MainView::MainView(sf::Font &font, int &charSize, sf::Vector2u &windowSize) : View{font, charSize, windowSize}
 {
   std::cout << "init MainView()" << "\n";
   init();
@@ -91,7 +91,7 @@ void MainView::drawLineText(sf::RenderWindow &window)
       window.draw(m_lineText);
       int activeLineNumber = m_cursor.getLineNumber(m_characterSize);
       drawLineNumber(window, i, rowPos, activeLineNumber);
-      rowPos += 22;
+      rowPos += m_characterSize;
     }
   }
 }
@@ -113,6 +113,15 @@ void MainView::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
   window.draw(m_lineNumberText);
 }
 
+void MainView::update(){
+
+  if(prev_fontSize != m_characterSize){
+    updateCursorScreenPos();
+    m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
+    m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
+  }
+}
+
 void MainView::renderFixedUI(sf::RenderWindow &window)
 {
   drawSideBorder(window);
@@ -121,6 +130,7 @@ void MainView::renderFixedUI(sf::RenderWindow &window)
 
 void MainView::renderMoveableUI(sf::RenderWindow &window)
 {
+  // std::cout << "moveable UI render()\n";
   drawCursor(window);
   drawLineText(window);
 }

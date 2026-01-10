@@ -1,11 +1,13 @@
-#include "bottom_view_controller.h"
+#include "terminal_view_controller.h"
 
-BottomViewController::BottomViewController(BottomView &view, sf::Font &font, int &characterSize)
+TerminalViewController::TerminalViewController(TerminalView &view, sf::Font &font, int &characterSize)
     : ViewController{view, font, characterSize}, view{view}
 {
+  isScreen = view.getIsScreen();
 }
 
-void BottomViewController::handleInput(sf::Event &ev)
+
+void TerminalViewController::handleInput(sf::Event &ev)
 {
   if (ev.type == sf::Event::TextEntered)
   {
@@ -35,15 +37,15 @@ void BottomViewController::handleInput(sf::Event &ev)
       cursorMoveLeft();
       break;
     case sf::Keyboard::Tab:
-    break;
+      break;
     case sf::Keyboard::Right:
       cursorMoveRight();
       break;
     case sf::Keyboard::Up:
-      cursorMoveUp();
+      // cursorMoveUp();
       break;
     case sf::Keyboard::Down:
-      cursorMoveDown();
+      // cursorMoveDown();
       break;
     case sf::Keyboard::Home:
       cursorMoveToHome();
@@ -64,11 +66,28 @@ void BottomViewController::handleInput(sf::Event &ev)
     }
     break;
     case sf::Keyboard::Enter:
+    {
+      int lineN = m_cursor.getCursorPosLineNumber();
+      std::cout << "terminal lineN: " << lineN << "\n";
+      if (isScreen)
       {
-        int lineN = m_cursor.getCursorPosLineNumber();
-        std::cout<< "run: " << m_buffer.getInputBuffer()[lineN] << "\n";
+        moveCameraDown(30);
+        {
+          int lineN = m_cursor.getLineNumber(m_characterSize);
+          int colN = m_cursor.getCursorPosColumnNumber();
+          // index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize);
+          index = 0;
+          m_buffer.enterFunction(index, lineN, m_cursor.getCursorPosLineNumber(), colN, m_characterSize, true);
+        }
+        m_cursor.moveCursorDown(m_characterSize);
+        std::cout << "buffer size: " << m_buffer.getInputBuffer().size() << "\n";
       }
-      break;
+      if( lineN <= m_buffer.getInputBuffer().size()){
+        std::string command = m_buffer.getInputBuffer()[lineN]; 
+        std::cout << "run: " << command << "\n";
+      }
+    }
+    break;
     case sf::Keyboard::LControl:
       // isUndoPressed = true;
       break;
@@ -92,13 +111,6 @@ void BottomViewController::handleInput(sf::Event &ev)
       // characterSize++;
       isUndoPressed = false;
     }
-
-    // if (ev.key.code == sf::Keyboard::S)
-    // {
-    //   std::cout << "savefile pressed\n";
-    //   saveFile();
-    //   isUndoPressed = false;
-    // }
   }
   else
   {
@@ -106,7 +118,7 @@ void BottomViewController::handleInput(sf::Event &ev)
   }
 }
 
-BottomView &BottomViewController::getView()
+TerminalView &TerminalViewController::getView()
 {
   return view;
 }

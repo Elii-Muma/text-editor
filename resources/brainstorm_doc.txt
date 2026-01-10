@@ -129,3 +129,21 @@ lineN: index of inner-vector/line-string
 colN: non normalized(to the buffer size) character position with reference to the cursor[idk if that makes sense]
 xPos, yPos: used for rendering.(screen coordinates)
 when adding any offsets to the cursors rendering, add them to the xPos and yPos...NOT the lineN nd colN. i dont think these need to be touched (to read or write) by the view or renderer
+
+screens:
+initially i was going to have this be an abstraced out class
+BUT instead ill just use states + methods and see how that goes
+you have a state, then that state is what handles the rendering, input handling
+
+so i decided to make a screen abstraction that way i can have multiple screens of a certain type
+the editor screen right now is treated as one thing BUT later in the future theyll need to maybe
+be able to share a bottomView, that means we'll actually need to have hella pairs<view, viewCtrl> or something
+stored in some container then iterate through it OR display the visible one, store its index? idk 
+but basically that, then NOT pass it in but have a screen function to create a new...thing!
+
+
+Terminal.h
+okay so idk why i didnt think of this but ill have to switch from bottomView -> terminalView, 
+cos thats basically a terminal...
+so how would i make it smaller for the editor screens? just pass in the initial height itll have, pass in a bool to see if its a
+screen or a sub-screen in a bigger screen!, yes...and then the controls will also depend on the bool 

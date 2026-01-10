@@ -16,7 +16,7 @@ public:
   int getLineLength(int lineNumber, sf::Font &font, int charSize);
   int getCharPosAt(int cursorcolumnpos, int linenumber, sf::Font &font, int charSize);
   sf::Vector2u undo(int lineN, sf::Font &font);
-  void enterFunction(int index, int lineN, int cursorLineN, int colN, int m_characterSize);
+  void enterFunction(int index, int lineN, int cursorLineN, int colN, int m_characterSize, bool isTerminal);
   std::vector<std::string> &getInputBuffer(); // holds the line string
   std::vector<m_stdl::DelData> &getDeleteStack() { return deleteStack; }
 

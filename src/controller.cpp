@@ -1,28 +1,28 @@
 #include "Controller.h"
 #include <iostream>
 #include "Cursor.h"
+#include "utils.h"
 
-Controller::Controller(Camera &camera, sf::Font &font, int& characterSize, sf::Vector2u& WIN_SIZE) : 
-renderer{font, WIN_SIZE}, mv{camera, font, characterSize, WIN_SIZE}, mv_ctrl{mv, font, characterSize}, 
-other_mv{camera, font, characterSize, WIN_SIZE}, other_mv_ctrl{other_mv, font, characterSize},
-bv{camera, font, characterSize, WIN_SIZE, m_height}, bv_ctrl{bv, font, characterSize}
+Controller::Controller(sf::Font &font, int& characterSize, sf::Vector2u& WIN_SIZE) : 
+renderer{font, WIN_SIZE}, 
+e_screen{font, characterSize, WIN_SIZE, themes::deepBlue.BLUE},
+t_screen{font, characterSize, WIN_SIZE}
 {
   std::printf("init ctrl()\n");
-  currViewCtrl = &mv_ctrl;
-  inputHandlerCtrl = &mv_ctrl;
+  currScreen = &e_screen;
 }
 
-void Controller::renderFixedUI(sf::RenderWindow &win)
-{
+void Controller::update(){
+  currScreen->update();
+}
+
+void Controller::renderFixedUI(sf::RenderWindow &win){
   // renderer.drawSideBorder(win);
-  currViewCtrl->getView().renderFixedUI(win);
-  bv_ctrl.getView().renderFixedUI(win);
+  currScreen->renderFixedUI(win);
 }
 
-void Controller::renderMoveableUI(sf::RenderWindow &win)
-{
-  currViewCtrl->getView().renderMoveableUI(win);
-  bv_ctrl.getView().renderMoveableUI(win);
+void Controller::renderMoveableUI(sf::RenderWindow &win){
+  currScreen->renderMoveableUI(win);
 }
 
 void Controller::handleInput(sf::Event &ev)
@@ -33,62 +33,53 @@ void Controller::handleInput(sf::Event &ev)
     switch (ev.key.code)
     {
     case sf::Keyboard::LControl:
-      isUndoPressed = true;
+      isFunctionPressed = true;
       break;
     default:
       break;
     }
   }
   
-  if (ev.type == sf::Event::KeyPressed && isUndoPressed)
+  if (ev.type == sf::Event::KeyPressed && isFunctionPressed)
   {
-    if (ev.key.code == sf::Keyboard::I)
+    if (ev.key.code == sf::Keyboard::F)
     {
       std::cout << "control + I pressed \n";
-      currState = (currState == m_stdl::MAIN_SCREEN_STATE) ? m_stdl::TERMINAL_SCREEN_STATE : m_stdl::MAIN_SCREEN_STATE;
-      switch (currState)
+      curr_screen_state = (curr_screen_state == EDITOR_SCREEN) ? TERMINAL_SCREEN : EDITOR_SCREEN;
+      switch (curr_screen_state)
       {
-      case m_stdl::MAIN_SCREEN_STATE:
-        currViewCtrl = &mv_ctrl;
-        inputHandlerCtrl = &mv_ctrl;
+      case EDITOR_SCREEN:
+        currScreen= &e_screen;
         break;
-      case m_stdl::TERMINAL_SCREEN_STATE:
-        other_mv_ctrl.getView().setBGColor(sf::Color(0xEF233CFF));
-        currViewCtrl = &other_mv_ctrl;
-        inputHandlerCtrl = &other_mv_ctrl;
+      case TERMINAL_SCREEN:
+        currScreen= &t_screen;
         break;
       default:
         break;
       }
       // characterSize++;
-      isUndoPressed = false;
+      isFunctionPressed = false;
     }
 
-    if (ev.key.code == sf::Keyboard::O)
-    {
-      std::cout << "CHANGED FOCUS\n";
-      inputHandlerCtrl = (inputHandlerCtrl == &bv_ctrl) ? currViewCtrl : &bv_ctrl;
-      isUndoPressed = false;
-    }
+  }
+  currScreen->inputHandler(ev);
+}
 
-    if (ev.key.code == sf::Keyboard::S)
-    {
-      std::cout << "savefile pressed\n";
-      saveFile();
-      isUndoPressed = false;
-    }
-  }
-  else
-  {
-    isUndoPressed = false;
-  }
-  inputHandlerCtrl->handleInput(ev);
+// View &Controller::getCurrentFixedView(){
+//     // TODO: insert return statement here
+// }
+
+sf::View &Controller::getCurrentMoveableView()
+{
+  // TODO: insert return statement here
+    return currScreen->getMoveableView();
 }
 
 void Controller::saveFile()
 {
   // this is temporarily here, ill find a way to make the path better
-  std::string filename = m_filePaths.txt_filepath + "save_file.txt";
-  std::cout << "filename => " << filename << "\n";
-  document.saveDocument(filename, mv.getBuffer().getInputBuffer());
+  // std::string filename = m_filePaths.txt_filepath + "save_file.txt";
+  // std::cout << "filename => " << filename << "\n";
+  std::cout << "filename \n";
+  // document.saveDocument(filename, mv.getBuffer().getInputBuffer());
 }

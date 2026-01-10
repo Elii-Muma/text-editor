@@ -8,15 +8,32 @@
 namespace TextUtils
 {
   // returns a pair of ints which are the dimensions of the character
+  // TODO: have it check for more than one character...maybe a string and iterate over it
   inline std::pair<int, int> getCharGlyphSize(char character, sf::Font &font, int characterSize)
   {
     sf::Glyph glyph = font.getGlyph(character, characterSize, false);
     // float charWidth = glyph.advance;  //this one includes spacing to next thingy
     int charWidth = static_cast<int>(glyph.advance);
     int charHeight = static_cast<int>(glyph.bounds.height);
+    std::cout << "|--> char_info( " << character << ", " << charWidth << ")\n";
 
     std::pair<int, int> charDimensions = {charWidth, charHeight};
     return charDimensions;
+  }
+
+  inline int moveToCol(int colN, int lineN, int index, sf::Font font, int font_size , std::vector<std::vector<std::string>> buffer)
+  {
+    // this is the moveTo method, but i cant access it from here because its in the ctrl-view
+    int size = buffer[lineN].size();
+    if (index > size)
+      index = size;
+    int newX{0};
+    for (int i = 0; i < index; i++)
+    {
+      std::string cur_char{buffer[lineN][i]};
+      newX += getCharGlyphSize(*cur_char.c_str(), font, font_size).first;
+    }
+    return newX;
   }
 }
 

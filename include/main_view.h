@@ -11,7 +11,7 @@
 class MainView : public View{
 
   public:
-    MainView(Camera &camera, sf::Font &font, int &charSize, sf::Vector2u &windowSize);
+    MainView(sf::Font &font, int &charSize, sf::Vector2u &windowSize);
     void init();
     void setBGColor(sf::Color color);
     void drawMainScreen(sf::RenderWindow &window);
@@ -22,6 +22,7 @@ class MainView : public View{
 
     virtual void renderFixedUI(sf::RenderWindow &window);
     virtual void renderMoveableUI(sf::RenderWindow &window);
+    virtual void update();
 
   private:
     sf::Text m_lineText;

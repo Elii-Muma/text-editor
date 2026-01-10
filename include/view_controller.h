@@ -35,8 +35,8 @@ class ViewController{
     Cursor& m_cursor;
     Camera& m_camera;
     bool isUndoPressed{false};
-    int m_characterSize;
-    sf::Font m_font;
+    int& m_characterSize;
+    sf::Font& m_font;
     View&   m_view;
 
 };

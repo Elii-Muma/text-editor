@@ -84,12 +84,12 @@ clean: CMakeFiles/text-ctrl.dir/clean
 CMakeFiles/text-ctrl.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target text-ctrl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Built target text-ctrl"
 .PHONY : CMakeFiles/text-ctrl.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/text-ctrl.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 14
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/text-ctrl.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 0
 .PHONY : CMakeFiles/text-ctrl.dir/rule
@@ -101,7 +101,7 @@ text-ctrl: CMakeFiles/text-ctrl.dir/rule
 # codegen rule for target.
 CMakeFiles/text-ctrl.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Finished codegen for target text-ctrl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Finished codegen for target text-ctrl"
 .PHONY : CMakeFiles/text-ctrl.dir/codegen
 
 # clean rule for target.

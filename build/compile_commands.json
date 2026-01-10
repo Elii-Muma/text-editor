@@ -31,15 +31,15 @@
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\bottom_view.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\bottom_view.cpp\"",
-  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/bottom_view.cpp",
-  "output": "CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.obj"
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\terminal_view.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\terminal_view.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/terminal_view.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\bottom_view_controller.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\bottom_view_controller.cpp\"",
-  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/bottom_view_controller.cpp",
-  "output": "CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.obj"
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\terminal_view_controller.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\terminal_view_controller.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/terminal_view_controller.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
@@ -58,6 +58,18 @@
   "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\main_view_controller.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\main_view_controller.cpp\"",
   "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/main_view_controller.cpp",
   "output": "CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\editor_screen.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\editor_screen.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/editor_screen.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.obj"
+},
+{
+  "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/text-ctrl.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\text-ctrl.dir\\src\\terminal_screen.cpp.obj -c \"C:\\Users\\Surr Elii\\Documents\\CODE\\ProjeksV3\\text-editor\\src\\terminal_screen.cpp\"",
+  "file": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/src/terminal_screen.cpp",
+  "output": "CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.obj"
 },
 {
   "directory": "C:/Users/Surr Elii/Documents/CODE/ProjeksV3/text-editor/build",

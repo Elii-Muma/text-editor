@@ -1,7 +1,7 @@
 #include "camera.h"
 
 Camera::Camera(int characterSize, sf::Vector2u &WIN_SIZE) : 
-m_view({0,0},{WIN_SIZE.x, WIN_SIZE.y}), m_charSize(characterSize*2), m_scrollSpeed(characterSize)
+m_view({WIN_SIZE.x/2, WIN_SIZE.y/2},{WIN_SIZE.x, WIN_SIZE.y}), m_charSize(characterSize*2), m_scrollSpeed(characterSize)
 {
   std::cout << "init camera()";
 }

@@ -200,54 +200,6 @@ src/Renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.s
 .PHONY : src/Renderer.cpp.s
 
-src/bottom_view.obj: src/bottom_view.cpp.obj
-.PHONY : src/bottom_view.obj
-
-# target to build an object file
-src/bottom_view.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.obj
-.PHONY : src/bottom_view.cpp.obj
-
-src/bottom_view.i: src/bottom_view.cpp.i
-.PHONY : src/bottom_view.i
-
-# target to preprocess a source file
-src/bottom_view.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.i
-.PHONY : src/bottom_view.cpp.i
-
-src/bottom_view.s: src/bottom_view.cpp.s
-.PHONY : src/bottom_view.s
-
-# target to generate assembly for a file
-src/bottom_view.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view.cpp.s
-.PHONY : src/bottom_view.cpp.s
-
-src/bottom_view_controller.obj: src/bottom_view_controller.cpp.obj
-.PHONY : src/bottom_view_controller.obj
-
-# target to build an object file
-src/bottom_view_controller.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.obj
-.PHONY : src/bottom_view_controller.cpp.obj
-
-src/bottom_view_controller.i: src/bottom_view_controller.cpp.i
-.PHONY : src/bottom_view_controller.i
-
-# target to preprocess a source file
-src/bottom_view_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.i
-.PHONY : src/bottom_view_controller.cpp.i
-
-src/bottom_view_controller.s: src/bottom_view_controller.cpp.s
-.PHONY : src/bottom_view_controller.s
-
-# target to generate assembly for a file
-src/bottom_view_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/bottom_view_controller.cpp.s
-.PHONY : src/bottom_view_controller.cpp.s
-
 src/camera.obj: src/camera.cpp.obj
 .PHONY : src/camera.obj
 
@@ -320,6 +272,30 @@ src/document.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.s
 .PHONY : src/document.cpp.s
 
+src/editor_screen.obj: src/editor_screen.cpp.obj
+.PHONY : src/editor_screen.obj
+
+# target to build an object file
+src/editor_screen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.obj
+.PHONY : src/editor_screen.cpp.obj
+
+src/editor_screen.i: src/editor_screen.cpp.i
+.PHONY : src/editor_screen.i
+
+# target to preprocess a source file
+src/editor_screen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.i
+.PHONY : src/editor_screen.cpp.i
+
+src/editor_screen.s: src/editor_screen.cpp.s
+.PHONY : src/editor_screen.s
+
+# target to generate assembly for a file
+src/editor_screen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.s
+.PHONY : src/editor_screen.cpp.s
+
 src/main_view.obj: src/main_view.cpp.obj
 .PHONY : src/main_view.obj
 
@@ -367,6 +343,78 @@ src/main_view_controller.s: src/main_view_controller.cpp.s
 src/main_view_controller.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.s
 .PHONY : src/main_view_controller.cpp.s
+
+src/terminal_screen.obj: src/terminal_screen.cpp.obj
+.PHONY : src/terminal_screen.obj
+
+# target to build an object file
+src/terminal_screen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.obj
+.PHONY : src/terminal_screen.cpp.obj
+
+src/terminal_screen.i: src/terminal_screen.cpp.i
+.PHONY : src/terminal_screen.i
+
+# target to preprocess a source file
+src/terminal_screen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.i
+.PHONY : src/terminal_screen.cpp.i
+
+src/terminal_screen.s: src/terminal_screen.cpp.s
+.PHONY : src/terminal_screen.s
+
+# target to generate assembly for a file
+src/terminal_screen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.s
+.PHONY : src/terminal_screen.cpp.s
+
+src/terminal_view.obj: src/terminal_view.cpp.obj
+.PHONY : src/terminal_view.obj
+
+# target to build an object file
+src/terminal_view.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.obj
+.PHONY : src/terminal_view.cpp.obj
+
+src/terminal_view.i: src/terminal_view.cpp.i
+.PHONY : src/terminal_view.i
+
+# target to preprocess a source file
+src/terminal_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.i
+.PHONY : src/terminal_view.cpp.i
+
+src/terminal_view.s: src/terminal_view.cpp.s
+.PHONY : src/terminal_view.s
+
+# target to generate assembly for a file
+src/terminal_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.s
+.PHONY : src/terminal_view.cpp.s
+
+src/terminal_view_controller.obj: src/terminal_view_controller.cpp.obj
+.PHONY : src/terminal_view_controller.obj
+
+# target to build an object file
+src/terminal_view_controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.obj
+.PHONY : src/terminal_view_controller.cpp.obj
+
+src/terminal_view_controller.i: src/terminal_view_controller.cpp.i
+.PHONY : src/terminal_view_controller.i
+
+# target to preprocess a source file
+src/terminal_view_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.i
+.PHONY : src/terminal_view_controller.cpp.i
+
+src/terminal_view_controller.s: src/terminal_view_controller.cpp.s
+.PHONY : src/terminal_view_controller.s
+
+# target to generate assembly for a file
+src/terminal_view_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.s
+.PHONY : src/terminal_view_controller.cpp.s
 
 src/text_buffer.obj: src/text_buffer.cpp.obj
 .PHONY : src/text_buffer.obj
@@ -458,12 +506,6 @@ help:
 	@echo ... src/Renderer.obj
 	@echo ... src/Renderer.i
 	@echo ... src/Renderer.s
-	@echo ... src/bottom_view.obj
-	@echo ... src/bottom_view.i
-	@echo ... src/bottom_view.s
-	@echo ... src/bottom_view_controller.obj
-	@echo ... src/bottom_view_controller.i
-	@echo ... src/bottom_view_controller.s
 	@echo ... src/camera.obj
 	@echo ... src/camera.i
 	@echo ... src/camera.s
@@ -473,12 +515,24 @@ help:
 	@echo ... src/document.obj
 	@echo ... src/document.i
 	@echo ... src/document.s
+	@echo ... src/editor_screen.obj
+	@echo ... src/editor_screen.i
+	@echo ... src/editor_screen.s
 	@echo ... src/main_view.obj
 	@echo ... src/main_view.i
 	@echo ... src/main_view.s
 	@echo ... src/main_view_controller.obj
 	@echo ... src/main_view_controller.i
 	@echo ... src/main_view_controller.s
+	@echo ... src/terminal_screen.obj
+	@echo ... src/terminal_screen.i
+	@echo ... src/terminal_screen.s
+	@echo ... src/terminal_view.obj
+	@echo ... src/terminal_view.i
+	@echo ... src/terminal_view.s
+	@echo ... src/terminal_view_controller.obj
+	@echo ... src/terminal_view_controller.i
+	@echo ... src/terminal_view_controller.s
 	@echo ... src/text_buffer.obj
 	@echo ... src/text_buffer.i
 	@echo ... src/text_buffer.s

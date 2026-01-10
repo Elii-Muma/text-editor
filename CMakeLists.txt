@@ -15,11 +15,13 @@ add_executable(text-ctrl
                 src/Cursor.cpp
                 src/controller.cpp
                 src/view.cpp
-                src/bottom_view.cpp
-                src/bottom_view_controller.cpp
+                src/terminal_view.cpp
+                src/terminal_view_controller.cpp
                 src/main_view.cpp
                 src/view_controller.cpp
                 src/main_view_controller.cpp
+                src/editor_screen.cpp
+                src/terminal_screen.cpp
                 src/text_buffer.cpp
                 src/Renderer.cpp
                 src/document.cpp

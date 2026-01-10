@@ -19,6 +19,14 @@
 #include "Controller.h"
 #include "camera.h"
 
+void resizeView(sf::View &view, unsigned int width, unsigned int height)
+{
+  view.setSize({static_cast<float>(width),
+                static_cast<float>(height)});
+  view.setCenter(static_cast<float>(width) / 2.f,
+                 static_cast<float>(height) / 2.f);
+}
+
 int main()
 {
   sf::Vector2u winSize{900, 600};
@@ -29,21 +37,21 @@ int main()
   sf::RectangleShape testBox({100.f, 100.f});
   testBox.setPosition(300, 300);
 
-
   sf::Font font;
+  //TODO: it actually does not work well with variable font sizes
   if (!font.loadFromFile("../resources/fonts/FiraCode-Regular.ttf"))
+  // if (!font.loadFromFile("../resources/fonts/ShadowsIntoLight-Regular.ttf"))
+  // if (!font.loadFromFile("../resources/fonts/Quicksand-Regular.ttf"))
   {
     std::cout << "failed to load font!\n";
     system("pause");
     return -1;
   }
 
-  int characterSize{22};
-  Camera camera{characterSize, winSize};
-  sf::View &view = camera.getMainView();
-  view = win.getDefaultView();
+  int characterSize{32};
+  bool isCtrlPressed{false};
   sf::View uiView = win.getDefaultView();
-  Controller ctrl{camera, font, characterSize, winSize};
+  Controller ctrl{font, characterSize, winSize};
 
   while (win.isOpen())
   {
@@ -54,30 +62,48 @@ int main()
 
       if (ev.type == sf::Event::Resized)
       {
-        view.setSize({static_cast<float>(ev.size.width),
-                      static_cast<float>(ev.size.height)});
-        view.setCenter(static_cast<float>(ev.size.width) / 2.f,
-                       static_cast<float>(ev.size.height) / 2.f);
-        uiView.setSize({static_cast<float>(ev.size.width),
-                        static_cast<float>(ev.size.height)});
-        uiView.setCenter(static_cast<float>(ev.size.width) / 2.f,
-                         static_cast<float>(ev.size.height) / 2.f);
-        win.setView(view);
+        sf::View &view = ctrl.getCurrentMoveableView();
+        unsigned int width = ev.size.width;
+        unsigned int height = ev.size.height;
+        resizeView(view, width, height);
+        resizeView(uiView, width, height);
+
         winSize.x = view.getSize().x;
         winSize.y = view.getSize().y;
       }
-      // Handle Input
+      if (ev.type == sf::Event::KeyPressed ){
+        if (ev.key.code == sf::Keyboard::RControl) isCtrlPressed = true; 
+
+        if (isCtrlPressed){
+          if ((ev.key.code == sf::Keyboard::Up) ){
+            characterSize++;
+            std::cout << "fontSize:: " << characterSize << "\n";
+            isCtrlPressed = false;
+          }
+          if ((ev.key.code == sf::Keyboard::Down) && isCtrlPressed){
+            characterSize--;
+            std::cout << "fontSize:: " << characterSize << "\n";
+            isCtrlPressed = false;
+          }
+        }
+      }
+        
       ctrl.handleInput(ev);
     }
 
     // Update
+    if(winSize.x != ctrl.getCurrentMoveableView().getSize().x || winSize.y != ctrl.getCurrentMoveableView().getSize().y){
+      std::cout << "|---->resize!!!\n";
+      resizeView(ctrl.getCurrentMoveableView(), winSize.x, winSize.y);
+    }
+    ctrl.update();
     win.clear(sf::Color(0, 0, 255));
 
     // Render AND SET VIEW
     win.setView(uiView);
     ctrl.renderFixedUI(win);
 
-    win.setView(camera.getMainView());
+    win.setView(ctrl.getCurrentMoveableView());
     ctrl.renderMoveableUI(win);
 
     // win.setView(uiView);

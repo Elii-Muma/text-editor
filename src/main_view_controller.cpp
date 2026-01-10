@@ -80,12 +80,14 @@ void MainViewController::handleInput(sf::Event &ev)
     }
     break;
     case sf::Keyboard::Enter:
-      moveCameraDown(30);
       {
+        int terminalHeight = 38; //TODO: actually get the terminal height
+        moveCameraDown(terminalHeight);
+
         int lineN = m_cursor.getLineNumber(m_characterSize);
         int colN = m_cursor.getCursorPosColumnNumber();
         index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize);
-        m_buffer.enterFunction(index, lineN, m_cursor.getCursorPosLineNumber(), colN, m_characterSize);
+        m_buffer.enterFunction(index, lineN, m_cursor.getCursorPosLineNumber(), colN, m_characterSize, false);
       }
       // cursorMoveDown();
       m_cursor.moveCursorDown(m_characterSize);

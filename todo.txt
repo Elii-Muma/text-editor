@@ -26,12 +26,30 @@ ARCHITECTURE
  └── txt/
 
 [-] add all cursor movement things
-[x] Refactor architecture
+[x] add some padding between the lines
+[-] Refactor architecture
 [x] each view should have its own camera too(including own buffer and cursor)
-[x] figure out how to turn view and control view into parent classes
-[x] add multiple views 
-[x] add switching between views || [x] add states
-[x] add modes for typing
+[o] figure out how to turn view and control view into parent classes
+[-] add multiple views 
+[-] add switching between views || [x] add states
+[-] add modes for typing
 [x] add stats (typing speed etc etc)
 [x] add games (like typing games, nothing crazy)
 
+ISSUES
+* increasing character size is kinda buggy! 
+  the cursor wont move accordingly when you increase the charactersize 
+* views use the same camera reference
+* no side scrolling 
+
+
+void foo(){
+  printf("%d", i);
+  
+  int i;
+  printf("%d", i);
+  for(i = 0; i < 99; i++){
+  y += i;
+  printf("%d", i);
+  }
+}

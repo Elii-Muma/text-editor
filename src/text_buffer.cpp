@@ -66,6 +66,7 @@ int Buffer::getCharPosAt(int cursorColumnPos, int lineNumber, sf::Font &font, in
   return inputBuffer[lineNumber].size();
 }
 
+// ############## UNDO FUNCTON  ################
 // function that handles the undo function
 // returns the new cursor position
 sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
@@ -157,16 +158,6 @@ sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
       std::cerr << e.what() << '\n';
     }
 
-    // i dont think the undo function should do this
-
-    // if (cPosRow > camera.viewBottom())
-    //   camera.cameraJumpDown();
-    // else if (cPosRow < camera.viewTop())
-    //   camera.cameraScrollUp();
-
-    // cursor.setPosition(cPosRow, cPosCol);
-    // remove it on success
-
     lineN = tempData.lineNumber;
     cPosCol = tempData.currCursorPos.x;
     cPosRow = tempData.currCursorPos.y;
@@ -181,15 +172,17 @@ sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
   }
 }
 
+// ############## ENTER FUNCTON  ################
 // idk if this belongs here but it seems right
 // int index,
 // int lineN: normalized line number??,
 // int cursorLineN: the coordinate version
 // int colN, int m_characterSize
-void Buffer::enterFunction(int index, int lineN, int cursorLineN, int colN, int m_characterSize)
+void Buffer::enterFunction(int index, int lineN, int cursorLineN, int colN, int m_characterSize, bool isTerminal)
 {
-  if (!inputBuffer[lineN].empty())
+  if (!inputBuffer[lineN].empty() && !isTerminal)
   {
+    //SPLIT LINE WHEN CURSOR IS IN THE MIDDLE?
     std::string t{inputBuffer[lineN]};
     std::cout << "before erased result: " << t << "\n";
     t.erase(0, index); // erase from beginning to cursor
@@ -204,7 +197,7 @@ void Buffer::enterFunction(int index, int lineN, int cursorLineN, int colN, int 
     m_stdl::DelData tempDelData = {t, index, lineN, sf::Vector2f(colN, cursorLineN), m_stdl::ENT_MOVE};
     deleteStack.push_back(tempDelData);
   }
-  else if (inputBuffer[lineN].empty())
+  else if (inputBuffer[lineN].empty() || isTerminal)
   {
     inputBuffer.insert(inputBuffer.begin() + lineN + 1, "");
     m_stdl::DelData tempDelData = {"", index, lineN, sf::Vector2f(colN, cursorLineN), m_stdl::ENT_MOVE};

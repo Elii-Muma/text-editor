@@ -20,5 +20,5 @@ public:
   sf::Vector2i getScreenPosition(); // returns yPos and xPosin screen coordinates
 private:
   int lineN, colN;
-  int xPos, yPos;
+  int xPos{0}, yPos{0};
 };
