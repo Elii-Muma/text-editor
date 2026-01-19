@@ -12,14 +12,14 @@
 // HANDLES DS AND WHAT NOT
 class Controller
 {
-
+  
 public:
   Controller(sf::Font &font, int &characterSize, sf::Vector2u &WIN_SIZE);
   void update();
   void renderFixedUI(sf::RenderWindow &win);
   void renderMoveableUI(sf::RenderWindow &win);
   void handleInput(sf::Event &ev);
-  sf::View& getCurrentFixedView();
+  // sf::View& getCurrentFixedView();
   sf::View& getCurrentMoveableView();
   // void EraseCharacter(bool isBackSpace, int colN, int index);
   void saveFile();
@@ -32,7 +32,7 @@ private:
   TerminalScreen t_screen;
 
   Screen  *currScreen;
-  bool    isFunctionPressed;
+  bool    isFunctionPressed{false};
 
   // holds the filepaths, ill eventually move this to a different location
   // maybe make it a global file or something
@@ -44,6 +44,6 @@ private:
   enum screenstates {
     EDITOR_SCREEN,
     TERMINAL_SCREEN,
-  }curr_screen_state{EDITOR_SCREEN};
+  } curr_screen_state{EDITOR_SCREEN};
 
 };

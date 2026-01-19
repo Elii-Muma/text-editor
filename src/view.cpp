@@ -17,10 +17,11 @@ void View::renderMoveableUI(sf::RenderWindow &window)
 
 void View::updateCursorScreenPos()
 {
+  std::cout << "\n--updating_cursor_pos--\n";
   // this is the moveTo method, but i cant access it from here because its in the ctrl-view
   int colN = m_cursor.getCursorPosColumnNumber();
   int lineN = m_cursor.getLineNumber(prev_fontSize);
-  int index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize);
+  int index = m_buffer.getCharPosAt(colN, lineN, m_font, prev_fontSize);
 
   int size = m_buffer.getInputBuffer()[lineN].size();
   if (index > size)

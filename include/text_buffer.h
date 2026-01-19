@@ -10,6 +10,7 @@ class Buffer
 
 public:
   Buffer();
+  Buffer(bool isTerminal) : m_isTerminal{isTerminal} {}
   void init();
   void addCharacterToBuffer(Cursor &cursor, std::string strChar, int indexOfCursor, int currLineNumber);
   void insertAt(int pos, std::string str);
@@ -21,7 +22,9 @@ public:
   std::vector<m_stdl::DelData> &getDeleteStack() { return deleteStack; }
 
 private:
+  bool m_isTerminal{false};
   std::vector<std::string> inputBuffer; // holds the line string
+  std::vector<std::pair<std::string, char>> t_inputBuffer; // holds the terminal line string AND flags
   std::vector<m_stdl::DelData> deleteStack;
   // input/action stack
 };

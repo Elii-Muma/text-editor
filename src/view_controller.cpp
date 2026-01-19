@@ -43,9 +43,6 @@ void ViewController::cursorMoveRight()
 
   std::string cur_char{m_buffer.getInputBuffer()[lineN][index]};
   int charWidth = TextUtils::getCharGlyphSize(*cur_char.c_str(), m_font, m_characterSize).first;
-  std::cout << "width from vc(): " << charWidth << "\n"
-            << "char from vc(): " << cur_char << "\n"
-            << "font size from vc(): " << m_characterSize << "\n";
   m_cursor.moveCursorRight(charWidth);
 }
 

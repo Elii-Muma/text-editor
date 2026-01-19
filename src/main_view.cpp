@@ -10,38 +10,41 @@ MainView::MainView(sf::Font &font, int &charSize, sf::Vector2u &windowSize) : Vi
 void MainView::init()
 {
   // -------------INIT CURSOR----------------
-  int CURSOR_YOFFSET = 3;
-  int CURSOR_WIDTH = 2;
-  int CURSOR_HEIGHT = m_characterSize + CURSOR_YOFFSET;
+  CURSOR_YOFFSET  = 0;
+  CURSOR_WIDTH    = 3;
+  CURSOR_HEIGHT   = m_characterSize - CURSOR_YOFFSET;
+  //the offset, to center the cursor, will always be the same because the block size is always the same length
+  //charactersize in this case is the size of each line/lineheight ?? idk
+  CURSOR_PY_OFF   = (m_characterSize - CURSOR_HEIGHT); 
 
-  m_cursorItem.setFillColor(sf::Color(0, 255, 0));
+  m_cursorItem.setFillColor(themes::oceanBreeze.ACCENT);
   m_cursorItem.setSize(sf::Vector2f(CURSOR_WIDTH, CURSOR_HEIGHT));
 
   // -------------INIT SIDE BORDER----------------
 
-  m_SIDE_BORDER_HEIGHT = m_winSize.y;
-  m_SIDE_BORDER_WIDTH = 60;
+  m_SIDE_BORDER_HEIGHT  = m_winSize.y;
+  m_SIDE_BORDER_WIDTH   = 60;
 
-  m_sideBorder.setFillColor(themes::deepBlue.YELLOW);
+  m_sideBorder.setFillColor(themes::oceanBreeze.SECONDARY);
   m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
   m_sideBorder.setPosition(0, 0);
 
   // -------------INIT MAIN BORDER----------------
-  m_MAIN_BORDER_WIDTH = m_winSize.x - m_SIDE_BORDER_WIDTH;
-  m_MAIN_BORDER_HEIGHT = m_winSize.y;
+  m_MAIN_BORDER_WIDTH   = m_winSize.x - m_SIDE_BORDER_WIDTH;
+  m_MAIN_BORDER_HEIGHT  = m_winSize.y;
 
-  m_mainScreen.setFillColor(themes::deepBlue.BLUE);
+  m_mainScreen.setFillColor(themes::oceanBreeze.BACKGROUND);
   m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
   m_mainScreen.setPosition(m_SIDE_BORDER_WIDTH, 0);
 
   // -------------INIT LINE TEXT----------------
   m_lineText.setFont(m_font);
-  m_lineText.setFillColor(themes::deepBlue.WHITE);
+  m_lineText.setFillColor(themes::oceanBreeze.TEXT_COLOR);
   m_lineText.setCharacterSize(m_characterSize);
 
   // -------------INIT LINE NUMBER TEXT----------------
   m_lineNumberText.setFont(m_font);
-  m_lineNumberText.setFillColor(themes::deepBlue.GREY);
+  m_lineNumberText.setFillColor(themes::oceanBreeze.ACCENT);
   m_lineNumberText.setCharacterSize(m_characterSize);
   m_cursor.setScreenPosition(0, 0);
 }
@@ -64,8 +67,8 @@ void MainView::drawSideBorder(sf::RenderWindow &window)
 
 void MainView::drawMainScreen(sf::RenderWindow &window)
 {
-  m_MAIN_BORDER_WIDTH = m_winSize.x - m_SIDE_BORDER_WIDTH;
-  m_MAIN_BORDER_HEIGHT = m_winSize.y;
+  m_MAIN_BORDER_WIDTH   = m_winSize.x - m_SIDE_BORDER_WIDTH;
+  m_MAIN_BORDER_HEIGHT  = m_winSize.y;
 
   m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
   window.draw(m_mainScreen);
@@ -100,12 +103,12 @@ void MainView::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
 {
   if (activeLineNumber == lineNumber)
   {
-    m_lineNumberText.setFillColor(sf::Color(0, 255, 0));
+    m_lineNumberText.setFillColor(themes::oceanBreeze.ACCENT);
     m_lineNumberText.setPosition(10, numPos);
   }
   else
   {
-    m_lineNumberText.setFillColor(sf::Color::White);
+    m_lineNumberText.setFillColor(themes::oceanBreeze.TEXT_COLOR);
     m_lineNumberText.setPosition(5, numPos);
   }
 
@@ -113,9 +116,11 @@ void MainView::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
   window.draw(m_lineNumberText);
 }
 
-void MainView::update(){
+void MainView::update()
+{
 
-  if(prev_fontSize != m_characterSize){
+  if (prev_fontSize != m_characterSize)
+  {
     updateCursorScreenPos();
     m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
     m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));

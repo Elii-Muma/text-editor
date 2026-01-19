@@ -48,8 +48,8 @@ int main()
     return -1;
   }
 
-  int characterSize{32};
-  bool isCtrlPressed{false};
+  int characterSize{22};
+  bool shiftPressed{false};
   sf::View uiView = win.getDefaultView();
   Controller ctrl{font, characterSize, winSize};
 
@@ -71,20 +71,23 @@ int main()
         winSize.x = view.getSize().x;
         winSize.y = view.getSize().y;
       }
+      if (ev.type == sf::Event::KeyReleased && ev.key.code == sf::Keyboard::LShift){
+        std::cout << "SHIFT_OFF_\n";
+        shiftPressed = false;
+      }
       if (ev.type == sf::Event::KeyPressed ){
-        if (ev.key.code == sf::Keyboard::RControl) isCtrlPressed = true; 
+        if (ev.key.code == sf::Keyboard::LShift) shiftPressed = true; 
 
-        if (isCtrlPressed){
+        if (shiftPressed && ev.key.code != sf::Keyboard::LShift){
           if ((ev.key.code == sf::Keyboard::Up) ){
             characterSize++;
             std::cout << "fontSize:: " << characterSize << "\n";
-            isCtrlPressed = false;
           }
-          if ((ev.key.code == sf::Keyboard::Down) && isCtrlPressed){
+          if ((ev.key.code == sf::Keyboard::Down) && shiftPressed){
             characterSize--;
             std::cout << "fontSize:: " << characterSize << "\n";
-            isCtrlPressed = false;
           }
+          //shiftPressed = false;
         }
       }
         

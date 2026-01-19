@@ -29,6 +29,11 @@ class MainView : public View{
     sf::Text m_lineNumberText;
     sf::RectangleShape m_cursorItem;
 
+    int CURSOR_YOFFSET; 
+    int CURSOR_WIDTH;  
+    int CURSOR_HEIGHT;
+    int CURSOR_PY_OFF; 
+
     int m_SIDE_BORDER_WIDTH;
     int m_SIDE_BORDER_HEIGHT;
     int m_MAIN_BORDER_WIDTH;

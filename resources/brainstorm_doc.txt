@@ -147,3 +147,33 @@ okay so idk why i didnt think of this but ill have to switch from bottomView -> 
 cos thats basically a terminal...
 so how would i make it smaller for the editor screens? just pass in the initial height itll have, pass in a bool to see if its a
 screen or a sub-screen in a bigger screen!, yes...and then the controls will also depend on the bool 
+
+HANDLING PRINTING RESULTS IN THE TERMINAL
+->MY IDEA
+maybe i can have a BUFFER that holds different type of text
+you can use flags to differentiate between input and output
+-i (input)
+-o (output)
+and then we can have display type depend on which one we're currently on...
+- i have an undo buffer...i could use that as the history buffer for the terminal
+- every input has an output
+tried it
+- okay so the flag idea cant work properly because of positioning conflicts with the cursor
+- maybe i could modify the buffer to actually use a pair like std::vector<std::pair<std::string, bool>> 
+--> the bool: true if is input, false if is output OR better yet, have it be std::string/char too but it then holds the FLAG
+- how much refactoring would i have to do??... not much because the buffer is a class and not like...a variable...yk?
+- so id probably have to change HOW the buffer is interacted with
+- would the editor use this feature too or just the terminal?? cos then i could use different buffer types depending on WHAT is using it and leading to less refactoring...but then that would be two different data thingies...is that THAT bad tho?
+--> it means id have to refactor the buffer class, to accomodate two different types of buffers
+---> which one is better...hmm...
+--->REFINE
+terminal  
+
+
+
+->OTHER IDEA
+there are two buffers
+- input buffer
+- terminal/output buffer
+the problem is my cursor lowkey depends on the input buffer to determine its position, so if i have two seperate buffers, how will i know to place my cursor 5lines down because thats how many lines the result took up?
+you could calculate based on the index?

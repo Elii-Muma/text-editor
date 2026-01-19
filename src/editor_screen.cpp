@@ -25,11 +25,6 @@ void EditorScreen::renderMoveableUI(sf::RenderWindow& win) {
   t_view.renderMoveableUI(win);
 }
 
-// sf::View &EditorScreen::getFixedView()
-// {
-//   // TODO: insert return statement here
-// }
-
 sf::View &EditorScreen::getMoveableView()
 {
   // TODO: insert return statement here
@@ -52,6 +47,10 @@ void EditorScreen::inputHandler(sf::Event &ev)
     }
   }
 
+  if(ev.type == sf::Event::KeyReleased && ev.key.code == sf::Keyboard::LControl){
+    isFunctionKeyPressed = false;
+  }
+
   if (ev.type == sf::Event::KeyPressed && isFunctionKeyPressed)
   {
     if (ev.key.code == sf::Keyboard::O)
@@ -71,6 +70,7 @@ void EditorScreen::inputHandler(sf::Event &ev)
       }
       isFunctionKeyPressed = false;
     }
+
 
     if (ev.key.code == sf::Keyboard::S)
     {

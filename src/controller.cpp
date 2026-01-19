@@ -3,25 +3,28 @@
 #include "Cursor.h"
 #include "utils.h"
 
-Controller::Controller(sf::Font &font, int& characterSize, sf::Vector2u& WIN_SIZE) : 
-renderer{font, WIN_SIZE}, 
-e_screen{font, characterSize, WIN_SIZE, themes::deepBlue.BLUE},
+Controller::Controller(sf::Font &font, int &characterSize, sf::Vector2u &WIN_SIZE) : 
+renderer{font, WIN_SIZE},
+e_screen{font, characterSize, WIN_SIZE, themes::oceanBreeze.BACKGROUND},
 t_screen{font, characterSize, WIN_SIZE}
 {
   std::printf("init ctrl()\n");
   currScreen = &e_screen;
 }
 
-void Controller::update(){
+void Controller::update()
+{
   currScreen->update();
 }
 
-void Controller::renderFixedUI(sf::RenderWindow &win){
+void Controller::renderFixedUI(sf::RenderWindow &win)
+{
   // renderer.drawSideBorder(win);
   currScreen->renderFixedUI(win);
 }
 
-void Controller::renderMoveableUI(sf::RenderWindow &win){
+void Controller::renderMoveableUI(sf::RenderWindow &win)
+{
   currScreen->renderMoveableUI(win);
 }
 
@@ -39,28 +42,29 @@ void Controller::handleInput(sf::Event &ev)
       break;
     }
   }
-  
-  if (ev.type == sf::Event::KeyPressed && isFunctionPressed)
+  if(ev.type == sf::Event::KeyReleased && ev.key.code == sf::Keyboard::LControl){
+      isFunctionPressed = false;
+  }
+
+  if (ev.type == sf::Event::KeyPressed && isFunctionPressed && ev.key.code != sf::Keyboard::LControl)
   {
     if (ev.key.code == sf::Keyboard::F)
     {
-      std::cout << "control + I pressed \n";
+      std::cout << "control + F pressed \n";
       curr_screen_state = (curr_screen_state == EDITOR_SCREEN) ? TERMINAL_SCREEN : EDITOR_SCREEN;
       switch (curr_screen_state)
       {
       case EDITOR_SCREEN:
-        currScreen= &e_screen;
+        currScreen = &e_screen;
         break;
       case TERMINAL_SCREEN:
-        currScreen= &t_screen;
+        currScreen = &t_screen;
         break;
       default:
         break;
       }
-      // characterSize++;
       isFunctionPressed = false;
     }
-
   }
   currScreen->inputHandler(ev);
 }
@@ -72,7 +76,7 @@ void Controller::handleInput(sf::Event &ev)
 sf::View &Controller::getCurrentMoveableView()
 {
   // TODO: insert return statement here
-    return currScreen->getMoveableView();
+  return currScreen->getMoveableView();
 }
 
 void Controller::saveFile()

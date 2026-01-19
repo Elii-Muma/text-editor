@@ -69,6 +69,7 @@ void TerminalViewController::handleInput(sf::Event &ev)
     {
       int lineN = m_cursor.getCursorPosLineNumber();
       std::cout << "terminal lineN: " << lineN << "\n";
+      //if you're using the big screen terminal and not the bottom one
       if (isScreen)
       {
         moveCameraDown(30);
@@ -82,9 +83,11 @@ void TerminalViewController::handleInput(sf::Event &ev)
         m_cursor.moveCursorDown(m_characterSize);
         std::cout << "buffer size: " << m_buffer.getInputBuffer().size() << "\n";
       }
+      // process the command
       if( lineN <= m_buffer.getInputBuffer().size()){
         std::string command = m_buffer.getInputBuffer()[lineN]; 
-        std::cout << "run: " << command << "\n";
+        std::cout << "run: " << command << " || ";
+        std::cout << "!!processng_command\n";
       }
     }
     break;

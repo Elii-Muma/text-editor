@@ -107,14 +107,13 @@ void MainViewController::handleInput(sf::Event &ev)
       int lineN = m_cursor.getLineNumber(m_characterSize);
       sf::Vector2u cursor_pos = m_buffer.undo(lineN, m_font);
       m_cursor.setPosition(cursor_pos.y, cursor_pos.x);
-      isUndoPressed = false;
     }
     if (ev.key.code == sf::Keyboard::I)
     {
       std::cout << "control + I pressed \n";
-      // characterSize++;
-      isUndoPressed = false;
     }
+    
+    isUndoPressed = false;
 
     // if (ev.key.code == sf::Keyboard::S)
     // {
@@ -122,10 +121,6 @@ void MainViewController::handleInput(sf::Event &ev)
     //   saveFile();
     //   isUndoPressed = false;
     // }
-  }
-  else
-  {
-    isUndoPressed = false;
   }
 }
 
