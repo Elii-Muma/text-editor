@@ -12,9 +12,8 @@ namespace TextUtils
   inline std::pair<int, int> getCharGlyphSize(char character, sf::Font &font, int characterSize)
   {
     sf::Glyph glyph = font.getGlyph(character, characterSize, false);
-    // float charWidth = glyph.advance;  //this one includes spacing to next thingy
-    int charWidth = static_cast<int>(glyph.advance);
-    int charHeight = static_cast<int>(glyph.bounds.height);
+    int charWidth   = static_cast<int>(glyph.advance);
+    int charHeight  = static_cast<int>(glyph.bounds.height);
 
     std::pair<int, int> charDimensions = {charWidth, charHeight};
     return charDimensions;

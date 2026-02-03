@@ -12,6 +12,7 @@ t_view{font, characterSize, WIN_SIZE, bv_height, false}, bttmViewCtrl{t_view, fo
 }
 
 void EditorScreen::update(){
+  mainView.update();
   t_view.update();
 }
 

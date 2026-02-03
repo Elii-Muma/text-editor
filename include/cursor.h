@@ -15,10 +15,11 @@ public:
   void setScreenPosition(int x, int y);
 
   int getCursorPosLineNumber();
+  int setColNumber(int x);
   int getCursorPosColumnNumber();
   int getLineNumber(int charSize); // returns the actual lineNumber(not in screen coordinates)
   sf::Vector2i getScreenPosition(); // returns yPos and xPosin screen coordinates
 private:
-  int lineN, colN;
-  int xPos{0}, yPos{0};
+  int lineN, colN; //pointer to position relative to the buffer(i think)
+  int xPos{0}, yPos{0}; //cursor screen coordinates
 };

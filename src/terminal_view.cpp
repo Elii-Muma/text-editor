@@ -25,12 +25,9 @@ void TerminalView::init()
 
   // -------------INIT MAIN BORDER----------------
   m_MAIN_BORDER_WIDTH = m_winSize.x;
-  // m_MAIN_BORDER_HEIGHT = m_height;
-  m_MAIN_BORDER_YPOS = m_winSize.y - m_MAIN_BORDER_HEIGHT;
 
   m_mainScreen.setFillColor(themes::oceanBreeze.HIGHLIGHT);
   m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
-  m_mainScreen.setPosition(0, m_MAIN_BORDER_YPOS);
 
   // -------------INIT LINE TEXT----------------
   m_lineText.setFont(m_font);
@@ -42,18 +39,6 @@ void TerminalView::init()
   m_arrowText.setCharacterSize(m_characterSize);
   m_arrowText.setString(">>");
   xOffset = TextUtils::getCharGlyphSize('>', m_font, m_characterSize).first * 2;
-  // m_cursor.setPosition(0, xOffset + 2); // 2 is the padding
-  if (!m_isScreen)
-  {
-    int half = (m_MAIN_BORDER_HEIGHT / 2) - ((m_characterSize + CURSOR_YOFFSET) / 2);
-    c_posY = m_winSize.y - (m_MAIN_BORDER_HEIGHT - half);
-    std::cout << "half: " << half << "\n";
-    std::cout << "main_winPos: " << m_MAIN_BORDER_YPOS << "\n"
-              << "cursor_Pos: " << m_winSize.y - (m_MAIN_BORDER_HEIGHT - half) << "\n";
-  }
-  else
-    c_posY = 0;
-  m_cursor.setScreenPosition(0, (c_posY)); // 2 is the padding
 
   std::cout << "bottom cursor [lineN: " << m_cursor.getCursorPosColumnNumber() << ", "
             << "screen_lineN: " << m_cursor.getScreenPosition().y << "]\n";
@@ -65,15 +50,22 @@ bool TerminalView::getIsScreen()
 }
 void TerminalView::update()
 {
+  // SET MAIN BORDER POSITION
+  m_MAIN_BORDER_WIDTH = m_winSize.x;
+  m_MAIN_BORDER_YPOS  = m_winSize.y - m_MAIN_BORDER_HEIGHT;
 
+  m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
+  m_mainScreen.setPosition(0, m_MAIN_BORDER_YPOS);
+
+  // SET CURSOR POSITION
   sf::Vector2i pos = m_cursor.getScreenPosition();
   if (!m_isScreen)
   {
-    int half = (m_MAIN_BORDER_HEIGHT / 2) - ((m_characterSize + CURSOR_YOFFSET) / 2);
-    c_posY = m_winSize.y - (m_MAIN_BORDER_HEIGHT - half);
+    int half  = (m_MAIN_BORDER_HEIGHT / 2) - ((m_characterSize + CURSOR_YOFFSET) / 2);
+    c_posY    = m_winSize.y - (m_MAIN_BORDER_HEIGHT - half);
   }
   else
-    c_posY = pos.y;
+    c_posY    = pos.y;
 
   m_cursorItem.setPosition(pos.x + (xOffset + 2), c_posY + m_characterSize + CURSOR_YOFFSET);
 
@@ -84,9 +76,10 @@ void TerminalView::update()
 
     updateCursorScreenPos();
 
-    CURSOR_WIDTH = TextUtils::getCharGlyphSize('A', m_font, m_characterSize).first;
-    std::cout << "width from tv(): " << CURSOR_WIDTH << "\n"
-              << "font size from tv(): " << m_characterSize << "\n";
+    CURSOR_WIDTH  = TextUtils::getCharGlyphSize('A', m_font, m_characterSize).first;
+    std::cout     << "width from tv(): " << CURSOR_WIDTH << "\n"
+                  << "font size from tv(): " << m_characterSize << "\n";
+
     m_cursorItem.setSize(sf::Vector2f(CURSOR_WIDTH, CURSOR_HEIGHT));
 
     // m_cursor.moveCursorRight(m_characterSize-prev_fontSize); //this iz zupposed to fix a bug? doesnt work tho
@@ -110,11 +103,6 @@ void TerminalView::setBGColor(sf::Color color)
 
 void TerminalView::drawMainScreen(sf::RenderWindow &window)
 {
-  m_MAIN_BORDER_WIDTH = m_winSize.x;
-  m_MAIN_BORDER_YPOS = m_winSize.y - m_MAIN_BORDER_HEIGHT;
-
-  m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
-  m_mainScreen.setPosition(0, m_MAIN_BORDER_YPOS);
   window.draw(m_mainScreen);
 }
 
@@ -127,7 +115,7 @@ void TerminalView::drawLineText(sf::RenderWindow &window)
 {
   if (!m_buffer.getInputBuffer().empty())
   {
-    int rowPos{0}; // c_posy gets computed from the draw cursor function
+    int rowPos{0}; 
     for (int i = 0; i < m_buffer.getInputBuffer().size(); i++)
     {
       std::string lineStr{m_buffer.getInputBuffer()[i]};

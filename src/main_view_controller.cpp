@@ -93,35 +93,35 @@ void MainViewController::handleInput(sf::Event &ev)
       m_cursor.moveCursorDown(m_characterSize);
       break;
     case sf::Keyboard::LControl:
-      isUndoPressed = true;
+      // isUndoPressed = true;
       break;
     default:
       break;
     }
   }
-  if (ev.type == sf::Event::KeyPressed && isUndoPressed)
-  {
-    if (ev.key.code == sf::Keyboard::Z)
-    {
-      std::cout << "control pressed\n";
-      int lineN = m_cursor.getLineNumber(m_characterSize);
-      sf::Vector2u cursor_pos = m_buffer.undo(lineN, m_font);
-      m_cursor.setPosition(cursor_pos.y, cursor_pos.x);
-    }
-    if (ev.key.code == sf::Keyboard::I)
-    {
-      std::cout << "control + I pressed \n";
-    }
-    
-    isUndoPressed = false;
 
-    // if (ev.key.code == sf::Keyboard::S)
-    // {
-    //   std::cout << "savefile pressed\n";
-    //   saveFile();
-    //   isUndoPressed = false;
-    // }
+  //FUNCTION KEY ITEMS
+  if (ev.type == sf::Event::KeyReleased && ev.key.code == sf::Keyboard::LControl){
+    std::cout << "CTRL_OFF_\n";
+    isUndoPressed = false;
   }
+  if (ev.type == sf::Event::KeyPressed ){
+    if (ev.key.code == sf::Keyboard::LControl) isUndoPressed = true; 
+
+    if (isUndoPressed && ev.key.code != sf::Keyboard::LShift){
+      if ((ev.key.code == sf::Keyboard::Z) ){
+        std::cout << "control pressed\n";
+        int lineN = m_cursor.getLineNumber(m_characterSize);
+        sf::Vector2u cursor_pos = m_buffer.undo(lineN, m_font);
+        m_cursor.setPosition(cursor_pos.y, cursor_pos.x);
+      }
+      if (ev.key.code == sf::Keyboard::I)
+      {
+        std::cout << "control + I pressed \n";
+      }
+    }
+  }
+    
 }
 
 MainView &MainViewController::getView()

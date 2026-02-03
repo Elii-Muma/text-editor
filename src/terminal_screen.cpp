@@ -5,6 +5,7 @@ TerminalScreen::TerminalScreen(sf::Font &font, int &characterSize, sf::Vector2u 
 Screen{font, characterSize, WIN_SIZE},t_height{WIN_SIZE.y},
 t_view{font, characterSize, WIN_SIZE, t_height, true}, t_viewCtrl{t_view, font, characterSize}
 {
+  std::cout << "init t_screen()\n";
 
 }
 

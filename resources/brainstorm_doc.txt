@@ -148,7 +148,7 @@ cos thats basically a terminal...
 so how would i make it smaller for the editor screens? just pass in the initial height itll have, pass in a bool to see if its a
 screen or a sub-screen in a bigger screen!, yes...and then the controls will also depend on the bool 
 
-HANDLING PRINTING RESULTS IN THE TERMINAL
+HANDLING PRINTING RESULTS IN THE TERMINAL 
 ->MY IDEA
 maybe i can have a BUFFER that holds different type of text
 you can use flags to differentiate between input and output
@@ -170,10 +170,52 @@ tried it
 terminal  
 
 
-
 ->OTHER IDEA
 there are two buffers
 - input buffer
 - terminal/output buffer
 the problem is my cursor lowkey depends on the input buffer to determine its position, so if i have two seperate buffers, how will i know to place my cursor 5lines down because thats how many lines the result took up?
 you could calculate based on the index?
+
+->BUG CHASE :: jumpy cursor
+bug where the cursor jumps to a different position when increasing fonts
+issue found: the last processed character is the character before the cursor,
+thats because it returns one less index.
+why does it return one less index?? this happens after a certain number of increases
+so: int index = m_buffer.getCharPosAt(colN, lineN, m_font, prev_fontSize);
+here, prev_fontSize is the only variable that actually changes(font can too but...not for this bug)
+okay so turns out the culprit is actually colN
+- i have started updating the colN also after every character change with a new X position and
+it seems to be working...it doesnt break my rules(i think)
+BROKEN!!! TOO MANY ISSUES OMG!!!
+
+
+BACK TO TERMINAL RESULT THINGY
+> enter
+> command is running
+> wait
+> process command
+> return correct result
+> display result(hard part)
+why is it hard?(thats what she said)
+the hard part isnt storing or processing of result...its drawing it to the screen and having the cursor move to it...or having to control cursor movement
+rn, all the text being drawn is stored in the buffer, the cursor knows where to go because of the buffer.
+why is this hard?
+cos cursor cant go up or down it can only move within the current line
+i think storing everything in the same buffer is a good idea, i just need to add meta data to the data being stored
+like rn im using the position of the string line in the buffer array to determine which line its supposed to be drawn on
+maybe that could be the meta data
+why? cos it can help with the cursor placement? is this good? idk
+e.g.
+1. editable line here: .... 
+2. results \\
+3. 
+4. \\ ends here
+5. \e(empty line)
+6. editable line here: ...
+
+cursor moves from line 1 to line 6
+i think i should store a variable...seperate variable called "cursor_command_entry_line_position" or something, that stores the line number the cursor is supposed to be at in order to do the editing its updated after you press enter and the command is processed the result can have the number of lines, which can help calculate how many line down the cursor has to move and then itll follow that...right?
+and then for styling differences like result vs user entry command line, i can store flags in the buffer that can help
+maybe i use vector<pair<string, char>> instead of vector<string>
+?? maybe...

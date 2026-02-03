@@ -4,6 +4,7 @@
 MainView::MainView(sf::Font &font, int &charSize, sf::Vector2u &windowSize) : View{font, charSize, windowSize}
 {
   std::cout << "init MainView()" << "\n";
+  prev_fontSize = m_characterSize;
   init();
 }
 
@@ -15,7 +16,7 @@ void MainView::init()
   CURSOR_HEIGHT   = m_characterSize - CURSOR_YOFFSET;
   //the offset, to center the cursor, will always be the same because the block size is always the same length
   //charactersize in this case is the size of each line/lineheight ?? idk
-  CURSOR_PY_OFF   = (m_characterSize - CURSOR_HEIGHT); 
+  CURSOR_PY_OFF   = (m_characterSize - CURSOR_HEIGHT); //UNUSED
 
   m_cursorItem.setFillColor(themes::oceanBreeze.ACCENT);
   m_cursorItem.setSize(sf::Vector2f(CURSOR_WIDTH, CURSOR_HEIGHT));
@@ -46,6 +47,7 @@ void MainView::init()
   m_lineNumberText.setFont(m_font);
   m_lineNumberText.setFillColor(themes::oceanBreeze.ACCENT);
   m_lineNumberText.setCharacterSize(m_characterSize);
+
   m_cursor.setScreenPosition(0, 0);
 }
 
@@ -67,18 +69,11 @@ void MainView::drawSideBorder(sf::RenderWindow &window)
 
 void MainView::drawMainScreen(sf::RenderWindow &window)
 {
-  m_MAIN_BORDER_WIDTH   = m_winSize.x - m_SIDE_BORDER_WIDTH;
-  m_MAIN_BORDER_HEIGHT  = m_winSize.y;
-
-  m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
   window.draw(m_mainScreen);
 }
 
 void MainView::drawCursor(sf::RenderWindow &window)
 {
-  sf::Vector2i pos = m_cursor.getScreenPosition();
-
-  m_cursorItem.setPosition(pos.x + 60, pos.y);
   window.draw(m_cursorItem);
 }
 
@@ -118,12 +113,29 @@ void MainView::drawLineNumber(sf::RenderWindow &window, int lineNumber, int numP
 
 void MainView::update()
 {
+  //CALC AND SET SCREEN SIZE
+  m_MAIN_BORDER_WIDTH   = m_winSize.x - m_SIDE_BORDER_WIDTH;
+  m_MAIN_BORDER_HEIGHT  = m_winSize.y;
 
+  m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
+
+  // SET CURSOR POS
+  sf::Vector2i pos = m_cursor.getScreenPosition();
+  m_cursorItem.setPosition(pos.x + 60, pos.y);
+
+  //ONLY DO THIS IF THE FONT INCREASES OR DECREASES
   if (prev_fontSize != m_characterSize)
   {
     updateCursorScreenPos();
-    m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
-    m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
+
+    CURSOR_HEIGHT = m_characterSize - CURSOR_YOFFSET;
+    m_cursorItem.setSize(sf::Vector2f(CURSOR_WIDTH, CURSOR_HEIGHT));
+
+    m_lineText.setCharacterSize(m_characterSize);
+    m_lineNumberText.setCharacterSize(m_characterSize);
+    // m_sideBorder.setSize(sf::Vector2f(m_SIDE_BORDER_WIDTH, m_SIDE_BORDER_HEIGHT));
+    // m_mainScreen.setSize(sf::Vector2f(m_MAIN_BORDER_WIDTH, m_MAIN_BORDER_HEIGHT));
+    prev_fontSize = m_characterSize;
   }
 }
 

@@ -47,14 +47,19 @@ void Cursor::moveCursorDown(int lineNumber)
 
 void Cursor::moveCursorUp(int lineNumber)
 {
-  this->colN = 0;
+  this->colN   = 0;
   this->lineN -= lineNumber; 
-  this->yPos -= lineNumber;
+  this->yPos  -= lineNumber;
 }
 
 int Cursor::getCursorPosLineNumber()
 {
   return lineN;
+}
+
+int Cursor::setColNumber(int x)
+{
+  return x;
 }
 
 int Cursor::getCursorPosColumnNumber()

@@ -49,16 +49,17 @@ int Buffer::getCharPosAt(int cursorColumnPos, int lineNumber, sf::Font &font, in
     std::cout << "lineNumber out of bounds\n";
     return 0;
   }
+  
   for (int i = 0; i < inputBuffer[lineNumber].size(); ++i)
   {
-    std::string cur_char{inputBuffer[lineNumber][i]};
-    float charWidth = TextUtils::getCharGlyphSize(*cur_char.c_str(), font, charSize).first;
     // if total(the sum of charwidths) is less that the cursors column pos.
     // we return the index of that char (the one after the cursor)
     if (cursorColumnPos <= total)
     {
       return i;
     }
+    std::string cur_char{inputBuffer[lineNumber][i]};
+    float charWidth = TextUtils::getCharGlyphSize(*cur_char.c_str(), font, charSize).first;
     total += charWidth;
   }
 

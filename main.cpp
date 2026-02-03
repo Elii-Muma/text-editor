@@ -71,6 +71,7 @@ int main()
         winSize.x = view.getSize().x;
         winSize.y = view.getSize().y;
       }
+      
       if (ev.type == sf::Event::KeyReleased && ev.key.code == sf::Keyboard::LShift){
         std::cout << "SHIFT_OFF_\n";
         shiftPressed = false;

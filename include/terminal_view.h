@@ -30,12 +30,12 @@ private:
   sf::RectangleShape  m_cursorItem;
   sf::RectangleShape  m_mainScreen;
 
-  bool            m_isScreen;
+  bool            m_isScreen{false};
   int             CURSOR_HEIGHT{0};
   int             CURSOR_WIDTH{0};
-  int             m_MAIN_BORDER_WIDTH;
+  int             m_MAIN_BORDER_WIDTH{0};
   unsigned int   &m_MAIN_BORDER_HEIGHT;
-  int             m_MAIN_BORDER_YPOS;
+  int             m_MAIN_BORDER_YPOS{0};
 
   // holds the filepaths, ill eventually move this to a different location
   // maybe make it a global file or something
