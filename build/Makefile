@@ -116,24 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named text-ctrl
+# Target rules for targets named TEXT-EDITOR-PRO-PLUS-6G
 
 # Build rule for target.
-text-ctrl: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 text-ctrl
-.PHONY : text-ctrl
+TEXT-EDITOR-PRO-PLUS-6G: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TEXT-EDITOR-PRO-PLUS-6G
+.PHONY : TEXT-EDITOR-PRO-PLUS-6G
 
 # fast build rule for target.
-text-ctrl/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/build
-.PHONY : text-ctrl/fast
+TEXT-EDITOR-PRO-PLUS-6G/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/build
+.PHONY : TEXT-EDITOR-PRO-PLUS-6G/fast
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -141,7 +141,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -149,7 +149,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/Cursor.obj: src/Cursor.cpp.obj
@@ -157,7 +157,7 @@ src/Cursor.obj: src/Cursor.cpp.obj
 
 # target to build an object file
 src/Cursor.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Cursor.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/Cursor.cpp.obj
 .PHONY : src/Cursor.cpp.obj
 
 src/Cursor.i: src/Cursor.cpp.i
@@ -165,7 +165,7 @@ src/Cursor.i: src/Cursor.cpp.i
 
 # target to preprocess a source file
 src/Cursor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Cursor.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/Cursor.cpp.i
 .PHONY : src/Cursor.cpp.i
 
 src/Cursor.s: src/Cursor.cpp.s
@@ -173,7 +173,7 @@ src/Cursor.s: src/Cursor.cpp.s
 
 # target to generate assembly for a file
 src/Cursor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Cursor.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/Cursor.cpp.s
 .PHONY : src/Cursor.cpp.s
 
 src/Renderer.obj: src/Renderer.cpp.obj
@@ -181,7 +181,7 @@ src/Renderer.obj: src/Renderer.cpp.obj
 
 # target to build an object file
 src/Renderer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/Renderer.cpp.obj
 .PHONY : src/Renderer.cpp.obj
 
 src/Renderer.i: src/Renderer.cpp.i
@@ -189,7 +189,7 @@ src/Renderer.i: src/Renderer.cpp.i
 
 # target to preprocess a source file
 src/Renderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/Renderer.cpp.i
 .PHONY : src/Renderer.cpp.i
 
 src/Renderer.s: src/Renderer.cpp.s
@@ -197,7 +197,7 @@ src/Renderer.s: src/Renderer.cpp.s
 
 # target to generate assembly for a file
 src/Renderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/Renderer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/Renderer.cpp.s
 .PHONY : src/Renderer.cpp.s
 
 src/camera.obj: src/camera.cpp.obj
@@ -205,7 +205,7 @@ src/camera.obj: src/camera.cpp.obj
 
 # target to build an object file
 src/camera.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/camera.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/camera.cpp.obj
 .PHONY : src/camera.cpp.obj
 
 src/camera.i: src/camera.cpp.i
@@ -213,7 +213,7 @@ src/camera.i: src/camera.cpp.i
 
 # target to preprocess a source file
 src/camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/camera.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/camera.cpp.i
 .PHONY : src/camera.cpp.i
 
 src/camera.s: src/camera.cpp.s
@@ -221,7 +221,7 @@ src/camera.s: src/camera.cpp.s
 
 # target to generate assembly for a file
 src/camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/camera.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/camera.cpp.s
 .PHONY : src/camera.cpp.s
 
 src/controller.obj: src/controller.cpp.obj
@@ -229,7 +229,7 @@ src/controller.obj: src/controller.cpp.obj
 
 # target to build an object file
 src/controller.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/controller.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/controller.cpp.obj
 .PHONY : src/controller.cpp.obj
 
 src/controller.i: src/controller.cpp.i
@@ -237,7 +237,7 @@ src/controller.i: src/controller.cpp.i
 
 # target to preprocess a source file
 src/controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/controller.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/controller.cpp.i
 .PHONY : src/controller.cpp.i
 
 src/controller.s: src/controller.cpp.s
@@ -245,7 +245,7 @@ src/controller.s: src/controller.cpp.s
 
 # target to generate assembly for a file
 src/controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/controller.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/controller.cpp.s
 .PHONY : src/controller.cpp.s
 
 src/document.obj: src/document.cpp.obj
@@ -253,7 +253,7 @@ src/document.obj: src/document.cpp.obj
 
 # target to build an object file
 src/document.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/document.cpp.obj
 .PHONY : src/document.cpp.obj
 
 src/document.i: src/document.cpp.i
@@ -261,7 +261,7 @@ src/document.i: src/document.cpp.i
 
 # target to preprocess a source file
 src/document.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/document.cpp.i
 .PHONY : src/document.cpp.i
 
 src/document.s: src/document.cpp.s
@@ -269,7 +269,7 @@ src/document.s: src/document.cpp.s
 
 # target to generate assembly for a file
 src/document.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/document.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/document.cpp.s
 .PHONY : src/document.cpp.s
 
 src/editor_screen.obj: src/editor_screen.cpp.obj
@@ -277,7 +277,7 @@ src/editor_screen.obj: src/editor_screen.cpp.obj
 
 # target to build an object file
 src/editor_screen.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/editor_screen.cpp.obj
 .PHONY : src/editor_screen.cpp.obj
 
 src/editor_screen.i: src/editor_screen.cpp.i
@@ -285,7 +285,7 @@ src/editor_screen.i: src/editor_screen.cpp.i
 
 # target to preprocess a source file
 src/editor_screen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/editor_screen.cpp.i
 .PHONY : src/editor_screen.cpp.i
 
 src/editor_screen.s: src/editor_screen.cpp.s
@@ -293,7 +293,7 @@ src/editor_screen.s: src/editor_screen.cpp.s
 
 # target to generate assembly for a file
 src/editor_screen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/editor_screen.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/editor_screen.cpp.s
 .PHONY : src/editor_screen.cpp.s
 
 src/main_view.obj: src/main_view.cpp.obj
@@ -301,7 +301,7 @@ src/main_view.obj: src/main_view.cpp.obj
 
 # target to build an object file
 src/main_view.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/main_view.cpp.obj
 .PHONY : src/main_view.cpp.obj
 
 src/main_view.i: src/main_view.cpp.i
@@ -309,7 +309,7 @@ src/main_view.i: src/main_view.cpp.i
 
 # target to preprocess a source file
 src/main_view.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/main_view.cpp.i
 .PHONY : src/main_view.cpp.i
 
 src/main_view.s: src/main_view.cpp.s
@@ -317,7 +317,7 @@ src/main_view.s: src/main_view.cpp.s
 
 # target to generate assembly for a file
 src/main_view.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/main_view.cpp.s
 .PHONY : src/main_view.cpp.s
 
 src/main_view_controller.obj: src/main_view_controller.cpp.obj
@@ -325,7 +325,7 @@ src/main_view_controller.obj: src/main_view_controller.cpp.obj
 
 # target to build an object file
 src/main_view_controller.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/main_view_controller.cpp.obj
 .PHONY : src/main_view_controller.cpp.obj
 
 src/main_view_controller.i: src/main_view_controller.cpp.i
@@ -333,7 +333,7 @@ src/main_view_controller.i: src/main_view_controller.cpp.i
 
 # target to preprocess a source file
 src/main_view_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/main_view_controller.cpp.i
 .PHONY : src/main_view_controller.cpp.i
 
 src/main_view_controller.s: src/main_view_controller.cpp.s
@@ -341,7 +341,7 @@ src/main_view_controller.s: src/main_view_controller.cpp.s
 
 # target to generate assembly for a file
 src/main_view_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/main_view_controller.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/main_view_controller.cpp.s
 .PHONY : src/main_view_controller.cpp.s
 
 src/terminal_screen.obj: src/terminal_screen.cpp.obj
@@ -349,7 +349,7 @@ src/terminal_screen.obj: src/terminal_screen.cpp.obj
 
 # target to build an object file
 src/terminal_screen.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_screen.cpp.obj
 .PHONY : src/terminal_screen.cpp.obj
 
 src/terminal_screen.i: src/terminal_screen.cpp.i
@@ -357,7 +357,7 @@ src/terminal_screen.i: src/terminal_screen.cpp.i
 
 # target to preprocess a source file
 src/terminal_screen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_screen.cpp.i
 .PHONY : src/terminal_screen.cpp.i
 
 src/terminal_screen.s: src/terminal_screen.cpp.s
@@ -365,7 +365,7 @@ src/terminal_screen.s: src/terminal_screen.cpp.s
 
 # target to generate assembly for a file
 src/terminal_screen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_screen.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_screen.cpp.s
 .PHONY : src/terminal_screen.cpp.s
 
 src/terminal_view.obj: src/terminal_view.cpp.obj
@@ -373,7 +373,7 @@ src/terminal_view.obj: src/terminal_view.cpp.obj
 
 # target to build an object file
 src/terminal_view.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_view.cpp.obj
 .PHONY : src/terminal_view.cpp.obj
 
 src/terminal_view.i: src/terminal_view.cpp.i
@@ -381,7 +381,7 @@ src/terminal_view.i: src/terminal_view.cpp.i
 
 # target to preprocess a source file
 src/terminal_view.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_view.cpp.i
 .PHONY : src/terminal_view.cpp.i
 
 src/terminal_view.s: src/terminal_view.cpp.s
@@ -389,7 +389,7 @@ src/terminal_view.s: src/terminal_view.cpp.s
 
 # target to generate assembly for a file
 src/terminal_view.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_view.cpp.s
 .PHONY : src/terminal_view.cpp.s
 
 src/terminal_view_controller.obj: src/terminal_view_controller.cpp.obj
@@ -397,7 +397,7 @@ src/terminal_view_controller.obj: src/terminal_view_controller.cpp.obj
 
 # target to build an object file
 src/terminal_view_controller.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_view_controller.cpp.obj
 .PHONY : src/terminal_view_controller.cpp.obj
 
 src/terminal_view_controller.i: src/terminal_view_controller.cpp.i
@@ -405,7 +405,7 @@ src/terminal_view_controller.i: src/terminal_view_controller.cpp.i
 
 # target to preprocess a source file
 src/terminal_view_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_view_controller.cpp.i
 .PHONY : src/terminal_view_controller.cpp.i
 
 src/terminal_view_controller.s: src/terminal_view_controller.cpp.s
@@ -413,7 +413,7 @@ src/terminal_view_controller.s: src/terminal_view_controller.cpp.s
 
 # target to generate assembly for a file
 src/terminal_view_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/terminal_view_controller.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/terminal_view_controller.cpp.s
 .PHONY : src/terminal_view_controller.cpp.s
 
 src/text_buffer.obj: src/text_buffer.cpp.obj
@@ -421,7 +421,7 @@ src/text_buffer.obj: src/text_buffer.cpp.obj
 
 # target to build an object file
 src/text_buffer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/text_buffer.cpp.obj
 .PHONY : src/text_buffer.cpp.obj
 
 src/text_buffer.i: src/text_buffer.cpp.i
@@ -429,7 +429,7 @@ src/text_buffer.i: src/text_buffer.cpp.i
 
 # target to preprocess a source file
 src/text_buffer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/text_buffer.cpp.i
 .PHONY : src/text_buffer.cpp.i
 
 src/text_buffer.s: src/text_buffer.cpp.s
@@ -437,7 +437,7 @@ src/text_buffer.s: src/text_buffer.cpp.s
 
 # target to generate assembly for a file
 src/text_buffer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/text_buffer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/text_buffer.cpp.s
 .PHONY : src/text_buffer.cpp.s
 
 src/view.obj: src/view.cpp.obj
@@ -445,7 +445,7 @@ src/view.obj: src/view.cpp.obj
 
 # target to build an object file
 src/view.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/view.cpp.obj
 .PHONY : src/view.cpp.obj
 
 src/view.i: src/view.cpp.i
@@ -453,7 +453,7 @@ src/view.i: src/view.cpp.i
 
 # target to preprocess a source file
 src/view.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/view.cpp.i
 .PHONY : src/view.cpp.i
 
 src/view.s: src/view.cpp.s
@@ -461,7 +461,7 @@ src/view.s: src/view.cpp.s
 
 # target to generate assembly for a file
 src/view.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/view.cpp.s
 .PHONY : src/view.cpp.s
 
 src/view_controller.obj: src/view_controller.cpp.obj
@@ -469,7 +469,7 @@ src/view_controller.obj: src/view_controller.cpp.obj
 
 # target to build an object file
 src/view_controller.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view_controller.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/view_controller.cpp.obj
 .PHONY : src/view_controller.cpp.obj
 
 src/view_controller.i: src/view_controller.cpp.i
@@ -477,7 +477,7 @@ src/view_controller.i: src/view_controller.cpp.i
 
 # target to preprocess a source file
 src/view_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view_controller.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/view_controller.cpp.i
 .PHONY : src/view_controller.cpp.i
 
 src/view_controller.s: src/view_controller.cpp.s
@@ -485,7 +485,7 @@ src/view_controller.s: src/view_controller.cpp.s
 
 # target to generate assembly for a file
 src/view_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/src/view_controller.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/src/view_controller.cpp.s
 .PHONY : src/view_controller.cpp.s
 
 # Help Target
@@ -496,7 +496,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... text-ctrl
+	@echo ... TEXT-EDITOR-PRO-PLUS-6G
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

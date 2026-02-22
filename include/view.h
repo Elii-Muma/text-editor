@@ -19,6 +19,7 @@ class View{
     Buffer &getBuffer();
     Cursor &getCursor();
     Camera &getCamera();
+    sf::Vector2u& getWinSize();
 
   protected:
     Camera m_camera; // what if i made this a copy instead of a reference?

@@ -13,10 +13,12 @@ class TerminalViewController : public ViewController
 
 public:
   TerminalViewController(TerminalView &view, sf::Font &font, int &characterSize);
+  std::vector<std::string> processCommand(std::string command);
   virtual void handleInput(sf::Event &ev);
   TerminalView &getView() override;
 
 protected:
   TerminalView &view;
   bool isScreen;
+  bool isProcessingCommand{false};
 };

@@ -59,7 +59,7 @@ void MainViewController::handleInput(sf::Event &ev)
       cursorMoveUp();
       break;
     case sf::Keyboard::Down:
-      cursorMoveDown();
+      cursorMoveDown(38);
       break;
     case sf::Keyboard::Home:
       cursorMoveToHome();
@@ -82,15 +82,15 @@ void MainViewController::handleInput(sf::Event &ev)
     case sf::Keyboard::Enter:
       {
         int terminalHeight = 38; //TODO: actually get the terminal height
-        moveCameraDown(terminalHeight);
 
         int lineN = m_cursor.getLineNumber(m_characterSize);
         int colN = m_cursor.getCursorPosColumnNumber();
         index = m_buffer.getCharPosAt(colN, lineN, m_font, m_characterSize);
         m_buffer.enterFunction(index, lineN, m_cursor.getCursorPosLineNumber(), colN, m_characterSize, false);
+        // cursorMoveDown();
+        m_cursor.moveCursorDown(m_characterSize);
+        moveCameraDown(terminalHeight);
       }
-      // cursorMoveDown();
-      m_cursor.moveCursorDown(m_characterSize);
       break;
     case sf::Keyboard::LControl:
       // isUndoPressed = true;

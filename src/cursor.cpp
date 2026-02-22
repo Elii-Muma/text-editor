@@ -75,6 +75,9 @@ int Cursor::getLineNumber(int charSize){
 }
 
 // (x, y)
+void Cursor::resetCursor(){
+  setPosition(0, 0);
+}
 
 sf::Vector2i Cursor::getScreenPosition()
 {

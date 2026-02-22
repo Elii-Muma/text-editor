@@ -59,5 +59,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/text-ctrl.dir/DependInfo.cmake"
+  "CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/DependInfo.cmake"
   )

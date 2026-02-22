@@ -30,7 +30,7 @@ void resizeView(sf::View &view, unsigned int width, unsigned int height)
 int main()
 {
   sf::Vector2u winSize{900, 600};
-  sf::RenderWindow win(sf::VideoMode({winSize.x, winSize.y}), "Text Controller");
+  sf::RenderWindow win(sf::VideoMode({winSize.x, winSize.y}), "Text Editor Pro Plus ULTRA");
   win.setVerticalSyncEnabled(true);
   sf::Event ev;
 
