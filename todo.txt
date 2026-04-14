@@ -4,12 +4,52 @@ ARCHITECTURE
  ├── Editor.cpp / Editor.h
  ├── Renderer.cpp / Renderer.h
  ├── Cursor.cpp / Cursor.h
- ├── EditHistory.cpp / EditHistory.h
- └── Utils.cpp / Utils.h
+ ├── Camera.cpp / Camera.h
+ └──
+/resources
+ └── fonts/
+ └── txt/
+
+ REFACTORED ARCHITECTURE
+/src
+ ├── main.cpp
+ ├── Controller.cpp / Controller.h
+ ├── Cursor.cpp / Cursor.h
+ ├── Camera.cpp / Camera.h
+ ├── Renderer.cpp / Renderer.h
+ ├── text_buffer.cpp / text_buffer.h
+ ├── View.cpp / View.h
+ ├── ViewController.cpp / ViewController.h
+ └── Utils.h
 /resources
  └── fonts/
  └── txt/
 
 [-] add all cursor movement things
-[x] add states
-[x] add games
+[x] add some padding between the lines
+[-] Refactor architecture
+[x] each view should have its own camera too(including own buffer and cursor)
+[o] figure out how to turn view and control view into parent classes
+[-] add multiple views 
+[-] add switching between views || [x] add states
+[-] add modes for typing
+[x] add stats (typing speed etc etc)
+[x] add games (like typing games, nothing crazy)
+
+ISSUES
+* increasing character size is kinda buggy! 
+  the cursor wont move accordingly when you increase the charactersize 
+* views use the same camera reference
+* no side scrolling 
+
+
+void foo(){
+  printf("%d", i);
+  
+  int i;
+  printf("%d", i);
+  for(i = 0; i < 99; i++){
+  y += i;
+  printf("%d", i);
+  }
+}

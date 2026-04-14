@@ -6,7 +6,7 @@ class Renderer
 {
 
 public:
-  Renderer(sf::Font font, sf::Vector2u *winSize);
+  Renderer(sf::Font font, sf::Vector2u &winSize);
 
   void drawCursor(sf::RenderWindow &window, Cursor &cursor);
   void drawLineText(sf::RenderWindow &window, sf::String lineText, int lineNumber, int rowPos);
@@ -28,7 +28,7 @@ private:
   int m_BOTTOM_BORDER_WIDTH;
   int m_BOTTOM_BORDER_HEIGHT{30};
   int Y_OFFSET{5};
-  sf::Vector2u *m_WIN_SIZE;
+  sf::Vector2u &m_WIN_SIZE;
 
   void init();
 };

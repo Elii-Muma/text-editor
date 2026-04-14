@@ -5,8 +5,8 @@ the position of the borders always needs to be at the bottom or otherwise maybe 
 -> layers are[bottom to top] :: main window(blue part) -> side border -> bottom border
 
 CAMERA:
--> ill turn this "view" into a camera that can be controlled by the editor module
--> since it looks like the "editor" is becoming the main "controller"(i might need to make this change) 
+-> ill turn this "view" into a camera that can be controlled by the ctrl module
+-> since it looks like the "ctrl" is becoming the main "controller"(i might need to make this change) 
 -> so the camera will be what? views i can control(move_view_up, move_view_down, move_view_left, move_view_right)
 
 problem:
@@ -15,15 +15,207 @@ problem:
 -> i did zome math to move the camera and zhit
 
 okay now i think i need to rethink the architecture of the system:
--> right now the editor handles EVERYTHING
+-> right now the ctrl handles EVERYTHING
 -> but i need something to handle: writing onto a "board", and the "text" will have its own settings...
 ->okay so we need the "board" and the "text". text comes in as input, and then based on the board selected, the text will be written there...
 ->e.g we have the bottome board and the center/main panel...the cursor is what we can use for focus. 
 --> the text on the main panel/board/...whatever always renders, the text on the bottom panel only renders when in focus
---> in editor: handlInput() is what handles all user input an what each character pressed does...
+--> in ctrl: handlInput() is what handles all user input an what each character pressed does...
 --> i think they have different types of cursors...each cursor can have "is" focused
---> the current "editor" is just a module that handles the text: where to place it, how to place it, what to do with -- basically just a giant textHandler, and then i could have the "Editor" be a board where text can be placed...
+--> the current "ctrl" is just a module that handles the text: where to place it, how to place it, what to do with -- basically just a giant textHandler, and then i could have the "Controller" be a board where text can be placed...
 
---> contentHandler(will have text handling and cursor movement and stuff), Views(Editor View, BottomBorderView), Controller(like the Game Class)
+--> contentHandler(will have text handling and cursor movement and stuff), Views(Controller View, BottomBorderView), Controller(like the Game Class)
+
+what is the Controller.cpp doing?
+-> rendering borders
+-> deciding what gets rendered
+-> handling input:
+--> interprets the input
+--> stores it in a buffer
+--> manipulates cursor movements and 
+--> manipulates text based on action done
+--> handles undo buffer
+--> contains utils that the cursor needs...or the ones necessary to manipulate text properly
+
+what does it NEED to be or what was intended by "ctrl"?
+-> a window, where text appears...basically
+-> and thats what it needs to be
+-> it just renders the text, the position of the text is what it could control
+
+then where does everything else go?
+- rendering borders
+-> a border can be an entity...like the ctrl we intend to create
+-> it simply just renders text...and a main controller can render IT
+
+- deciding what gets rendered
+-> this is in the case of buffers, because they essentially store what gets rendered
+-> like the input buffer...can the "borders" have their own input buffers?
+- who "decides"? i think the current "ctrl" can store the text? since it only displays the text, itll need what to display...or render. but adding to it can be handled by other things because thats not its purpose..
+-> so it just reads the buffer, and displays what is there
+
+**random idea** bottom border can grow
+
+- handling input:
+-> what Is the input handling?
+when a user presses a key, we determine what key that is...
+depending on what key it is, we either store the key in the buffer or do some manipulation
+okay so when you: press_key -> check_key -> call_appropriate_method
+i think most of the methods could be in like utils.cpp...yk? hmmm idk, we'll circle back
+how can that be logically seperated?
+-> where will the input handling logic lie? maybe it could be in the main "Controller class?" thats where states will also be handled...
+what do you mean by states? example we're on the main_panel_state, when you input something, the controller has to store that input or manipulate certain text or cursor...but that will be different for different states? huh...
+e.g. i press "enter" on the main ctrl it will mean "go to line below" but on bottom border itll mean "run"
+where do i handle this "meaning"...in their border classes? no, that only handles rendering...not logic
+"controller" seems more fitting because it "controls"...
+so will it be "handleInput()" and then you
+-> who will be responsible for handling the input?
+
+- another big question, will i still need the renderer?
+
+- yet another one: is the buffer an entity?
+
+- omg, should i create a state interface?? with the states having inputHandlers and stuff??
+
+okay so, so far:
+[new]
+-> views enitites(ctrl, bottom bar->terminal, games select etc etc)
+-> state interface
+-> buffer entity[i could later implement the "command" thing but for now...ill keep my undoing algorithm, the buffer class could have an input buffer and an undo buffer. the controller can initialize these maybe(if i make the controller class), and then the views can get references of these, read and display]
+-> controller, sort of like the pupper master
+-> cursor
+-> view camera
+
+[new]
+-> views enitites(ctrl, bottom bar->terminal, games select etc etc)
+-> state interface: im kind of confused on HOW ill implement it...so ill do then simple FsM enum version first and then advance it to an interface
+-> buffer + undo entity/class 
+-> controller
+-> cursor
+-> view camera
+
+the issue i have with the buffer being seperate from the views is that...ill now need a way to handle all these other buffers
+the buffer class could still be a thing...i guess its just a matter of deciding where I'll store it...will it passed into the views or will it be accessed FROM the views
+but i think ill have the view store the buffer object itself
+
+if you DESTROY a view, it's buffer also gets destroyed...
+if i have 1 view and then i split it...if i use my method which is -- each view will hold an object of buffer -- when you split the window, the new window created is its own identical thing BUT, it holds a reference to the buffer that belonged to the window it was split from..idk that makes sense to me
+
+you'll have to properly define what each and every single thing means... like, lineN -- what is it? what does it represent? where does it belong?
+
+View->ViewController->controller
+ViewController controls a View, the controller displays the different Views
+the controller has the ability to switch between different views
+
+You can have multiple mainscreens/views and then a pointer can be used to switch between them
+a certain view on the screen can currently be in focus...
+there are certain combos of views allowed
+
+main screen + bottom
+terminal screen alone
+game selection screen alone
+stats??
+
+-->so its looking like i'll have to rethink what lineN represents
+ill have to change the relationship between the cursors lineN and 
+the one we use to store and access text in the buffer using lineN as the index
+-->right now lineN first comes from the cursor. lineN is the lineNumber the cursor is at
+this lineNumber is what helps draw the cursor...already im thinking for drawing i should use yPos and xPos 
+and then lineN and colN for computation
+
+okay fixed: 
+Cursor.h
+lineN & colN: used for buffer/logic calculations(buffer positions)
+lineN: index of inner-vector/line-string 
+colN: non normalized(to the buffer size) character position with reference to the cursor[idk if that makes sense]
+xPos, yPos: used for rendering.(screen coordinates)
+when adding any offsets to the cursors rendering, add them to the xPos and yPos...NOT the lineN nd colN. i dont think these need to be touched (to read or write) by the view or renderer
+
+screens:
+initially i was going to have this be an abstraced out class
+BUT instead ill just use states + methods and see how that goes
+you have a state, then that state is what handles the rendering, input handling
+
+so i decided to make a screen abstraction that way i can have multiple screens of a certain type
+the editor screen right now is treated as one thing BUT later in the future theyll need to maybe
+be able to share a bottomView, that means we'll actually need to have hella pairs<view, viewCtrl> or something
+stored in some container then iterate through it OR display the visible one, store its index? idk 
+but basically that, then NOT pass it in but have a screen function to create a new...thing!
 
 
+Terminal.h
+okay so idk why i didnt think of this but ill have to switch from bottomView -> terminalView, 
+cos thats basically a terminal...
+so how would i make it smaller for the editor screens? just pass in the initial height itll have, pass in a bool to see if its a
+screen or a sub-screen in a bigger screen!, yes...and then the controls will also depend on the bool 
+
+HANDLING PRINTING RESULTS IN THE TERMINAL 
+->MY IDEA
+maybe i can have a BUFFER that holds different type of text
+you can use flags to differentiate between input and output
+-i (input)
+-o (output)
+and then we can have display type depend on which one we're currently on...
+- i have an undo buffer...i could use that as the history buffer for the terminal
+- every input has an output
+tried it
+- okay so the flag idea cant work properly because of positioning conflicts with the cursor
+- maybe i could modify the buffer to actually use a pair like std::vector<std::pair<std::string, bool>> 
+--> the bool: true if is input, false if is output OR better yet, have it be std::string/char too but it then holds the FLAG
+- how much refactoring would i have to do??... not much because the buffer is a class and not like...a variable...yk?
+- so id probably have to change HOW the buffer is interacted with
+- would the editor use this feature too or just the terminal?? cos then i could use different buffer types depending on WHAT is using it and leading to less refactoring...but then that would be two different data thingies...is that THAT bad tho?
+--> it means id have to refactor the buffer class, to accomodate two different types of buffers
+---> which one is better...hmm...
+--->REFINE
+terminal  
+
+
+->OTHER IDEA
+there are two buffers
+- input buffer
+- terminal/output buffer
+the problem is my cursor lowkey depends on the input buffer to determine its position, so if i have two seperate buffers, how will i know to place my cursor 5lines down because thats how many lines the result took up?
+you could calculate based on the index?
+
+->BUG CHASE :: jumpy cursor
+bug where the cursor jumps to a different position when increasing fonts
+issue found: the last processed character is the character before the cursor,
+thats because it returns one less index.
+why does it return one less index?? this happens after a certain number of increases
+so: int index = m_buffer.getCharPosAt(colN, lineN, m_font, prev_fontSize);
+here, prev_fontSize is the only variable that actually changes(font can too but...not for this bug)
+okay so turns out the culprit is actually colN
+- i have started updating the colN also after every character change with a new X position and
+it seems to be working...it doesnt break my rules(i think)
+BROKEN!!! TOO MANY ISSUES OMG!!!
+
+
+BACK TO TERMINAL RESULT THINGY
+> enter
+> command is running
+> wait
+> process command
+> return correct result
+> display result(hard part)
+why is it hard?(thats what she said)
+the hard part isnt storing or processing of result...its drawing it to the screen and having the cursor move to it...or having to control cursor movement
+rn, all the text being drawn is stored in the buffer, the cursor knows where to go because of the buffer.
+why is this hard?
+cos cursor cant go up or down it can only move within the current line
+i think storing everything in the same buffer is a good idea, i just need to add meta data to the data being stored
+like rn im using the position of the string line in the buffer array to determine which line its supposed to be drawn on
+maybe that could be the meta data
+why? cos it can help with the cursor placement? is this good? idk
+e.g.
+1. editable line here: .... 
+2. results \\
+3. 
+4. \\ ends here
+5. \e(empty line)
+6. editable line here: ...
+
+cursor moves from line 1 to line 6
+i think i should store a variable...seperate variable called "cursor_command_entry_line_position" or something, that stores the line number the cursor is supposed to be at in order to do the editing its updated after you press enter and the command is processed the result can have the number of lines, which can help calculate how many line down the cursor has to move and then itll follow that...right?
+and then for styling differences like result vs user entry command line, i can store flags in the buffer that can help
+maybe i use vector<pair<string, char>> instead of vector<string>
+?? maybe...

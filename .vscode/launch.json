@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "text-editor",
+            "name": "text-ctrl",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/text-editor.exe",
+            "program": "${workspaceFolder}/build/text-ctrl.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

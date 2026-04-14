@@ -1,6 +1,6 @@
-# Me Text Editor (C++ / SFML)
+# Me Text Controller (C++ / SFML)
 
-keyboard-only text editor built from scratch using C++ and SFML. 
+keyboard-only text ctrl built from scratch using C++ and SFML. 
 
 ## Current Features
 - Cursor movement
@@ -29,8 +29,8 @@ keyboard-only text editor built from scratch using C++ and SFML.
 - SFML (sf::RenderWindow, views, and input handling)
 
 ## Features to be Added
-- Editor states
-- Games / interactive modes inside the editor
+- Controller states
+- Games / interactive modes inside the ctrl
 - compiler? hehe idk
 
 I might post the building process on youtube, so you can also check that out maybe.(i lost the footage)

@@ -4,7 +4,7 @@
 
 class Camera{
   public:
-    Camera(int characterSize, sf::Vector2u *WIN_SIZE);
+    Camera(int characterSize, sf::Vector2u& WIN_SIZE);
     sf::View& getMainView();
     sf::Vector2f getCenter();
     sf::Vector2f getSize();

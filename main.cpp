@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Elijah Muma
- * @brief a simple text editor
+ * @brief a simple text ctrl
  * @version 0.1
  * @date 2025-10-24
  *
@@ -16,36 +16,42 @@
 #include <vector>
 #include <math.h>
 #include <thread>
-#include "Editor.h"
+#include "Controller.h"
 #include "camera.h"
+
+void resizeView(sf::View &view, unsigned int width, unsigned int height)
+{
+  view.setSize({static_cast<float>(width),
+                static_cast<float>(height)});
+  view.setCenter(static_cast<float>(width) / 2.f,
+                 static_cast<float>(height) / 2.f);
+}
 
 int main()
 {
-  sf::Vector2u *winSize = new sf::Vector2u(900, 600);
-  sf::RenderWindow win(sf::VideoMode({winSize->x, winSize->y}), "Text Editor");
+  sf::Vector2u winSize{900, 600};
+  sf::RenderWindow win(sf::VideoMode({winSize.x, winSize.y}), "Text Controller");
   win.setVerticalSyncEnabled(true);
   sf::Event ev;
-
 
   sf::RectangleShape testBox({100.f, 100.f});
   testBox.setPosition(300, 300);
 
   sf::Font font;
-  int characterSize{22};
-
+  //TODO: it actually does not work well with variable font sizes
   if (!font.loadFromFile("../resources/fonts/FiraCode-Regular.ttf"))
+  // if (!font.loadFromFile("../resources/fonts/ShadowsIntoLight-Regular.ttf"))
+  // if (!font.loadFromFile("../resources/fonts/Quicksand-Regular.ttf"))
   {
     std::cout << "failed to load font!\n";
-
     system("pause");
     return -1;
   }
 
-  Camera camera{characterSize, winSize};
-  sf::View &view = camera.getMainView();
-  view = win.getDefaultView();
+  int characterSize{22};
+  bool shiftPressed{false};
   sf::View uiView = win.getDefaultView();
-  Editor editor{camera, font, characterSize, winSize};
+  Controller ctrl{font, characterSize, winSize};
 
   while (win.isOpen())
   {
@@ -56,34 +62,56 @@ int main()
 
       if (ev.type == sf::Event::Resized)
       {
-        view.setSize({static_cast<float>(ev.size.width),
-                      static_cast<float>(ev.size.height)});
-        view.setCenter(static_cast<float>(ev.size.width) / 2.f,
-                       static_cast<float>(ev.size.height) / 2.f);
-        uiView.setSize({static_cast<float>(ev.size.width),
-                      static_cast<float>(ev.size.height)});
-        uiView.setCenter(static_cast<float>(ev.size.width) / 2.f,
-                       static_cast<float>(ev.size.height) / 2.f);
-        win.setView(view);
-        winSize->x = view.getSize().x;
-        winSize->y = view.getSize().y;
+        sf::View &view = ctrl.getCurrentMoveableView();
+        unsigned int width = ev.size.width;
+        unsigned int height = ev.size.height;
+        resizeView(view, width, height);
+        resizeView(uiView, width, height);
+
+        winSize.x = view.getSize().x;
+        winSize.y = view.getSize().y;
       }
-      // Handle Input
-      editor.handleInput(ev);
+      
+      if (ev.type == sf::Event::KeyReleased && ev.key.code == sf::Keyboard::LShift){
+        std::cout << "SHIFT_OFF_\n";
+        shiftPressed = false;
+      }
+      if (ev.type == sf::Event::KeyPressed ){
+        if (ev.key.code == sf::Keyboard::LShift) shiftPressed = true; 
+
+        if (shiftPressed && ev.key.code != sf::Keyboard::LShift){
+          if ((ev.key.code == sf::Keyboard::Up) ){
+            characterSize++;
+            std::cout << "fontSize:: " << characterSize << "\n";
+          }
+          if ((ev.key.code == sf::Keyboard::Down) && shiftPressed){
+            characterSize--;
+            std::cout << "fontSize:: " << characterSize << "\n";
+          }
+          //shiftPressed = false;
+        }
+      }
+        
+      ctrl.handleInput(ev);
     }
 
     // Update
+    if(winSize.x != ctrl.getCurrentMoveableView().getSize().x || winSize.y != ctrl.getCurrentMoveableView().getSize().y){
+      std::cout << "|---->resize!!!\n";
+      resizeView(ctrl.getCurrentMoveableView(), winSize.x, winSize.y);
+    }
+    ctrl.update();
     win.clear(sf::Color(0, 0, 255));
 
     // Render AND SET VIEW
     win.setView(uiView);
-    editor.renderSideBorder_UI(win);
+    ctrl.renderFixedUI(win);
 
-    win.setView(camera.getMainView());
-    editor.render(win);
+    win.setView(ctrl.getCurrentMoveableView());
+    ctrl.renderMoveableUI(win);
 
-    win.setView(uiView);
-    editor.renderBottomBorder_UI(win);
+    // win.setView(uiView);
+    // ctrl.renderBottomBorder_UI(win);
 
     win.display();
   }
