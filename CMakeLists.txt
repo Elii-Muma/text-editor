@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(text-ctrl)
+project(TEXT-EDITOR-PRO-PLUS-6G)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -9,7 +9,7 @@ set(SFML_ROOT "C:/SFML")
 include_directories()
 link_directories(${SFML_ROOT}/lib)
 
-add_executable(text-ctrl
+add_executable(${PROJECT_NAME} 
                 main.cpp
                 src/camera.cpp
                 src/Cursor.cpp
@@ -27,11 +27,11 @@ add_executable(text-ctrl
                 src/document.cpp
             )
 # Add your custom include folder
-target_include_directories( text-ctrl PRIVATE 
+target_include_directories( ${PROJECT_NAME} PRIVATE 
                             ${CMAKE_CURRENT_SOURCE_DIR}/include
                             ${SFML_ROOT}/include
                         )
-target_link_libraries(text-ctrl
+target_link_libraries(${PROJECT_NAME}
     sfml-graphics
     sfml-window
     sfml-system
@@ -41,7 +41,7 @@ target_link_libraries(text-ctrl
     gdi32
 )
 if(WIN32)
-    target_link_options(${PROJECT_NAME} PRIVATE -mconsole)
+    # target_link_options(${PROJECT_NAME} PRIVATE -mconsole)
  # Automatically copy SFML DLLs after build (Windows only)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory

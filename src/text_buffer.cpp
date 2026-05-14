@@ -2,39 +2,52 @@
 
 Buffer::Buffer()
 {
-  init();
+  inputBuffer.push_back(std::pair(" ", m_stdl::LineType::INPUT_LINE));
 }
 
 void Buffer::init()
 {
-  inputBuffer.push_back(" ");
+  // inputBuffer.push_back(" ");
 }
 
+// adding a character to an existing string in the buffer
+// provide where you want the character to be added
+// the indexOfCursor is the screen position of the cursor in a line converted to the position in the string
 void Buffer::addCharacterToBuffer(Cursor &cursor, std::string strChar, int indexOfCursor, int currLineNumber)
 {
-  // int index = getCharPosAt();
-  inputBuffer[currLineNumber].insert(indexOfCursor, strChar);
+  // inputBuffer[currLineNumber].insert(indexOfCursor, strChar);
+  inputBuffer[currLineNumber].first.insert(indexOfCursor, strChar);
+
   m_stdl::DelData tempDelData = {strChar, indexOfCursor, currLineNumber, sf::Vector2f(cursor.getCursorPosColumnNumber(), cursor.getCursorPosLineNumber()), m_stdl::NEW_INPUT};
   deleteStack.push_back(tempDelData);
 }
 
-void Buffer::insertAt(int pos, std::string str)
+// inserting a whole string in the buffer at a certain position
+void Buffer::insertAt(int pos, std::string str, m_stdl::LineType lineType)
 {
-  inputBuffer.insert(inputBuffer.begin() + pos, str);
+  // inputBuffer.insert(inputBuffer.begin() + pos, str);
+  inputBuffer.insert(inputBuffer.begin() + pos, std::pair(str, lineType));
 }
 
+//returns the length of a line (currently only for inputLines)
+// (maybe you can pass in lineType too next time)
 int Buffer::getLineLength(int lineNumber, sf::Font &font, int charSize)
 {
   int sumOfCharWidth{0};
-  for (int i = 0; i < (int)inputBuffer[lineNumber].length(); i++)
+  for (int i = 0; i < (int)inputBuffer[lineNumber].first.length(); i++)
+  // for (int i = 0; i < (int)inputBuffer[lineNumber].length(); i++)
   {
-    std::string cur_char{inputBuffer[lineNumber][i]};
+    // std::string cur_char{inputBuffer[lineNumber][i]};
+    if(inputBuffer[lineNumber].second != m_stdl::LineType::INPUT_LINE) continue;
+    std::string cur_char{inputBuffer[lineNumber].first[i]};
     sumOfCharWidth += TextUtils::getCharGlyphSize(*cur_char.c_str(), font, charSize).first;
   }
   std::cout << "sum of widths :: " << sumOfCharWidth << "\n";
   return sumOfCharWidth;
 }
 
+// returns index the cursor is at in the string 
+//provided the x-screenCoordinate(cursorColumnPos) 
 int Buffer::getCharPosAt(int cursorColumnPos, int lineNumber, sf::Font &font, int charSize)
 {
   float total = 0.f;
@@ -50,7 +63,8 @@ int Buffer::getCharPosAt(int cursorColumnPos, int lineNumber, sf::Font &font, in
     return 0;
   }
   
-  for (int i = 0; i < inputBuffer[lineNumber].size(); ++i)
+  for (int i = 0; i < inputBuffer[lineNumber].first.size(); ++i)
+  // for (int i = 0; i < inputBuffer[lineNumber].size(); ++i)
   {
     // if total(the sum of charwidths) is less that the cursors column pos.
     // we return the index of that char (the one after the cursor)
@@ -58,13 +72,14 @@ int Buffer::getCharPosAt(int cursorColumnPos, int lineNumber, sf::Font &font, in
     {
       return i;
     }
-    std::string cur_char{inputBuffer[lineNumber][i]};
+    std::string cur_char{inputBuffer[lineNumber].first[i]};
+    // std::string cur_char{inputBuffer[lineNumber][i]};
     float charWidth = TextUtils::getCharGlyphSize(*cur_char.c_str(), font, charSize).first;
     total += charWidth;
   }
 
   // else if there was no character after the cursor return the last characters index
-  return inputBuffer[lineNumber].size();
+  return inputBuffer[lineNumber].first.size();
 }
 
 // ############## UNDO FUNCTON  ################
@@ -104,13 +119,15 @@ sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
         std::cout << "NORMAL_DEL_UNDO::undoing character\n\t"
                   << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
         // insert the deleted character at its prev pos
-        inputBuffer[tempData.lineNumber].insert(tempData.index, tempData.del_char);
+        // inputBuffer[tempData.lineNumber].insert(tempData.index, tempData.del_char);
+        inputBuffer[tempData.lineNumber].first.insert(tempData.index, tempData.del_char);
 
         break;
       case m_stdl::NEW_INPUT:
         std::cout << "NEW_INPUT_UNDO::undoing input\n\t"
                   << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
-        inputBuffer[tempData.lineNumber].erase(tempData.index, 1);
+        // inputBuffer[tempData.lineNumber].erase(tempData.index, 1);
+        inputBuffer[tempData.lineNumber].first.erase(tempData.index, 1);
 
         break;
       case m_stdl::ENT_MOVE:
@@ -118,8 +135,11 @@ sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
                   << "temp data: " << tempData.del_char << " line number to go to: " << tempData.lineNumber << "\n";
 
         // append the string that was split and moved to the new line with top line that was split
-        inputBuffer[tempData.lineNumber].append(tempData.del_char);
+        // inputBuffer[tempData.lineNumber].append(tempData.del_char);
+        inputBuffer[tempData.lineNumber].first.append(tempData.del_char);
+
         // after appending, delete/erase the new line string that was created
+        // inputBuffer.erase(inputBuffer.begin() + tempData.lineNumber + 1);
         inputBuffer.erase(inputBuffer.begin() + tempData.lineNumber + 1);
 
         // update the cursor data with what it was previously
@@ -132,17 +152,21 @@ sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
         if (!tempData.del_char.empty())
         {
           {
-            std::string appendedLine{inputBuffer[tempData.lineNumber - 1]};
+            std::string appendedLine{inputBuffer[tempData.lineNumber - 1].first};
+            // std::string appendedLine{inputBuffer[tempData.lineNumber - 1]};
             size_t pos = appendedLine.find(tempData.del_char);
 
             if (tempData.lineNumber - 1 < 0)
-              inputBuffer[0].erase(pos);
+              inputBuffer[0].first.erase(pos);
+              // inputBuffer[0].erase(pos);
             else
-              inputBuffer[tempData.lineNumber - 1].erase(pos);
+              inputBuffer[tempData.lineNumber - 1].first.erase(pos);
+              // inputBuffer[tempData.lineNumber - 1].erase(pos);
           }
         }
 
-        inputBuffer.insert(inputBuffer.begin() + (tempData.lineNumber), tempData.del_char);
+        inputBuffer.insert(inputBuffer.begin() + (tempData.lineNumber), std::pair(tempData.del_char, m_stdl::LineType::INPUT_LINE));
+        // inputBuffer.insert(inputBuffer.begin() + (tempData.lineNumber), tempData.del_char);
         {
           sf::Text tempTxt;
           tempTxt.setFont(font);
@@ -179,34 +203,43 @@ sf::Vector2u Buffer::undo(int lineN, sf::Font &font)
 // int lineN: normalized line number??,
 // int cursorLineN: the coordinate version
 // int colN, int m_characterSize
+
+
+//
 void Buffer::enterFunction(int index, int lineN, int cursorLineN, int colN, int m_characterSize, bool isTerminal)
 {
-  if (!inputBuffer[lineN].empty() && !isTerminal)
+  if (!inputBuffer[lineN].first.empty() && !isTerminal)
+  // if (!inputBuffer[lineN].empty() && !isTerminal)
   {
     //SPLIT LINE WHEN CURSOR IS IN THE MIDDLE?
-    std::string t{inputBuffer[lineN]};
+    std::string t{inputBuffer[lineN].first};
+    // std::string t{inputBuffer[lineN]};
     std::cout << "before erased result: " << t << "\n";
     t.erase(0, index); // erase from beginning to cursor
     std::cout << "erased result: " << t << "\n";
 
-    inputBuffer[lineN].erase(index); // erase from cursor to end
+    inputBuffer[lineN].first.erase(index); // erase from cursor to end
+    // inputBuffer[lineN].erase(index); // erase from cursor to end
+
     // insert to the the line we're currently on + 1 meaning the bottom line
     std::cout << "buffer size before enter:: " << inputBuffer.size() << "\n";
-    inputBuffer.insert(inputBuffer.begin() + lineN + 1, t);
+    inputBuffer.insert(inputBuffer.begin() + lineN + 1, std::pair(t, m_stdl::LineType::INPUT_LINE));
+    // inputBuffer.insert(inputBuffer.begin() + lineN + 1, t);
     std::cout << "buffer size after enter:: " << inputBuffer.size() << "\n";
 
     m_stdl::DelData tempDelData = {t, index, lineN, sf::Vector2f(colN, cursorLineN), m_stdl::ENT_MOVE};
     deleteStack.push_back(tempDelData);
   }
-  else if (inputBuffer[lineN].empty() || isTerminal)
+  else if (inputBuffer[lineN].first.empty())
+  // else if (inputBuffer[lineN].empty())
   {
-    inputBuffer.insert(inputBuffer.begin() + lineN + 1, "");
+    inputBuffer.insert(inputBuffer.begin() + lineN + 1, std::pair("", m_stdl::LineType::INPUT_LINE));
     m_stdl::DelData tempDelData = {"", index, lineN, sf::Vector2f(colN, cursorLineN), m_stdl::ENT_MOVE};
     deleteStack.push_back(tempDelData);
   }
 }
 
-std::vector<std::string> &Buffer::getInputBuffer()
+std::vector<std::pair<std::string, m_stdl::LineType>> &Buffer::getInputBuffer()
 {
   return inputBuffer;
 }

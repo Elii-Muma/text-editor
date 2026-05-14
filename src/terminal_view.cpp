@@ -118,13 +118,8 @@ void TerminalView::drawLineText(sf::RenderWindow &window)
     int rowPos{0}; 
     for (int i = 0; i < m_buffer.getInputBuffer().size(); i++)
     {
-      std::string lineStr{m_buffer.getInputBuffer()[i]};
-      std::string prefix{""};
-      if(lineStr.length() >= 2){
-        prefix.push_back(m_buffer.getInputBuffer()[i][0]);
-        prefix.push_back(m_buffer.getInputBuffer()[i][1]);
-        // if(prefix == "-i") lineStr.erase(0, 2);
-      }
+      std::string lineStr{m_buffer.getInputBuffer()[i].first};
+      m_stdl::LineType line_t = m_buffer.getInputBuffer()[i].second;
       int yPos = (m_isScreen) ? rowPos : c_posY;
 
       m_arrowText.setPosition(0, yPos);
@@ -136,7 +131,7 @@ void TerminalView::drawLineText(sf::RenderWindow &window)
       // cos if you're reading from the user accessed buffer, they can manipulate
       // the input to look like output by simply adding a prefix to it
       // the moment a user presses a key, you appen -i to it immediately.
-      if(prefix != "-o") 
+      if(line_t == m_stdl::LineType::INPUT_LINE)
         window.draw(m_arrowText);
       window.draw(m_lineText);
       int activeLineNumber = m_cursor.getLineNumber(m_characterSize);

@@ -5,6 +5,41 @@
 #include "Cursor.h"
 #include "text_buffer.h"
 
+// my std library
+namespace m_stdl
+{
+  enum StackType
+  {
+    NONE,
+    LINE_DEL,
+    NORMAL_DEL,
+    NEW_INPUT,
+    ENT_MOVE
+  };
+
+  // structure that the deleted data has
+  struct DelData
+  {
+    std::string del_char;              // deleted character
+    int index;                         // index of cursor in context of the text in line
+    int lineNumber;                    // current line number
+    sf::Vector2f currCursorPos;        // the cursors position coordinates
+    StackType s_type{StackType::NONE}; //"delete type" idk why i called it stacktType
+  };
+
+  enum states
+  {
+    MAIN_SCREEN_STATE,
+    TERMINAL_SCREEN_STATE,
+    BOTTOM_SCREEN_STATE,
+  };
+
+  enum class LineType{
+    EMPTY_LINE,
+    INPUT_LINE,
+    OUTPUT_LINE
+  };
+}
 namespace TextUtils
 {
   // returns a pair of ints which are the dimensions of the character
@@ -89,35 +124,4 @@ namespace themes
       .ACCENT = sf::Color(0xffafccff),
       .HIGHLIGHT = sf::Color(0xa2d2ffff),
       .TEXT_COLOR = sf::Color(0x1d1d1dff)};
-}
-
-// my std library
-namespace m_stdl
-{
-
-  enum StackType
-  {
-    NONE,
-    LINE_DEL,
-    NORMAL_DEL,
-    NEW_INPUT,
-    ENT_MOVE
-  };
-
-  // structure that the deleted data has
-  struct DelData
-  {
-    std::string del_char;              // deleted character
-    int index;                         // index of cursor in context of the text in line
-    int lineNumber;                    // current line number
-    sf::Vector2f currCursorPos;        // the cursors position coordinates
-    StackType s_type{StackType::NONE}; //"delete type" idk why i called it stacktType
-  };
-
-  enum states
-  {
-    MAIN_SCREEN_STATE,
-    TERMINAL_SCREEN_STATE,
-    BOTTOM_SCREEN_STATE,
-  };
 }

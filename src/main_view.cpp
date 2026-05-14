@@ -85,7 +85,7 @@ void MainView::drawLineText(sf::RenderWindow &window)
     for (int i = 0; i < m_buffer.getInputBuffer().size(); i++)
     {
       m_lineText.setPosition(60, rowPos);
-      m_lineText.setString(m_buffer.getInputBuffer()[i]);
+      m_lineText.setString(m_buffer.getInputBuffer()[i].first);
       window.draw(m_lineText);
       int activeLineNumber = m_cursor.getLineNumber(m_characterSize);
       drawLineNumber(window, i, rowPos, activeLineNumber);
@@ -147,7 +147,6 @@ void MainView::renderFixedUI(sf::RenderWindow &window)
 
 void MainView::renderMoveableUI(sf::RenderWindow &window)
 {
-  // std::cout << "moveable UI render()\n";
   drawCursor(window);
   drawLineText(window);
 }

@@ -19,9 +19,11 @@ class ViewController{
     virtual void handleInput(sf::Event &ev){std::cout << "handleInput() not overridden\n";}
     void moveCameraUp();
     void moveCameraDown(int bottomOffset);
+    void moveCameraDown(int bottomOffset, int scrollSize);
     void cursorMoveRight();
     void cursorMoveLeft();
-    void cursorMoveDown();
+    void cursorMoveDown(int offset);
+    // void cursorMoveDown();
     void cursorMoveUp();
     int cursorMoveToCol(int dir);
     void cursorMoveToHome();

@@ -219,3 +219,15 @@ i think i should store a variable...seperate variable called "cursor_command_ent
 and then for styling differences like result vs user entry command line, i can store flags in the buffer that can help
 maybe i use vector<pair<string, char>> instead of vector<string>
 ?? maybe...
+RESULT_HERE: yippiiee it worked!!
+but instead of using char here vector<pair<string, char>> i used an enum type called LineType
+makes it more readable and easier to remember
+the refactor wasnt even too hard
+and the cursor movement wasnt as complicated as i was thinking it was going to be
+at this moment i havent even implemented the cursor caching...idek why i thought i needed to do that because the cursor position is already KEPT by the cursor class, since each screen uses different cursors...
+but yeah i just multiply the movedown fontsize thingy with the size of the result
+
+PROCESSING COMMANDS
+regex? maybe
+cos a command can be: [COMMAND][OPTION]
+okay maybe ill just split...

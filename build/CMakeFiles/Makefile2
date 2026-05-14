@@ -62,11 +62,11 @@ CMAKE_BINARY_DIR = "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\buil
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/text-ctrl.dir/all
+all: CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
-codegen: CMakeFiles/text-ctrl.dir/codegen
+codegen: CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -74,40 +74,40 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/text-ctrl.dir/clean
+clean: CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/text-ctrl.dir
+# Target rules for target CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir
 
 # All Build rule for target.
-CMakeFiles/text-ctrl.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Built target text-ctrl"
-.PHONY : CMakeFiles/text-ctrl.dir/all
+CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Built target TEXT-EDITOR-PRO-PLUS-6G"
+.PHONY : CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/text-ctrl.dir/rule: cmake_check_build_system
+CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 16
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/text-ctrl.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" 0
-.PHONY : CMakeFiles/text-ctrl.dir/rule
+.PHONY : CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/rule
 
 # Convenience name for target.
-text-ctrl: CMakeFiles/text-ctrl.dir/rule
-.PHONY : text-ctrl
+TEXT-EDITOR-PRO-PLUS-6G: CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/rule
+.PHONY : TEXT-EDITOR-PRO-PLUS-6G
 
 # codegen rule for target.
-CMakeFiles/text-ctrl.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Finished codegen for target text-ctrl"
-.PHONY : CMakeFiles/text-ctrl.dir/codegen
+CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Surr Elii\Documents\CODE\ProjeksV3\text-editor\build\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Finished codegen for target TEXT-EDITOR-PRO-PLUS-6G"
+.PHONY : CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/codegen
 
 # clean rule for target.
-CMakeFiles/text-ctrl.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\text-ctrl.dir\build.make CMakeFiles/text-ctrl.dir/clean
-.PHONY : CMakeFiles/text-ctrl.dir/clean
+CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TEXT-EDITOR-PRO-PLUS-6G.dir\build.make CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/clean
+.PHONY : CMakeFiles/TEXT-EDITOR-PRO-PLUS-6G.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

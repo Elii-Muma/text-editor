@@ -11,12 +11,15 @@ class Camera{
     int viewTop();
     int viewBottom();
     void cameraScrollDown();
+    void cameraScrollDown(int scrollSpeed);
     void cameraScrollUp();
+    void resetCamera();
     void cameraJumpUp();
     void cameraJumpDown();
     void moveCameraLeft();
   private:
     sf::View m_view;
+    sf::Vector2u& m_WIN_SIZE;
     int m_charSize;
     int m_scrollSpeed;
 };

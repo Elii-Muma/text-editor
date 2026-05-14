@@ -23,7 +23,7 @@ void View::updateCursorScreenPos()
   int lineN = m_cursor.getLineNumber(prev_fontSize);
   int index = m_buffer.getCharPosAt(colN, lineN, m_font, prev_fontSize);
 
-  int size  = m_buffer.getInputBuffer()[lineN].size();
+  int size  = m_buffer.getInputBuffer()[lineN].first.size();
   if (index > size){
     index = size;
     std::cout << "_update_c_cond::index > size\n";
@@ -31,7 +31,7 @@ void View::updateCursorScreenPos()
   int newX{0};
   for (int i = 0; i < index; i++)
   {
-    std::string cur_char{m_buffer.getInputBuffer()[lineN][i]};
+    std::string cur_char{m_buffer.getInputBuffer()[lineN].first[i]};
     newX += TextUtils::getCharGlyphSize(*cur_char.c_str(), m_font, m_characterSize).first;
   }
 
@@ -54,4 +54,10 @@ Camera &View::getCamera()
 {
   // TODO: insert return statement here
   return m_camera;
+}
+
+sf::Vector2u &View::getWinSize()
+{
+  return m_winSize;
+  // TODO: insert return statement here
 }
